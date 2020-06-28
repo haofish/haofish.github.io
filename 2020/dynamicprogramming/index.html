@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/dynamicprogramming/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>
+    
+    
+    动态规划刷题总结 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="动态规划刷题总结 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "动态规划刷题总结",
+    "headline" : "动态规划刷题总结",
+    "description" : "1、写在前面 这几天疯狂刷leetcode的dp题，刷到我都想吐了，看到一个题就先往dp想，感觉中毒不浅，话不多说，赶紧开始总结一下我的成长历程心得。\n2、我对dp的看法和理解   首先引入《算法笔记》里的一句话:\n 动态规划是一种非常精妙的算法思想，他没有固定的写法、极其灵活，常常需要具体问题具体分析。\n 没错正式这种具体问题具体分析的设定让我刷到吐了\n  平时在思考动态规划的往往是利用一个小小的公式：递推 = 递归 \u002b 记忆化（下面会赘述我是怎么利用这个公式思考的）\n  虽然他是这么说，但是我还是觉得dp的是有套路可循的，例如给dp分类 （背包dp、树形dp、区间dp……），经典题的记忆 （爬楼梯、树塔问题、LIS……）\n  一般来说，我思考dp都是从结果往前想的（即从末尾开始想）\n  dp的基本使用条件： 1. 拥有重叠子问题、 2. 最优子结构\n  dp思考三步走： 1. 状态定义 → 2.列状态转移方程 → 验证方程\n  我觉得的动规成长路线：小白 → 利用小公式辅助建立dp → 正常dp三步走思维思考 → 大佬 （我还没触及 将来一定达到( ఠൠఠ )ﾉ）\n  3、典型例题 ①爬楼梯（leetcode #70） 题意  假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。示例 1： 输入： 2 输出： 2 解释： 有两种方法可以爬到楼顶。 1.",
+    "inLanguage" : "en-cn",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-27 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2020-06-27 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/haofish.github.io\/2020\/dynamicprogramming\/",
+    "wordCount" : "264",
+    "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">动态规划刷题总结</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-06-27
+                    itemprop="datePublished">June 27, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="1写在前面">1、写在前面</h2>
+<p>这几天疯狂刷leetcode的dp题，刷到我都想吐了，看到一个题就先往dp想，感觉中毒不浅，话不多说，赶紧开始总结一下我的成长<del>历程</del>心得。</p>
+<h2 id="2我对dp的看法和理解">2、我对dp的看法和理解</h2>
+<ul>
+<li>
+<p>首先引入《算法笔记》里的一句话:</p>
+<blockquote>
+<p>动态规划是一种非常精妙的算法思想，他没有<strong>固定的写法、极其灵活，常常需要具体问题具体分析</strong>。</p>
+</blockquote>
+<p>没错正式这种具体问题具体分析的设定让我刷到吐了</p>
+</li>
+<li>
+<p>平时在思考动态规划的往往是利用一个小小的公式：<strong>递推 = 递归 + 记忆化</strong>（下面会赘述我是怎么利用这个公式思考的）</p>
+</li>
+<li>
+<p>虽然他是这么说，但是我还是觉得dp的是有套路可循的，例如给dp分类 <em>（背包dp、树形dp、区间dp……）</em>，经典题的记忆 <em>（爬楼梯、树塔问题、LIS……）</em></p>
+</li>
+<li>
+<p>一般来说，我思考dp都是从结果往前想的（即从末尾开始想）</p>
+</li>
+<li>
+<p><strong>dp的基本使用条件：</strong> 1. 拥有重叠子问题、 2. 最优子结构</p>
+</li>
+<li>
+<p><strong>dp思考三步走：</strong> 1. 状态定义 → 2.列状态转移方程 → 验证方程</p>
+</li>
+<li>
+<p>我觉得的动规成长路线：小白 → 利用小公式辅助建立dp → 正常dp三步走思维思考 → 大佬 （<del>我还没触及</del> 将来一定达到( ఠൠఠ )ﾉ）</p>
+</li>
+</ul>
+<h2 id="3典型例题">3、典型例题</h2>
+<h3 id="爬楼梯leetcode-70httpsleetcode-cncomproblemsclimbing-stairs">①爬楼梯（<a href="https://leetcode-cn.com/problems/climbing-stairs/">leetcode #70</a>）</h3>
+<h4 id="题意">题意</h4>
+<blockquote>
+<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+注意：给定 n 是一个正整数。<!-- raw HTML omitted -->
+示例 1：
+输入： 2
+输出： 2
+解释： 有两种方法可以爬到楼顶。
+1. 1 阶 + 1 阶
+2. 2 阶<!-- raw HTML omitted -->
+示例 2：
+输入： 3
+输出： 3
+解释： 有三种方法可以爬到楼顶。
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶</p>
+</blockquote>
+<h4 id="分析">分析</h4>
+<h5 id="抛开动规假设我们是小白我的思考过程利用上述提到的小小公式递推--递归--记忆化">（抛开动规，假设我们是小白）我的思考过程，利用上述提到的小小公式（递推 = 递归 + 记忆化）</h5>
+<ul>
+<li>首先：从末尾结果开始想，如果我们要走到最后一个台阶,那么我们就有两种走到这个台阶的方法：一是从这一个台阶的前一个台阶上来、二是从这个台阶的前第二个台阶上来。如图：
+<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF1.png" alt="爬楼梯1"></li>
+<li>这样我们就很容易想到到达<strong>最后一个台阶的方法数</strong>为<strong>到前一个台阶的方法数</strong>加上<strong>到前第二个台阶的方法数</strong>，可能很拗口。看下面的公式就懂了。</li>
+<li>设 <strong>dp(n)</strong> 为到台阶n的总方法数，这样很容易就能写出这个方法数的公式为：</li>
+</ul>
+<p>$$
+dp(n) = dp(n - 1) + dp(n - 2)
+$$</p>
+<ul>
+<li>不难写出递归代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dp</span>(<span style="color:#66d9ef">int</span> n){
+    <span style="color:#66d9ef">if</span>(n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)n
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+}
+</code></pre></div><ul>
+<li>仔细分析一下这个代码，时间复杂度不难发现式O(2^n)，例如假设我们求的是dp(5)
+<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF2.png" alt="递归分析"></li>
+<li>不难发现有很多重复计算(黄色部分)，这里采取了一个比较好的优化方法&ndash;记忆化递归（是不是觉得很接近那个小公式了？别急看代码）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">int</span> memor[Max] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dp</span>(<span style="color:#66d9ef">int</span> n) {
+    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (memor[n] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> memor[n];
+    memor[n] <span style="color:#f92672">=</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">return</span> memor[n];
+}
+</code></pre></div><ul>
+<li>时间复杂度降到了O(n),就是变成这样
+<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF3.png" alt="记忆化递归"></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#960050;background-color:#1e0010">两者时间对比：</span>
+    <span style="color:#960050;background-color:#1e0010">普通递归计算</span>dp(<span style="color:#ae81ff">45</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">3464</span> ms
+    <span style="color:#960050;background-color:#1e0010">记忆化递归计算</span>dp(<span style="color:#ae81ff">45</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> ms
+</code></pre></div><p>天壤之别！！！</p>
+<ul>
+<li>回过头来看这题，这题是一个典型的动规问题，那么我是怎么利用那个小公式来思考这个题的状态方程的呢，很简单就是按照刚刚的思路走一遍。</li>
+<li>不难发现我们按照那个思路走，其实已经写出了转移状态方程，就是下面这个，并且这个方程的含义就是我们递归时的含义，这就相当于一下完成了<strong>dp三步走</strong>的前两步。</li>
+</ul>
+<p>$$
+dp(n) = dp(n - 1) + dp(n - 2)
+$$</p>
+<ul>
+<li>接下来的一步就是检查（验证）方程，<strong>首先</strong>我们要思考这道题适不适合用动规的方法来写，这就需要我们验证这个题是否满足<strong>1.有重叠子问题</strong>，<strong>2.有最优子结构</strong>。<em>重叠子问题</em>的话，刚刚分析递归的时候已经发现了，并且优化后不会出现重复计算子问题；<em>最优子结构</em>就是分析没有个状态（即dp(n)）是否是最优的解，在一开始分析题目时不难发现每一个台阶的步数只取决于他前两个台阶的步数。</li>
+<li>验证方程的最后一步，设定状态边界（我们总不可能让他一直计算下去吧），其实这道题的边界就是我们一开始的递归边界。</li>
+<li>到了这里dp的代码就不难了,递归式自顶向下地计算，而我们动规就是自顶向下地思考，自底向上地计算，多说无益，上代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">int</span> dp[Max], n;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, dp[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        dp[i] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>];
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, dp[n]);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+</code></pre></div><ul>
+<li>时间复杂度同样是O(n),虽然还有更快O(logn)的方式解这题，<del>但我们现在是小白呀</del>，下次再聊。</li>
+</ul>
+<h4 id="小结">小结</h4>
+<ul>
+<li>通过这道题我们从小白晋级到了会用小公式来思考dp。</li>
+<li>1、首先从末尾结果开始思考</li>
+<li>2、思考怎么递归</li>
+<li>3、再来就是写出递归的的方程</li>
+<li>4、分析递归，去除重叠问题</li>
+<li>5、转换成dp思想，直接走dp三步走的第三步，检查是否状态方程，若不满足，回到1看看有没有另一种更好的办法（一般不会出现这种情况),当然还有另一种方法就是在原有的基础上再次优化（这些都是后话）；若满足直接dp走你。</li>
+</ul>
+<p>未完待续……</p>
+
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/dynamicprogramming/>https://haofish.github.io/2020/dynamicprogramming/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
