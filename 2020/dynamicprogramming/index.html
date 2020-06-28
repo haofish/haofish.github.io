@@ -19,7 +19,51 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
 
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
   <title>
     
     
@@ -48,7 +92,7 @@
     "articleSection" : "posts",
     "name" : "动态规划刷题总结",
     "headline" : "动态规划刷题总结",
-    "description" : "1、写在前面 这几天疯狂刷leetcode的dp题，刷到我都想吐了，看到一个题就先往dp想，感觉中毒不浅，话不多说，赶紧开始总结一下我的成长历程心得。\n2、我对dp的看法和理解   首先引入《算法笔记》里的一句话:\n 动态规划是一种非常精妙的算法思想，他没有固定的写法、极其灵活，常常需要具体问题具体分析。\n 没错正式这种具体问题具体分析的设定让我刷到吐了\n  平时在思考动态规划的往往是利用一个小小的公式：递推 = 递归 \u002b 记忆化（下面会赘述我是怎么利用这个公式思考的）\n  虽然他是这么说，但是我还是觉得dp的是有套路可循的，例如给dp分类 （背包dp、树形dp、区间dp……），经典题的记忆 （爬楼梯、树塔问题、LIS……）\n  一般来说，我思考dp都是从结果往前想的（即从末尾开始想）\n  dp的基本使用条件： 1. 拥有重叠子问题、 2. 最优子结构\n  dp思考三步走： 1. 状态定义 → 2.列状态转移方程 → 验证方程\n  我觉得的动规成长路线：小白 → 利用小公式辅助建立dp → 正常dp三步走思维思考 → 大佬 （我还没触及 将来一定达到( ఠൠఠ )ﾉ）\n  3、典型例题 ①爬楼梯（leetcode #70） 题意  假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。示例 1： 输入： 2 输出： 2 解释： 有两种方法可以爬到楼顶。 1.",
+    "description" : "description.",
     "inLanguage" : "en-cn",
     "author" : "",
     "creator" : "",
@@ -59,7 +103,7 @@
     "datePublished": "2020-06-27 00:00:00 \u002b0000 UTC",
     "dateModified" : "2020-06-27 00:00:00 \u002b0000 UTC",
     "url" : "https:\/\/haofish.github.io\/2020\/dynamicprogramming\/",
-    "wordCount" : "264",
+    "wordCount" : "266",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -193,28 +237,34 @@
 <blockquote>
 <p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
-注意：给定 n 是一个正整数。<!-- raw HTML omitted -->
-示例 1：
-输入： 2
-输出： 2
-解释： 有两种方法可以爬到楼顶。
-1. 1 阶 + 1 阶
-2. 2 阶<!-- raw HTML omitted -->
-示例 2：
-输入： 3
-输出： 3
-解释： 有三种方法可以爬到楼顶。
-1.  1 阶 + 1 阶 + 1 阶
-2.  1 阶 + 2 阶
-3.  2 阶 + 1 阶</p>
+注意：给定 n 是一个正整数。</p>
+<p>示例 1：<br>
+输入： 2<br>
+输出： 2<br>
+解释： 有两种方法可以爬到楼顶。<br>
+1、 1 阶 + 1 阶<br>
+2、 2 阶</p>
+<p>示例 2：<br>
+输入： 3<br>
+输出： 3<br>
+解释： 有三种方法可以爬到楼顶。<br>
+1、  1 阶 + 1 阶 + 1 阶<br>
+2、  1 阶 + 2 阶<br>
+3、  2 阶 + 1 阶</p>
 </blockquote>
 <h4 id="分析">分析</h4>
 <h5 id="抛开动规假设我们是小白我的思考过程利用上述提到的小小公式递推--递归--记忆化">（抛开动规，假设我们是小白）我的思考过程，利用上述提到的小小公式（递推 = 递归 + 记忆化）</h5>
 <ul>
-<li>首先：从末尾结果开始想，如果我们要走到最后一个台阶,那么我们就有两种走到这个台阶的方法：一是从这一个台阶的前一个台阶上来、二是从这个台阶的前第二个台阶上来。如图：
-<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF1.png" alt="爬楼梯1"></li>
-<li>这样我们就很容易想到到达<strong>最后一个台阶的方法数</strong>为<strong>到前一个台阶的方法数</strong>加上<strong>到前第二个台阶的方法数</strong>，可能很拗口。看下面的公式就懂了。</li>
-<li>设 <strong>dp(n)</strong> 为到台阶n的总方法数，这样很容易就能写出这个方法数的公式为：</li>
+<li>
+<p>首先：从末尾结果开始想，如果我们要走到最后一个台阶,那么我们就有两种走到这个台阶的方法：一是从这一个台阶的前一个台阶上来、二是从这个台阶的前第二个台阶上来。如图：
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%88%AC%E6%A5%BC%E6%A2%AF.png" alt="爬楼梯"></p>
+</li>
+<li>
+<p>这样我们就很容易想到到达<strong>最后一个台阶的方法数</strong>为<strong>到前一个台阶的方法数</strong>加上<strong>到前第二个台阶的方法数</strong>，可能很拗口。看下面的公式就懂了。</p>
+</li>
+<li>
+<p>设 <strong>dp(n)</strong> 为到台阶n的总方法数，这样很容易就能写出这个方法数的公式为：</p>
+</li>
 </ul>
 <p>$$
 dp(n) = dp(n - 1) + dp(n - 2)
@@ -228,9 +278,13 @@ $$</p>
     <span style="color:#66d9ef">return</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> dp(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
 }
 </code></pre></div><ul>
-<li>仔细分析一下这个代码，时间复杂度不难发现式O(2^n)，例如假设我们求的是dp(5)
-<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF2.png" alt="递归分析"></li>
-<li>不难发现有很多重复计算(黄色部分)，这里采取了一个比较好的优化方法&ndash;记忆化递归（是不是觉得很接近那个小公式了？别急看代码）</li>
+<li>
+<p>仔细分析一下这个代码，时间复杂度不难发现式O(2^n)，例如假设我们求的是dp(5)
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%88%AC%E6%A5%BC%E6%A2%AF%E9%80%92%E5%BD%92.png" alt="递归"></p>
+</li>
+<li>
+<p>不难发现有很多重复计算(黄色部分)，这里采取了一个比较好的优化方法&ndash;记忆化递归（是不是觉得很接近那个小公式了？别急看代码）</p>
+</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
 <span style="color:#66d9ef">int</span> memor[Max] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
@@ -243,7 +297,7 @@ $$</p>
 }
 </code></pre></div><ul>
 <li>时间复杂度降到了O(n),就是变成这样
-<img src="%E7%88%AC%E6%A5%BC%E6%A2%AF3.png" alt="记忆化递归"></li>
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPICp%E8%AE%B0%E5%BF%86%E5%8C%96%E9%80%92%E5%BD%92.png" alt="记忆化递归"></li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#960050;background-color:#1e0010">两者时间对比：</span>
     <span style="color:#960050;background-color:#1e0010">普通递归计算</span>dp(<span style="color:#ae81ff">45</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">3464</span> ms
