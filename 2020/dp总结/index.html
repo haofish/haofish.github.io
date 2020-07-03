@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-cn">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/dynamicprogramming/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    Dp总结 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="Dp总结 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Dp总结",
+    "headline" : "Dp总结",
+    "description" : "description.",
+    "inLanguage" : "en-cn",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
+    "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
+    "wordCount" : "50",
+    "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Dp总结</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-07-01
+                    itemprop="datePublished">July 1, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="1-写在前面的话">1. 写在前面的话</h2>
+<ul>
+<li>之前写了一篇不像总结的<a href="https://haofish.github.io/2020/dynamicprogramming/">动态规划总结</a>，感觉更像是一个成长历程，所以就打算重写一篇。</li>
+</ul>
+<h2 id="2-对dp简单的总结">2. 对DP简单的总结</h2>
+<ol>
+<li>
+<p>dp的题目特点</p>
+<ul>
+<li>求最大或者最小值（如背包：价值最大、凑硬币：数量最少……）</li>
+<li>计数（如：爬楼梯：计算上到n台阶的方法数）</li>
+<li>求存在性或者胜负（如：能否胜利……）</li>
+</ul>
+</li>
+<li>
+<p>dp的使用<strong>条件</strong></p>
+<ul>
+<li>拥有子问题</li>
+<li>子问题最优解（即拥有最优子结构），对于一个主问题解最优，其子问题必定也是最优</li>
+<li>问题结果依赖子问题，即问题的最优解依赖于其子问题的最优解</li>
+<li>子问题不（或极少）重叠,即解决了暴力方法的重复计算和冗余问题</li>
+<li>无后效性，即此时的之前状态无法直接影响未来的决策，换句话说就是之前的每个状态如何得来并不影响未来对此时（当前）状态的利用或者查找，因为我们最后对此时（当前）状态的利用只考虑结果不考虑过程。</li>
+</ul>
+</li>
+<li>
+<p>dp的<strong>思考方式</strong>及注意事项</p>
+<ul>
+<li>若问题有dp的味道，应当优先从主问题出发来思考，即从末尾（结果）开始思考（例如爬楼梯问题）</li>
+<li>接下来，对于一个主问题，应当思考此问题的结果由什么得来（由什么决定）和有什么因素影响</li>
+<li>或者思考此问题类似什么DP题（如:背包、LIS……）</li>
+<li>实在想不出可以思考如果是用bfs（或普通递归），应当如何解决问题（个人觉得有时候道理是相同的，记得吗：<strong>递归 + 记忆化 = 递推</strong>）</li>
+<li>注意1：在思考一个状态的得来时，目光应当只集中在此时的状态（无后效性），而不要多想之前的状态变化和未来的状态影响</li>
+<li>注意2：状态的定义很重要，要结合题目需求和状态影响因素来定义</li>
+</ul>
+</li>
+<li>
+<p>关于<strong>dp三步走</strong></p>
+<ul>
+<li>1.状态定义 → 2.列状态转移方程 → 3.验证方程</li>
+<li>对于第一步和第二步主要可以利用上述的思考方式或者是<strong>闫氏DP分析法</strong>来解决</li>
+<li>第三步虽然不难，但是很重要，因为第三步包括：验证状态推理是否合理或者是否是答案最优，并且思考状态是否满足题目条件需求，前者均没问题后再思考边界是什么。对于一般验证发现有问题通常的解决办法有：1、修改状态定义；2、给状态增加维度；3、优化转移方程</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-几个重要的模型">3. <strong>几个重要的模型</strong></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E5%8A%A8%E8%A7%84%E6%A8%A1%E5%9E%8B.png" alt="动规模型"></p>
+<hr>
+<p>例题静待补充</p>
+<hr>
+<h2 id="4-分类">4. 分类</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPICdp%E5%88%86%E7%B1%BB.png" alt="dp分类"></p>
+<h2 id="5-优化dp的手段">5. 优化dp的手段</h2>
+<h3 id="-二进制优化">① 二进制优化</h3>
+<h3 id="-单调队列优化">② 单调队列优化</h3>
+<h3 id="-斜率优化">③ 斜率优化</h3>
+<h3 id="-四边形不等式优化">④ 四边形不等式优化</h3>
+<p>未完待续（以后有空补充）……</p>
+
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/dynamicprogramming/" class="prev" rel="prev" title="动态规划刷题总结"><i
+                class="iconfont icon-left"></i>&nbsp;动态规划刷题总结</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">100 Words|Read in about 1
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

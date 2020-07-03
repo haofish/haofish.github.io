@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>草稿s on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/%E8%8D%89%E7%A8%BF/</link>
+    <description>Recent content in 草稿s on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-cn</language>
+    <lastBuildDate>Fri, 03 Jul 2020 14:30:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/%E8%8D%89%E7%A8%BF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>背包问题</title>
+      <link>https://haofish.github.io/%E8%8D%89%E7%A8%BF/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 03 Jul 2020 14:30:23 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/%E8%8D%89%E7%A8%BF/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dp总结</title>
+      <link>https://haofish.github.io/%E8%8D%89%E7%A8%BF/dp%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 01 Jul 2020 11:30:44 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/%E8%8D%89%E7%A8%BF/dp%E6%80%BB%E7%BB%93/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
