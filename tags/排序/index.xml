@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>排序 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E6%8E%92%E5%BA%8F/</link>
+    <description>Recent content in 排序 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-cn</language>
+    <lastBuildDate>Mon, 06 Jul 2020 18:00:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>E1. Reading Books (easy version)题解</title>
+      <link>https://haofish.github.io/2020/653div3probleme1/</link>
+      <pubDate>Mon, 06 Jul 2020 18:00:01 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/653div3probleme1/</guid>
+      <description>传送门
+题意  小A和小B要读书，现在共又 n 本书，对于每本书都有三个参数，$t_i$：阅读的时间、$a_i$：小A喜欢读的书、$b_i$：小B喜欢读的书 现在小A和小B都要读 k 本书，但是他俩只读自己喜欢的书 问你小A和小B最少要读多久可以读到 k 本书，（对于都喜欢的书，时间是可以只算一次的） 如果他俩有一个没读到 k 本书就输出 -1  思路  一道思维贪心题cf好狠呀，网上有很多的解法，大多数都是模拟+贪心，但是我看到了一位大佬的贪心思路，醍醐灌顶，下面就用它的思路了 对于每个书本可以分为以下四类  小A和小B都喜欢的书 只有小A喜欢的书 只有小B喜欢的书 他俩都不喜欢的书   显然最后一类可以不管不要呀，看书长知识，目前只考虑第二三类的书，可以分别用数组$a_n$和$b_n$记录这些书的阅读时间，然后从小到大排序，精彩的来了，把$a_i 和 b_i$合成一本书当作是第一类的书（妙呀,我怎么没想到，太笨了，太菜了，刷题少），然后放入第一类，再来对第一类的书的阅读时间排序，选前 k 个书，记录阅读时间就是最终答案 代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; typedef vector&amp;lt;int&amp;gt; vi; typedef vector&amp;lt;long long&amp;gt; vll; typedef pair&amp;lt;int, int&amp;gt; pii; typedef pair&amp;lt;long long, long long&amp;gt; pll; #define debug printf(&amp;#34;(hao)&amp;#34;) #define all(x) x.begin(), x.end() #define rep(i, a, b) for (int i = (a); i &amp;lt; (b); i++) #define clr(a, v) memset(a, v, sizeof(a))  const int M = 2e5 + 10; vi a, b, t; void solve() { int n, k; scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;k); rep(i, 0, n) { int _t, _a, _b; scanf(&amp;#34;%d%d%d&amp;#34;, &amp;amp;_t, &amp;amp;_a, &amp;amp;_b); if (_a &amp;amp;&amp;amp; _b) t.</description>
+    </item>
+    
+    <item>
+      <title>D. Zero Remainder Array题解</title>
+      <link>https://haofish.github.io/2020/653div3problemd/</link>
+      <pubDate>Mon, 06 Jul 2020 16:58:31 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/653div3problemd/</guid>
+      <description>传送门
+题意  给你一个长度为 n 的数组$a_n$，和一个 k，你有一个 x（一开始为0），你有以下两种操作  给 x 加上 1，即$x = x + 1$ 选择一个任意一个$a_i$($0 \le i &amp;lt; n$)加上 x，然后 x 加上 1   每个元素最多只能被执行一次上诉操作 问你执行上述操作，x 最小为多少可以使得数组所有元素都能整除 k  思路  记录数组的每一个数至少要加多少才可以被 k 整除 寻找上述数中的最大的众数，计算 x 加到多少才可以使得这些数都能被 k 整除。 例如  对于一个数组 {1，1，1，2，3}，k = 6 则其至少要加的数为 {5，5，5，4，3} 显然最大的众数是 5，其个数是 3，那么对于第一个 5 则需要把 x 加到 5 就行了，对于第二个 5 ，就需要再等到下一个能模 6 为 5 的数，显然就是11($5 + 6 = 11$), 而第三个 5 也是同理就是 17，但这个还不是最终答案，因为题目的第二个操作是先给数组加上 x，再让 $x + 1$,所以最终答案就是 18   为什么这样就是对的呢？很简单，如果想要执行题中把所有数都弄成可以整除 k 并且每个数只能执行一次，对于两个相同且不能被 k 整除的数 y，想要把这两个 y 都弄成能被 k 整除，第二个数 y 一定要等到下一次有一个数 x 加上这个 y 使得它能整除 k。 所以我们要求出每个数最少加多少才可以被 k 整除，然后求一个最大的众数，计算最后一个众数需要的最小x（因为最后的 x 一定是停在了能使这些最大众数的最后一个数被 k 整除的结果），记得最后的答案要再加一才是最终答案。 那么其余的非最大众数呢？别担心，这些数在为最大众数服务的时候就能有一个 x 使得他们的一些能被 k 整除。例如上面的例子，我们在把 x 走到 5 的之前就有个4，可以使得数组中的 2 加上这个 4 能被 6 整除 还想不明白就想想模数具有周期性，例如将0 ~ n中的数都摸上 3 ，就会有这么一个规律 ：0 1 2 0 1 2 0 1 2 0 1 2····· 代码如下（求众数有点滑稽，因为我不会利用简单代码的求众数的方法）  #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>栈 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E6%A0%88/</link>
+    <description>Recent content in 栈 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-cn</language>
+    <lastBuildDate>Mon, 06 Jul 2020 15:59:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E6%A0%88/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C. Move Brackets题解</title>
+      <link>https://haofish.github.io/2020/653div3problemc/</link>
+      <pubDate>Mon, 06 Jul 2020 15:59:43 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/653div3problemc/</guid>
+      <description>传送门
+题意  给你一串字符串，只有&amp;rdquo;(&amp;rdquo; h和&amp;rdquo;)&amp;ldquo;组成，你每次都能选择一个字符把它移到最左边或者最右边，问你最少移动几次可以使得字符串的括号合法  思路  一道贪心题（比赛的时候没看出来，太菜了😭） 只要计算出合法的括号对，然后用总长度减去合法的括号对的个数，即剩余的不合法长度除以 2 就是最少的步数 例如 ： &amp;ldquo;()))))((((()&amp;rdquo;, 去掉合法的后就是&amp;rdquo;))))((((&amp;rdquo;, 那么移动的长度就是$8 \div 2 = 4$就是答案 这题我一开始想复杂了，对于上一个样例，我以为必须要把下标为2 ~ 5（从0开始）的先一道最左边，再把（原本的）6 ~ 9移到最左边，变成这样：&amp;quot;(((())))()()&amp;quot;,总次数是8，所以就很搞了，然而正确答案是把6 ~ 9 移到最左边就合法了，就是这样：&amp;quot;((((()))))()&amp;quot;,总次数就是 4 所以最终的思路就是判断合法的有多少对：在博客中遇到了两种方法，一种是用栈，一种是不用栈（根据括号合法的特性一定要左括号先出现， 即从头到尾遍历，用一个变量来储存左括号出现次数，一旦遇到右括号变量值就自减） 代码如下（用栈）：  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; typedef vector&amp;lt;int&amp;gt; vi; #define debug printf(&amp;#34;(hao)&amp;#34;) #define all(x) x.begin(), x.end() #define rep(i, a, b) for (int i = (a); i &amp;lt; (b); i++) #define clr(a, v) memset(a, v, sizeof(a))  void solve() { int n; char bra[55]; stack&amp;lt;char&amp;gt; res; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); scanf(&amp;#34;%s&amp;#34;, bra); for (int i = 0; i &amp;lt; n; i++) { if (res.</description>
+    </item>
+    
+  </channel>
+</rss>
