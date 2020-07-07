@@ -10,10 +10,9 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/653div3problemc/" />
+  <link rel="prev" href="https://haofish.github.io/2020/653div3probleme1/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/653div3probleme1/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/653div3problemd/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/654div2problemc/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +68,11 @@
   <title>
     
     
-    D. Zero Remainder Array题解 | 🐟🐟🐟&lt;--
+    C. A Cookie for You题解 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="D. Zero Remainder Array题解 | 🐟🐟🐟&lt;--">
+    content="C. A Cookie for You题解 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +91,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "D. Zero Remainder Array题解",
-    "headline" : "D. Zero Remainder Array题解",
+    "name" : "C. A Cookie for You题解",
+    "headline" : "C. A Cookie for You题解",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +101,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-07-06 16:58:31 \u002b0800 CST",
-    "dateModified" : "2020-07-06 16:58:31 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/653div3problemd\/",
-    "wordCount" : "340",
-    "keywords" : [ "数学","思维","数组","排序","题解", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-07-06 20:28:19 \u002b0800 CST",
+    "dateModified" : "2020-07-06 20:28:19 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/654div2problemc\/",
+    "wordCount" : "257",
+    "keywords" : [ "数学","思维","模拟","题解", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,7 +167,7 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">D. Zero Remainder Array题解</h1>
+        <h1 class="post-title" itemprop="name headline">C. A Cookie for You题解</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
@@ -201,34 +200,42 @@
         
         
 
-        <p><a href="https://codeforces.com/contest/1374/problem/D">传送门</a></p>
+        <p><a href="https://codeforces.com/contest/1371/problem/C">传送门</a></p>
 <h2 id="题意">题意</h2>
 <ul>
-<li>给你一个长度为 n 的数组$a_n$，和一个 k，你有一个 x（一开始为0），你有以下两种操作
+<li>有 a 个 饼干，和 b 个巧克力</li>
+<li>有 n 个 第一类人，有 m 个第二类人
 <ul>
-<li>给 x 加上 1，即$x = x + 1$</li>
-<li>选择一个任意一个$a_i$($0 \le i &lt; n$)加上 x，然后 x 加上 1</li>
+<li>对于第一类人， if (a &gt; b)吃一个饼干，else 吃一个巧克力</li>
+<li>对于第二类人， if (a &gt; b)吃一个巧克力，else 吃一个饼干</li>
 </ul>
 </li>
-<li>每个元素最多只能被执行一次上诉操作</li>
-<li>问你执行上述操作，x 最小为多少可以使得数组所有元素都能整除 k</li>
+<li>问你是否有一种方法能让第一类和第二类人都有东西吃，有输出Yes，否则输出No</li>
 </ul>
-<h2 id="思路">思路</h2>
+<h2 id="思考">思考</h2>
 <ul>
-<li>记录数组的每一个数至少要加多少才可以被 k 整除</li>
-<li>寻找上述数中的最大的众数，计算 x 加到多少才可以使得这些数都能被 k 整除。</li>
-<li>例如
+<li>很显然第一类人优先吃多的（一样多就吃巧克力），第二类人优先吃少的（一样多就吃饼干）</li>
+<li>有两种思路，一个是我自己比赛时想到的，一个是x大佬讲的</li>
+<li>方法一
 <ul>
-<li>对于一个数组 {1，1，1，2，3}，k = 6</li>
-<li>则其至少要加的数为 {5，5，5，4，3}</li>
-<li>显然最大的众数是 5，其个数是 3，那么对于第一个 5 则需要把 x 加到 5 就行了，对于第二个 5 ，就需要再等到下一个能模 6 为 5 的数，显然就是11($5 + 6 = 11$), 而第三个 5 也是同理就是 17，但这个还不是最终答案，因为题目的第二个操作是先给数组加上 x，再让 $x + 1$,所以最终答案就是 18</li>
+<li>一来就判断饼干和巧克力的总数够不够第一类和第二类人吃，如果不够，直接No，如果够如下</li>
+<li>先让第二类人吃，方便我们思考，因为东西只会被越吃越少嘛，不可能越吃越多，所以他自始至终都会不会换别的吃</li>
+<li>然后就是判断最少的是否够第二类人吃。先讨论最简单的——够，显然如果够的话则第一类人一定够吃，为什么，因为第一类人是优先吃最多的，而我们先判断的是总数都够吃，所以无论怎么吃，不管最多的东西怎么变化，都是够吃的,所以是Yes；</li>
+<li>但是如果不够吃呢，直接就是No，为什么，解释起来有点麻烦（比赛时候我就是这里没有想好，一直往别的地方想，自己扰乱了自己的思维）。先这样想，如果不够吃，那么最小的永远都是那一个（饼干或者巧克力一开始最少的）：因为不够吃，所以那一个就会被吃完（即等于0），但是呢第二类人还有没吃到的，他们只会吃最少的那一个，而最少的那一个个数是0了，所以无论如何都吃不了了。</li>
+<li>比赛的时候我往别的地方想了（相信不止我会这样想歪，现在想通了，解释一下，可能会有点啰嗦）：就是如果最少的不够第二类人吃的话那就一开始先让第一类人吃，或者中途到了某个关系后交替来吃。但是这样只会让自己陷入窘境，其实这种情况下，无论是让第一类人先吃，还是交替吃，都不会改变第二类人没得吃的结果。因为第一类人的插入只会让最多数量的那个东西变少，一直吃到饼干和巧克力个数一样时，最少的个数依然是最少，即便最少的种类可能会变，但是第二类人能吃的个数不会变。换句话说就是，即便它最少或最多的种类转移了，第二类依然会吃最少的，他不可能可以多吃一个多的那一个（即便饼干和巧克力相等）</li>
+<li>详细见代码solve()函数</li>
 </ul>
 </li>
-<li>为什么这样就是对的呢？很简单，如果想要执行题中把所有数都弄成可以整除 k 并且每个数只能执行一次，对于两个相同且不能被 k 整除的数 y，想要把这两个 y 都弄成能被 k 整除，第二个数 y 一定要等到下一次有一个数 x 加上这个 y 使得它能整除 k。</li>
-<li>所以我们要求出每个数最少加多少才可以被 k 整除，然后求一个最大的众数，计算最后一个众数需要的最小x（因为最后的 x 一定是停在了能使这些最大众数的最后一个数被 k 整除的结果），记得最后的答案要再加一才是最终答案。</li>
-<li>那么其余的非最大众数呢？别担心，这些数在为最大众数服务的时候就能有一个 x 使得他们的一些能被 k 整除。例如上面的例子，我们在把 x 走到 5 的之前就有个4，可以使得数组中的 2 加上这个 4 能被 6 整除</li>
-<li>还想不明白就想想模数具有周期性，例如将0 ~ n中的数都摸上 3 ，就会有这么一个规律 ：0 1 2 0 1 2 0 1 2 0 1 2·····</li>
-<li>代码如下（求众数有点滑稽，因为我不会利用简单代码的求众数的方法）</li>
+<li>方法二
+<ul>
+<li>第一步和方法一相同，总数不够就No，否则如下</li>
+<li>利用一个小规律：先让第二类人吃一次，再让第一类人吃一次，这样的话无论两者大小，饼干数和巧克力数都会各自减一。利用这个特点把人和东西给简化。</li>
+<li>第一种可能，东西（饼干或者巧克力）优先有一方优先减到0，而两类人都还有，那么一定是No，因为第二类人只吃最少的，而最少的为0了</li>
+<li>第二种可能就是，人优先有一方减到了0，这时候如果是第二类人减到了0，显然就是Yes（道理和方法一中最少数量的东西够第一类人吃是一样的）。如果是第一类人减到了0，那么也就是说只剩下第二类人，因为第二类人只吃最少的，所以只要判断最少的那个东西够不够第二类人吃就行了，够就Yes，不够就No</li>
+<li>详细见代码solve2()函数</li>
+</ul>
+</li>
+<li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -244,61 +251,61 @@
 </span><span style="color:#75715e">#define rep(i, a, b) for (int i = (a); i &lt; (b); i++)
 </span><span style="color:#75715e">#define clr(a, v) memset(a, v, sizeof(a))
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>() {
-    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> n, k;
-    scanf(<span style="color:#e6db74">&#34;%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);
-    vll arr;
-    rep(i, <span style="color:#ae81ff">0</span>, n) {
-        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> tmp;
-        scanf(<span style="color:#e6db74">&#34;%lld&#34;</span>, <span style="color:#f92672">&amp;</span>tmp);
-        <span style="color:#66d9ef">if</span> (tmp <span style="color:#f92672">%</span> k <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#75715e">//如果这个数不能被 k 整除
-</span><span style="color:#75715e"></span>            arr.push_back(k <span style="color:#f92672">-</span> tmp <span style="color:#f92672">%</span> k); <span style="color:#75715e">//对于每个数把最少加多少能被 k 整除的数放到数组里
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>() {<span style="color:#75715e">//方法一
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// int n;
+</span><span style="color:#75715e"></span>    ll a, b, n, m;
+    scanf(<span style="color:#e6db74">&#34;%lld%lld%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">+</span> b <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">+</span> m) printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);  <span style="color:#75715e">//判断总数够不够吃，不够吃就No
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> {
+        ll Min <span style="color:#f92672">=</span> min(a, b);             <span style="color:#75715e">//寻找最小的一堆食物
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (Min <span style="color:#f92672">&gt;=</span> m) printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); <span style="color:#75715e">// 最少的够第二类人吃
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);            <span style="color:#75715e">//最少的不够第二类人吃
 </span><span style="color:#75715e"></span>    }
-    <span style="color:#66d9ef">if</span> (arr.empty()) {<span style="color:#75715e">//如果数组的数都能被 k 整除，操作次数就使 0
-</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;0</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span>;
-    }
-    sort(all(arr));
-    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, w <span style="color:#f92672">=</span> arr[<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> arr.size();
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> len;) { <span style="color:#75715e">//求最大众数，方法比较蠢
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> sen <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;            <span style="color:#75715e">//计算出现个数
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (arr[i] <span style="color:#f92672">==</span> arr[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) {
-            <span style="color:#66d9ef">while</span> (arr[i] <span style="color:#f92672">==</span> arr[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span> i <span style="color:#f92672">&lt;</span> len) {
-                sen<span style="color:#f92672">++</span>;
-                i<span style="color:#f92672">++</span>;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve2</span>() {<span style="color:#75715e">//方法二
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// int n;
+</span><span style="color:#75715e"></span>    ll a, b, n, m;
+    scanf(<span style="color:#e6db74">&#34;%lld%lld%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">+</span> b <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">+</span> m) printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">else</span> {
+        ll temp <span style="color:#f92672">=</span> min(n, m), tmin <span style="color:#f92672">=</span> min(a, b);
+        <span style="color:#66d9ef">if</span> (tmin <span style="color:#f92672">&gt;=</span> temp) {                 <span style="color:#75715e">//如果人先出现0，即第二种可能
+</span><span style="color:#75715e"></span>            a <span style="color:#f92672">-=</span> temp, b <span style="color:#f92672">-=</span> temp, n <span style="color:#f92672">-=</span> temp, m <span style="color:#f92672">-=</span> temp;<span style="color:#75715e">//全部均掉简化
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);<span style="color:#75715e">//第二类人为0
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">else</span> {                      <span style="color:#75715e">//还有第二类人剩下
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (min(a, b) <span style="color:#f92672">&gt;=</span> m) printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+                <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
             }
-        } <span style="color:#66d9ef">else</span> {
-            i<span style="color:#f92672">++</span>;
-        }
-        <span style="color:#66d9ef">if</span> (Max <span style="color:#f92672">&lt;=</span> sen) Max <span style="color:#f92672">=</span> sen, w <span style="color:#f92672">=</span> arr[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];<span style="color:#75715e">//如果出现次数比之前算的要多
+        } <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>); <span style="color:#75715e">//食物先出现0，即上述第一种可能
 </span><span style="color:#75715e"></span>    }
-    printf(<span style="color:#e6db74">&#34;%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, w <span style="color:#f92672">+</span> k <span style="color:#f92672">*</span> (Max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
 }
 
 <span style="color:#75715e">// #define LOCAL
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
     std<span style="color:#f92672">::</span>ios<span style="color:#f92672">::</span>sync_with_stdio(false);
-<span style="color:#75715e">#ifdef LOCAL
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> T;
     scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
-    <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>)
+    <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>) {
         solve();
+        <span style="color:#75715e">// solve2();
+</span><span style="color:#75715e"></span>    }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><h2 id="反思">反思</h2>
 <ul>
-<li>找规律的能力不强</li>
-<li>面对模没有想到他的一个周期性</li>
+<li>在比赛的时候想到了方法一，但是没有认真用代码实现，并且在往深处思考的时候反而被别个可能性干扰了，也没能及时想出方法反驳自己，而是冒出让第一类人先吃的想法解决自己的矛盾，并没有想到就算第一类人吃了耶挽回不了第二类人的命运（没得吃）</li>
+<li>感觉自己当时思维会混乱极有可能就是比赛的状态，打得少，做得少</li>
+<li>想到方法就往一处想，尽量不要再想别的，或者想到别的发现想不下去就回到之前的状态重新换方向想</li>
 </ul>
 <h2 id="总结">总结</h2>
 <ul>
-<li>对连续的数模具有一定周期性</li>
-<li>众数的求法不熟练</li>
-<li>这题在真正计算的时候用的不是原数组</li>
+<li>模拟就是要看题量如何</li>
+<li>思维的严谨和正确性都是题量堆积出来的，经验的多少决定（十分影响）了思维的快慢和正误</li>
+<li>所以做刷题，多打比赛，多总结</li>
 </ul>
 
     </div>
@@ -309,7 +316,7 @@
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/653div3problemd/>https://haofish.github.io/2020/653div3problemd/</span>
+            <a href=https://haofish.github.io/2020/654div2problemc/>https://haofish.github.io/2020/654div2problemc/</span>
         </p>
         
         
@@ -331,11 +338,8 @@
             <span class="tag"><a href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/">
                     #思维</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%95%B0%E7%BB%84/">
-                    #数组</a></span>
-            
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%8E%92%E5%BA%8F/">
-                    #排序</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/%E6%A8%A1%E6%8B%9F/">
+                    #模拟</a></span>
             
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
@@ -350,12 +354,9 @@
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/653div3problemc/" class="prev" rel="prev" title="C. Move Brackets题解"><i
-                class="iconfont icon-left"></i>&nbsp;C. Move Brackets题解</a>
+        <a href="https://haofish.github.io/2020/653div3probleme1/" class="prev" rel="prev" title="E1. Reading Books (easy version)题解"><i
+                class="iconfont icon-left"></i>&nbsp;E1. Reading Books (easy version)题解</a>
         
-        
-        <a href="https://haofish.github.io/2020/653div3probleme1/" class="next" rel="next"
-            title="E1. Reading Books (easy version)题解">E1. Reading Books (easy version)题解&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -364,7 +365,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">400 Words|Read in about 2
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

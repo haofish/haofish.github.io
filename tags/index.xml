@@ -5,8 +5,8 @@
     <link>https://haofish.github.io/tags/</link>
     <description>Recent content in Tags on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-cn</language>
-    <lastBuildDate>Mon, 06 Jul 2020 18:00:01 +0800</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Jul 2020 20:28:19 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>思维</title>
       <link>https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/</link>
-      <pubDate>Mon, 06 Jul 2020 18:00:01 +0800</pubDate>
+      <pubDate>Mon, 06 Jul 2020 20:28:19 +0800</pubDate>
       
       <guid>https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数学</title>
+      <link>https://haofish.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Mon, 06 Jul 2020 20:28:19 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>模拟</title>
+      <link>https://haofish.github.io/tags/%E6%A8%A1%E6%8B%9F/</link>
+      <pubDate>Mon, 06 Jul 2020 20:28:19 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E6%A8%A1%E6%8B%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>题解</title>
+      <link>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Mon, 06 Jul 2020 20:28:19 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</guid>
       <description></description>
     </item>
     
@@ -35,15 +62,6 @@
       <pubDate>Mon, 06 Jul 2020 18:00:01 +0800</pubDate>
       
       <guid>https://haofish.github.io/tags/%E8%B4%AA%E5%BF%83/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数学</title>
-      <link>https://haofish.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
-      <pubDate>Mon, 06 Jul 2020 16:58:31 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/tags/%E6%95%B0%E5%AD%A6/</guid>
       <description></description>
     </item>
     
