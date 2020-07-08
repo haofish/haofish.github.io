@@ -105,7 +105,7 @@
     "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
     "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "645",
+    "wordCount" : "1266",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -462,11 +462,187 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
 </li>
 </ul>
 <h3 id="-状态压缩dp">④ 状态压缩DP</h3>
+<h4 id="状态压缩简介">状态压缩简介</h4>
+<ul>
+<li>状态压缩更像是一种思想，而不是一种方法。当有些问题很可能不存在有效的(多项式级的)算法时，利用状态压缩是可以使得题目简单些。一般情况下状态压缩是把状态压缩成二进制的形式来表示（也有三进制的）一个集合，通过压缩可以把不必要的信息给去掉，从而减少冗余。</li>
+</ul>
+<h4 id="常见的二进制使用">常见的二进制使用</h4>
+<ul>
+<li>都是最基础的：与、或、非、异或 在c++中分别是 <strong>&amp;</strong>（与）、<strong>|</strong>（或）、<strong>!</strong>（非）、<strong>^</strong>（异或）</li>
+<li>左右移：<strong>&laquo;</strong> （左移），例如 5（00000101）&laquo; 1 = 10（00001010）； <strong>&raquo;</strong>（右移）,例如 5 （00000101）&raquo; 1 = 2 (00000010)。</li>
+<li>取反：<strong>~</strong>（1 变 0，0 变 1），例如 ~ 00000101 = 11111010</li>
+<li>查看是否有相邻的 1（状压用得多，多用来去掉不合法的状态）：<strong>x &amp; (x &raquo; 1) == 0</strong>或者<strong>x &amp; (x &laquo; 1) == 0</strong>：语句判断为真则没有相邻的1，否则有相邻的 1。例如 88（01011000）&amp; 44 (00101100) = 8 (00001000) $\ne$ 所以有相邻的 1。（不懂就自己多举几个例子）</li>
+<li>检查 a 是否是 b 的子集（状压也用得多）：<strong>a &amp; b == a</strong>：语句判断真为是其子集，否则不是。例如 88 是 16 的子集，因为88（01011000）&amp; 16（00010000）= 16（00010000）</li>
+<li>判断 a 和 b 是否有相同位的 1：<strong>a &amp; b == 0</strong>：语句判断真为没有，否则有，很简单不解释</li>
+<li>取末尾的 1：<strong>x ^ (-x)</strong>，例如 88（01011000）^ (-88)（10101000）= 8（00001000）——多用于树状数组</li>
+</ul>
+<h4 id="例题-1hdu-方格取数1httpacmhdueducnshowproblemphppid1565">【例题 1】<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1565">HDU 方格取数（1）</a></h4>
+<ul>
+<li>
+<p>大致题意：给你一个方格，里面有数字，你可以在这些方格里面取数，但是不能取拥有公共边的方格，问你取出来的最大值为多少</p>
+</li>
+<li>
+<p>一道挺标准的状压dp板子题，一开始用普通dp没做出来，后来发现用状压真的简单一些</p>
+</li>
+<li>
+<p>简单的分析</p>
+<ul>
+<li>对于每个格子只有两种状态：选或者不选，我们定义选中了则在相应的二进制位数为 1，否则为 0。例如5 （000101）表示一行中第一个数和第三个数被选中</li>
+<li>对于一行有 n 个格子的总共的选择方式个数为 $2^n$</li>
+<li>既然都说了状压，那直接开压：把列压缩（对于这题行和列相同，压列是个人喜欢，更多情况下是压缩数据范围小的那个，你当然希望$2^n$越小越好啦）</li>
+<li>下一步在输入之前把不合法的状态预处理了，只留下合法的，就是本题所说的不能选取拥有公共边的格子，即对于每一行状态不能有相邻的 1</li>
+<li>然后是转移方程（很简单，并且不难想）
+$$
+dp[i][now] = max{dp[i - 1][pre] + w[now]]}
+$$</li>
+<li>解释：i 表示第 i 行，now 表示当前行的二进制状态，pre 表示上一行的所有不与 now 具有相同位 1 的状态，可以用相与（<strong>&amp;</strong>）是否等于 0 来判断，若等于 0 则没有相同我位的 1，否则有；w[now]表示当前状态的选取方格的总值</li>
+<li>那么最后的答案就是最后一行中的最大值</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+  
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> nums[maxn][maxn];<span style="color:#75715e">//用无符型是因为HDU的尿性，不这样可能会超内存
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v;<span style="color:#75715e">//用来存储合法的状态
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> n;
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">val</span>(<span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> v) {<span style="color:#75715e">//求当前行状态的总价值
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, i <span style="color:#f92672">=</span> n;
+    <span style="color:#66d9ef">while</span> (v <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> (v <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) {
+            res <span style="color:#f92672">+=</span> nums[r][i];
+        }
+        v <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+        i<span style="color:#f92672">--</span>;
+    }
+    <span style="color:#66d9ef">return</span> res;
+}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n) <span style="color:#f92672">!=</span> EOF) {
+        v.clear();                    <span style="color:#75715e">//清空v数组
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> choice <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> n);        <span style="color:#75715e">//最大的状态数
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> choice; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> ((i <span style="color:#f92672">&amp;</span> (i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) v.push_back(i);<span style="color:#75715e">//预处理，选取合法的状态
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> v.size();
+        vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> dp(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(len));<span style="color:#75715e">//动态开辟数组，防止超内存
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {<span style="color:#75715e">//输入
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+                scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>nums[i][j]);
+            }
+        }
+        <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> now <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; now <span style="color:#f92672">&lt;</span> len; now<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> val(i, v[now]);
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> pre <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; pre <span style="color:#f92672">&lt;</span> len; pre<span style="color:#f92672">++</span>) {<span style="color:#75715e">//枚举上一行的状态值
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span> ((v[now] <span style="color:#f92672">&amp;</span> v[pre]) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) dp[i][now] <span style="color:#f92672">=</span> max(dp[i][now], dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][pre] <span style="color:#f92672">+</span> w);<span style="color:#75715e">//状态转移
+</span><span style="color:#75715e"></span>                }
+            }
+        }
+  
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>) {<span style="color:#75715e">//最后的结果
+</span><span style="color:#75715e"></span>            Max <span style="color:#f92672">=</span> max(Max, dp[n][i]);
+        }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Max);
+    }
+  
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>表面上时间复杂度：O($n2^n2^n$),先别急，经过预处理，实际比这个小得多得多，每个$2^n$估计会被压到最大也就4000左右，据大佬测试 n 最大是17，不会有n = 20得样例；这下子复杂度就妥妥地能过了</li>
+<li>空间复杂度：和时间复杂度同理，最大也就开个约为17 * 4000的数组</li>
+</ul>
+</li>
+</ul>
+<h4 id="例题2洛谷-p1879-corn-fields-ghttpswwwluogucomcnproblemp1879">【例题2】<a href="https://www.luogu.com.cn/problem/P1879">洛谷 P1879 Corn Fields G</a></h4>
+<ul>
+<li>
+<p>题目大意：给你一个M * N的方格土地，1 表示可以种玉米，0 表示不可以种玉米。拥有公共边的格子不能同时种上玉米，问你有多少种种的方式，什么都不种也算一种，答案对 1e8 取模</p>
+</li>
+<li>
+<p>一道状压dp计数题，也是一个很好的板子题</p>
+</li>
+<li>
+<p>简单的分析</p>
+<ul>
+<li>M 和 N 的数据范围都很小，所以我还是采用了压缩列来做</li>
+<li>要做的准备有：预处理本不合法的状态、把方格土地的01状态转换成十进制的表示，用个数组cor[i]来储存，方便后面判断是否能种、先把第一行合法的状态算了，把能种的且合法的都初始化为 1；</li>
+<li>先看状态转移方程
+$$
+dp[i][now] += dp[i - 1][pre]
+$$</li>
+<li>解释：i 表示第 i 行，now 和 pre 分别表示当前行的状态和上一行的状态，当然 now 的前提是可以在当前行上种下来，即 now 是 cor[i] 的子集，而 pre 和 now 必须没有同位的 1</li>
+<li>例如第 n 行，什么都不种（now = 0）的方法数就是上一行合法状态（其实所有和都可算，因为不合法的一定是0）的和，而第 n 行状态 q 的种法的方法数就是上一行与他没有同位 1 状态的和（这里可以多一个判断，判断pre是否能在上一行上种起来，这样可以循环，当然不判断也行，因为不合法的一定为0）</li>
+<li>最后的答案就是最后一行的dp和(稍微换了一下码风，可能会舒服点，因为循环和判断有点多)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>, mod <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e8</span>;
+<span style="color:#66d9ef">int</span> m, n, nums[M], cor[M];
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v;<span style="color:#75715e">//存储合法的状态
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">int</span> choice <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> n;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> choice; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> ((i <span style="color:#f92672">&amp;</span> (i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) v.push_back(i);
+    }
+    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> v.size();
+    vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> dp(m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(len, <span style="color:#ae81ff">0</span>));
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>nums[j]);
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>nums[j]) <span style="color:#66d9ef">continue</span>;
+            cor[i] <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));<span style="color:#75715e">//把每一行的方块状态转换成对应的十进制
+</span><span style="color:#75715e"></span>        }
+    }
+    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>) { <span style="color:#75715e">//先处理第一行，方便后面计算
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> ((v[i] <span style="color:#f92672">&amp;</span> cor[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">!=</span> v[i]) <span style="color:#66d9ef">continue</span>;
+        dp[<span style="color:#ae81ff">1</span>][i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> len; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> ((v[j] <span style="color:#f92672">&amp;</span> cor[i]) <span style="color:#f92672">!=</span> v[j]) <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> len; k<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> ((v[j] <span style="color:#f92672">&amp;</span> v[k]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">continue</span>;
+                <span style="color:#66d9ef">if</span> ((v[k] <span style="color:#f92672">&amp;</span> cor[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">!=</span> v[k]) <span style="color:#66d9ef">continue</span>;
+                dp[i][j] <span style="color:#f92672">=</span> (dp[i][j] <span style="color:#f92672">+</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][k]) <span style="color:#f92672">%</span> mod;
+
+            }
+        }
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>) {
+        ans <span style="color:#f92672">=</span> (ans <span style="color:#f92672">+</span> dp[m][i]) <span style="color:#f92672">%</span> mod;
+    }
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>时间和空间复杂度和上一题类似，压着就可以过的</li>
+</ul>
+</li>
+</ul>
 <h2 id="5-优化dp的手段">5. 优化dp的手段</h2>
-<h3 id="-二进制优化">① 二进制优化</h3>
-<h3 id="-单调队列优化">② 单调队列优化</h3>
-<h3 id="-斜率优化">③ 斜率优化</h3>
-<h3 id="-四边形不等式优化">④ 四边形不等式优化</h3>
+<h3 id="-矩阵优化">① 矩阵优化</h3>
+<h3 id="-数据结构优化">② 数据结构优化</h3>
+<h3 id="-单调队列优化">③ 单调队列优化</h3>
+<h3 id="-决策单调性优化">④ 决策单调性优化</h3>
+<h3 id="-二进制优化">⑤ 二进制优化</h3>
+<h3 id="-斜率优化">⑥ 斜率优化</h3>
+<h3 id="-四边形不等式优化">⑦ 四边形不等式优化</h3>
 <p>未完待续（以后有空补充）……</p>
 
     </div>
@@ -520,7 +696,7 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">700 Words|Read in about 4
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">1300 Words|Read in about 6
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
