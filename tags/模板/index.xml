@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>模板 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E6%A8%A1%E6%9D%BF/</link>
+    <description>Recent content in 模板 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jul 2020 17:12:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E6%A8%A1%E6%9D%BF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>模板</title>
+      <link>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Mon, 13 Jul 2020 17:12:35 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</guid>
+      <description>[toc]
+基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1； else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间l上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
+    </item>
+    
+  </channel>
+</rss>

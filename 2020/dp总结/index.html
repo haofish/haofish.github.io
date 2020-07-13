@@ -105,7 +105,7 @@
     "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
     "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "1266",
+    "wordCount" : "1267",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -203,7 +203,8 @@
         
         
 
-        <h2 id="1-写在前面的话">1. 写在前面的话</h2>
+        <p>[toc]</p>
+<h2 id="1-写在前面的话">1. 写在前面的话</h2>
 <ul>
 <li>之前写了一篇不像总结的<a href="https://haofish.github.io/2020/dynamicprogramming/">动态规划总结</a>，感觉更像是一个成长历程，所以就打算重写一篇。</li>
 </ul>
@@ -579,7 +580,7 @@ $$
 dp[i][now] += dp[i - 1][pre]
 $$</li>
 <li>解释：i 表示第 i 行，now 和 pre 分别表示当前行的状态和上一行的状态，当然 now 的前提是可以在当前行上种下来，即 now 是 cor[i] 的子集，而 pre 和 now 必须没有同位的 1</li>
-<li>例如第 n 行，什么都不种（now = 0）的方法数就是上一行合法状态（其实所有和都可算，因为不合法的一定是0）的和，而第 n 行状态 q 的种法的方法数就是上一行与他没有同位 1 状态的和（这里可以多一个判断，判断pre是否能在上一行上种起来，这样可以循环，当然不判断也行，因为不合法的一定为0）</li>
+<li>例如第 n 行，什么都不种（now = 0）的方法数就是上一行合法状态的和（其实所有和都可算，因为不合法的一定是0），而第 n 行状态 q 的种法的方法数就是上一行与他没有同位 1 状态的和（这里可以多一个判断，判断pre是否能在上一行上种起来，这样可以循环，当然不判断也行，因为不合法的一定为0）</li>
 <li>最后的答案就是最后一行的dp和(稍微换了一下码风，可能会舒服点，因为循环和判断有点多)</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
