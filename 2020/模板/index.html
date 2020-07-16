@@ -104,7 +104,7 @@
     "datePublished": "2020-07-13 17:12:35 \u002b0800 CST",
     "dateModified" : "2020-07-13 17:12:35 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/%E6%A8%A1%E6%9D%BF\/",
-    "wordCount" : "277",
+    "wordCount" : "709",
     "keywords" : [ "模板", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -213,6 +213,12 @@
 <li><a href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">未完待续……</a></li>
 </ul>
 </li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+<ul>
+<li><a href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84">树状数组</a></li>
+<li><a href="#%E7%BA%BF%E6%AE%B5%E6%A0%91">线段树</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="基础">基础</h2>
 <h3 id="二分">二分</h3>
@@ -226,7 +232,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r){
     <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;</span> r) {
         <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)(l <span style="color:#f92672">+</span> r) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//相当于 l + r 后向下取整
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#75715e">/* 探针落在左区间 */</span>) l <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">；</span>
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#75715e">/* 探针落在左区间 */</span>) l <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
         <span style="color:#66d9ef">else</span> r <span style="color:#f92672">=</span> mid;
     }
     <span style="color:#66d9ef">return</span> l;
@@ -240,7 +246,7 @@
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r){
     <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;</span> r) {
-        <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)(l <span style="color:#f92672">+</span> r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间l上（l + r &gt;&gt; 1 =  1），下一步 l = mid = l,就会死循环
+        <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)(l <span style="color:#f92672">+</span> r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &gt;&gt; 1 =  1），下一步 l = mid = l,就会死循环
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#75715e">/* 探针落在左区间 */</span>) l <span style="color:#f92672">=</span> mid;
         <span style="color:#66d9ef">else</span> r <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
     }
@@ -291,6 +297,142 @@
 <h3 id="高精压位">高精（压位）</h3>
 <h3 id="离散化">离散化</h3>
 <h3 id="未完待续">未完待续……</h3>
+<h2 id="数据结构">数据结构</h2>
+<h3 id="树状数组">树状数组</h3>
+<ul>
+<li>单点修改与区间求和</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define lb(x) (x &amp; (-x))
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1010</span>;
+<span style="color:#66d9ef">int</span> arr[Max] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>}, tree[Max] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>}, n;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">build</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        tree[i] <span style="color:#f92672">+=</span> arr[i];
+        <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> lb(i);
+        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&lt;=</span> n) tree[j] <span style="color:#f92672">+=</span> tree[i];
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Sum</span>(<span style="color:#66d9ef">int</span> indx) {
+    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> indx; i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">-=</span> lb(i)) {
+        ans <span style="color:#f92672">+=</span> tree[i];
+    }
+    <span style="color:#66d9ef">return</span> ans;
+}
+<span style="color:#75715e">//单点更新
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">int</span> indx, <span style="color:#66d9ef">int</span> v) {
+    arr[indx] <span style="color:#f92672">+=</span> v;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> indx; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">+=</span> lb(i)) {
+        tree[i] <span style="color:#f92672">+=</span> v;
+    }
+}
+<span style="color:#75715e">//区间和
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r) {
+    <span style="color:#66d9ef">return</span> Sum(r) <span style="color:#f92672">-</span> Sum(l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>区间修改与区间求和</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define lb(x) (x &amp; (-x))
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">int</span> arr[Max], tree1[Max], tree2[Max], sum[Max], n;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update_</span>(<span style="color:#66d9ef">int</span> indx, <span style="color:#66d9ef">int</span> v) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> indx; i <span style="color:#f92672">&lt;=</span> n; i <span style="color:#f92672">+=</span> lb(i)) {
+        tree1[i] <span style="color:#f92672">+=</span> v;
+        tree2[i] <span style="color:#f92672">+=</span> v <span style="color:#f92672">*</span> indx;
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Sum_</span>(<span style="color:#66d9ef">int</span> indx, <span style="color:#66d9ef">int</span> tree[]) {
+    <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> indx; i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">-=</span> lb(i)) {
+        res <span style="color:#f92672">+=</span> tree[i];
+    }
+    <span style="color:#66d9ef">return</span> res;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> v) {
+    update_(l, v);
+    update_(r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span>v);
+}
+<span style="color:#75715e">//获取数组
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getArr</span>(<span style="color:#66d9ef">int</span> indx) {
+    <span style="color:#66d9ef">return</span> arr[indx] <span style="color:#f92672">+</span> Sum_(indx, tree1);
+}
+<span style="color:#75715e">//获取区间的和
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r) {
+    <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> sum[r] <span style="color:#f92672">+</span> (r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> Sum_(r, tree1) <span style="color:#f92672">-</span> Sum_(r, tree2);
+    res <span style="color:#f92672">-=</span> sum[l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> l <span style="color:#f92672">*</span> Sum_(l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, tree1) <span style="color:#f92672">-</span> Sum_(l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, tree2);
+    <span style="color:#66d9ef">return</span> res;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>维护区间最大值</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define lb(x) (x &amp; (-x))
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">int</span> arr[M], tree[M], n;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">build</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        tree[i] <span style="color:#f92672">=</span> arr[i];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> lb(i); j <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>) {
+            tree[i] <span style="color:#f92672">=</span> max(tree[i], tree[i <span style="color:#f92672">-</span> j]);
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getMax</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r) {
+    <span style="color:#66d9ef">int</span> res <span style="color:#f92672">=</span> arr[r];
+    <span style="color:#66d9ef">while</span> (r <span style="color:#f92672">&gt;=</span> l) {
+        res <span style="color:#f92672">=</span> max(arr[r], res);
+        <span style="color:#66d9ef">for</span> (r<span style="color:#f92672">--</span>; r <span style="color:#f92672">-</span> lb(r) <span style="color:#f92672">&gt;=</span> l; r <span style="color:#f92672">-=</span> lb(r)) {
+            res <span style="color:#f92672">=</span> max(tree[r], res);
+        }
+    }
+    <span style="color:#66d9ef">return</span> res;
+}
+
+<span style="color:#75715e">//单点修改
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">int</span> indx) {
+    <span style="color:#66d9ef">while</span> (indx <span style="color:#f92672">&lt;=</span> n) {
+        tree[indx] <span style="color:#f92672">=</span> arr[indx];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> lb(indx); i <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>) {
+            tree[indx] <span style="color:#f92672">=</span> max(tree[indx], tree[indx <span style="color:#f92672">-</span> i]);
+        }
+        indx <span style="color:#f92672">+=</span> lb(indx);
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="线段树">线段树</h3>
+<p>未完待续……</p>
 
     </div>
 
@@ -340,7 +482,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">800 Words|Read in about 4
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
