@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    图论刷题总结 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="图论刷题总结 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "图论刷题总结",
+    "headline" : "图论刷题总结",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-07-21 22:22:01 \u002b0800 CST",
+    "dateModified" : "2020-07-21 22:22:01 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93\/",
+    "wordCount" : "2297",
+    "keywords" : [ "图论", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">图论刷题总结</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-07-21
+                    itemprop="datePublished">July 21, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+<li><a href="#%E6%9C%80%E7%9F%AD%E8%B7%AF">最短路</a>
+<ul>
+<li><a href="#dijkstra">Dijkstra</a></li>
+<li><a href="#bellman-ford">Bellman-Ford</a></li>
+<li><a href="#floyd">Floyd</a></li>
+<li><a href="#spfa">Spfa</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">未完待续</a></li>
+</ul>
+<h2 id="前言">前言</h2>
+<ul>
+<li>起因是一次力扣周赛时被一道最短论的题给整蒙了，决定这几天恶补图论，正好POJ的刷题题单刷到了图</li>
+<li>打算学习图论从零开始，目前刷的题不多</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>关于存图
+<ul>
+<li>不同的存图方式可以使得不同的算法更加方便，例如：邻接表可以使Dijkstra算法在堆优化中方便不少，而邻接矩阵可以使Floyd算法更加方便</li>
+</ul>
+</li>
+<li>关于建图
+<ul>
+<li>有一些题目在描述的时候给的数据不好建图，这需要经验的积累</li>
+<li>而有一些题目并没有直接说明是图，换句话说能否看出是使用图论的知识来解题也需要经验的累积</li>
+</ul>
+</li>
+<li>关于计算
+<ul>
+<li>题目中的要求并不是一成不变的，有时候最短路径并不是仅仅指的是值最短，有时候也有可能题目让你求最大值，但最短路依然可以解</li>
+</ul>
+</li>
+</ul>
+<h2 id="最短路">最短路</h2>
+<ul>
+<li>先从最短路开始刷，刷到后面发现有些题三个算法（Dijkstra、Bellman-Ford、Floyd）都是可以解的</li>
+</ul>
+<h3 id="dijkstra">Dijkstra</h3>
+<ul>
+<li>
+<p>[例题]</p>
+</li>
+<li>
+<p><a href="https://www.luogu.com.cn/problem/P4779">洛谷P4779 【模板】单源最短路径（标准版）</a></p>
+<ul>
+<li>题意：最短路板子题，不解释</li>
+<li>思路：直接用Dijkstra的堆优化做，因为没有负环</li>
+<li>直接上代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;locale&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ll;
+<span style="color:#66d9ef">typedef</span> pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pii;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">const</span> ll INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+<span style="color:#66d9ef">int</span> n, m, s, cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> w, to, next;
+    edges(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> w(b), to(a), next(c) {}
+};
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> head, dis;
+vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span> edge;
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, w, head[u]);
+    head[u] <span style="color:#f92672">=</span> cnt;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dij</span>() {
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vis(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, false);
+    dis <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, INF);
+    priority_queue<span style="color:#f92672">&lt;</span>pii, vector<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span>, greater<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> heap;
+    dis[s] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    heap.push(make_pair(<span style="color:#ae81ff">0</span>, s));
+    <span style="color:#66d9ef">while</span> (heap.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> heap.top().second;
+        heap.pop();
+        <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">continue</span>;
+        vis[u] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> edge[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> edge[i].to, w <span style="color:#f92672">=</span> edge[i].w;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> w) {
+                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> w;
+                heap.push(make_pair(dis[v], v));
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>s);
+    head <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    edge <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span>(m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        add(u, v, w);
+    }
+    dij();
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        printf(<span style="color:#e6db74">&#34;%d &#34;</span>, dis[i]);
+    }
+    puts(<span style="color:#e6db74">&#34;&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="https://www.luogu.com.cn/problem/P1629">洛谷P1629 邮递员送信</a></p>
+<ul>
+<li>题意：一个邮递员从一号顶点出发送东西，一次只能送一个，送完就要回到1号节点，求送完后的最短路(注意：有向图的往返)</li>
+<li>思路：两次Dijkstra就可以了</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define mk(a, b) make_pair(a, b)
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">typedef</span> pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pii;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+<span style="color:#66d9ef">int</span> n, m, cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dis, ddis, head, head2;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> to, w, next;
+    edges(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(a), w(b), next(c) {}
+};
+vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span> edge, bk;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+    head <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    head2 <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    dis <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, INF);
+    ddis <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, INF);
+    edge <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span>(m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    bk <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span>(m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, w, head[u]);
+    bk[cnt] <span style="color:#f92672">=</span> edges(u, w, head2[v]);
+    head[u] <span style="color:#f92672">=</span> cnt;
+    head2[v] <span style="color:#f92672">=</span> cnt;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dij</span>() {
+    priority_queue<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span> heap;
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vis(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, false);
+    heap.push(mk(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>));
+    <span style="color:#66d9ef">while</span> (heap.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> heap.top().second;
+        heap.pop();
+        <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">continue</span>;
+        vis[u] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> edge[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> edge[i].to, w <span style="color:#f92672">=</span> edge[i].w;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> w) {
+                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> w;
+                heap.push(mk(<span style="color:#f92672">-</span>dis[v], v));
+            }
+        }
+    }
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dij2</span>() {
+    priority_queue<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span> heap;
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vis(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, false);
+    heap.push(mk(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>));
+    <span style="color:#66d9ef">while</span> (heap.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> heap.top().second;
+        heap.pop();
+        <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">continue</span>;
+        vis[u] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head2[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> bk[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> bk[i].to, w <span style="color:#f92672">=</span> bk[i].w;
+            <span style="color:#66d9ef">if</span> (ddis[v] <span style="color:#f92672">&gt;</span> ddis[u] <span style="color:#f92672">+</span> w) {
+                ddis[v] <span style="color:#f92672">=</span> ddis[u] <span style="color:#f92672">+</span> w;
+                heap.push(mk(<span style="color:#f92672">-</span>ddis[v], v));
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    init();
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        add(u, v, w);
+    }
+    dis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> ddis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    dij();
+    dij2();
+    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        ans <span style="color:#f92672">+=</span> dis[i] <span style="color:#f92672">+</span> ddis[i];
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, ans);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="https://www.luogu.com.cn/problem/P1144">洛谷P1144 最短路计数</a></p>
+<ul>
+<li>题意：无向图，每条边的权值都为 1， 求从一号顶点出发到其他顶点的最短路的个数</li>
+<li>思路：用个$ans$数组储存最短路的个数，Dijkstra内加个计数条件，如果有松弛操作则$ans$继承上一个节点最短路的个数，如果没用松弛操作，就直接让$ans$加上一节点的$ans$（注：ans[1]初始化为1， 其余都初始化为0）</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">typedef</span> pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pii;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e6</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#66d9ef">int</span> n, m, dis[M], head[M], ans[M], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">es</span> {
+    <span style="color:#66d9ef">int</span> to, next;
+    es(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(a), next(b) {}
+} e[M <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+    e[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> es(b, head[a]);
+    head[a] <span style="color:#f92672">=</span> cnt;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dij</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        dis[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+    }
+    ans[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vis(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, false);
+    priority_queue<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span> heap;
+    heap.push(make_pair(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>));
+    <span style="color:#66d9ef">while</span> (heap.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> heap.top().second;
+        heap.pop();
+        <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">continue</span>;
+        vis[u] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> e[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> e[i].to;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {<span style="color:#75715e">//松弛操作
+</span><span style="color:#75715e"></span>                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                ans[v] <span style="color:#f92672">=</span> ans[u];
+                heap.push(make_pair(<span style="color:#f92672">-</span>dis[v], v));
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (dis[u] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> dis[v]) {
+                ans[v] <span style="color:#f92672">+=</span> ans[u];
+                ans[v] <span style="color:#f92672">%=</span> <span style="color:#ae81ff">100003</span>;
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v;
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v);
+        add(u, v);
+        add(v, u);
+    }
+    dij();
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (ans[i] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100003</span>) ans[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans[i]);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h3 id="bellman-ford">Bellman-Ford</h3>
+<ul>
+<li>
+<p>这个算法更多的不是用来计算最短路，而是用来计算是否有负环或者正环（负环dis初始化为INF，正环dis初始化为0）</p>
+</li>
+<li>
+<p>【例题】</p>
+</li>
+<li>
+<p><a href="https://vjudge.net/problem/EOlymp-1453">EOlymp - 1453 Ford-Bellman</a></p>
+<ul>
+<li>题意：给你一个有向图，有负权边，保证没有负环，求1号顶点到各个点的最短距离，如果无法到达顶点，距离输出30000</li>
+<li>思路：就是一个很纯正的Bellman - Ford的板子题</li>
+<li>直接上代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+<span style="color:#66d9ef">int</span> n, m;
+
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dis;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> u, v, w;
+    edges(<span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> u(u), v(v), w(w) {}
+};
+vector<span style="color:#f92672">&lt;</span>edges<span style="color:#f92672">&gt;</span> e;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) { <span style="color:#75715e">//无穷大加任何数还是无穷大
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> INF <span style="color:#f92672">||</span> b <span style="color:#f92672">==</span> INF) <span style="color:#66d9ef">return</span> a;
+    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bf</span>() {
+    <span style="color:#66d9ef">bool</span> flag;
+    <span style="color:#66d9ef">while</span> (true) {
+        flag <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (dis[e[j].v] <span style="color:#f92672">&gt;</span> add(dis[e[j].u], e[j].w)) {
+                dis[e[j].v] <span style="color:#f92672">=</span> dis[e[j].u] <span style="color:#f92672">+</span> e[j].w;
+                flag <span style="color:#f92672">=</span> false;
+            }
+        }
+        <span style="color:#66d9ef">if</span> (flag) <span style="color:#66d9ef">return</span>;
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    dis <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, INF);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        e.push_back(edges(u, v, w));
+    }
+    dis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    bf();
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (dis[i] <span style="color:#f92672">==</span> INF) dis[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">30000</span>;
+        printf(<span style="color:#e6db74">&#34;%d &#34;</span>, dis[i]);
+    }
+    puts(<span style="color:#e6db74">&#34;&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="http://poj.org/problem?id=2240">POJ 2240 Arbitrage</a></p>
+<ul>
+<li>题意：给你一个有向图，判断是否有正环</li>
+<li>思路：把字符串的顶点用hash来代替，然后就是标准的Bellman - Ford模板题了,正环判断dis初始化为0</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, m, test <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">double</span> dis[<span style="color:#ae81ff">100</span>];
+string str;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">es</span> {
+    <span style="color:#66d9ef">int</span> u, v;
+    <span style="color:#66d9ef">double</span> w;
+    es(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">double</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> u(a), v(b), w(c) {}
+};
+vector<span style="color:#f92672">&lt;</span>es<span style="color:#f92672">&gt;</span> e;
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">bf</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (dis[e[j].v] <span style="color:#f92672">&lt;</span> dis[e[j].u] <span style="color:#f92672">*</span> e[j].w) {
+                dis[e[j].v] <span style="color:#f92672">=</span> dis[e[j].u] <span style="color:#f92672">*</span> e[j].w;
+            }
+        }
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (dis[e[i].v] <span style="color:#f92672">&lt;</span> dis[e[i].u] <span style="color:#f92672">*</span> e[i].w) {
+            <span style="color:#66d9ef">return</span> true;
+        }
+    }
+    <span style="color:#66d9ef">return</span> false;
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    map<span style="color:#f92672">&lt;</span>string, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> hsh;
+    <span style="color:#66d9ef">while</span> (cin <span style="color:#f92672">&gt;&gt;</span> n, n) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            cin <span style="color:#f92672">&gt;&gt;</span> str;
+            hsh[str] <span style="color:#f92672">=</span> i;
+        }
+        cin <span style="color:#f92672">&gt;&gt;</span> m;
+        e <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>es<span style="color:#f92672">&gt;</span>(m);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+            string a, b;
+            <span style="color:#66d9ef">double</span> w;
+            cin <span style="color:#f92672">&gt;&gt;</span> a <span style="color:#f92672">&gt;&gt;</span> w <span style="color:#f92672">&gt;&gt;</span> b;
+            e[i] <span style="color:#f92672">=</span> es(hsh[a], hsh[b], w);
+        }
+        memset(dis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dis);
+        dis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span> (bf()) {
+            cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Case &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">++</span>test <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: Yes&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+        } <span style="color:#66d9ef">else</span> {
+            cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Case &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">++</span>test <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: No&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="http://poj.org/problem?id=3259">POJ 3259 Wormholes</a></p>
+<ul>
+<li>题意：有两种边，一种是双向边，一种是单线负权边，问你是否有负环</li>
+<li>思路：双向边和负权边都用邻接表存起来，然后就是普通的Bellman - Ford了</li>
+</ul>
+</li>
+<li>
+<p>代码如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">3e3</span>;
+<span style="color:#66d9ef">int</span> n, m, ww, f, dis[<span style="color:#ae81ff">510</span>];
+  
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">es</span> {
+    <span style="color:#66d9ef">int</span> u, v, w;
+    es(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> u(a), v(b), w(c) {}
+};
+vector<span style="color:#f92672">&lt;</span>es<span style="color:#f92672">&gt;</span> e;
+  
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">bf</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">bool</span> flag <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">+</span> m <span style="color:#f92672">+</span> ww; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (dis[e[j].v] <span style="color:#f92672">&gt;</span> dis[e[j].u] <span style="color:#f92672">+</span> e[j].w) {
+                dis[e[j].v] <span style="color:#f92672">=</span> dis[e[j].u] <span style="color:#f92672">+</span> e[j].w;
+                flag <span style="color:#f92672">=</span> false;
+            }
+        }
+        <span style="color:#66d9ef">if</span> (flag) <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> n) <span style="color:#66d9ef">return</span> true;<span style="color:#75715e">//有负环，因为松弛了 n 次
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">return</span> false;
+}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>f);
+    <span style="color:#66d9ef">while</span> (f<span style="color:#f92672">--</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>ww);
+        <span style="color:#66d9ef">int</span> u, v, w;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+            e.push_back(es(u, v, w));
+            e.push_back(es(v, u, w));
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> ww; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+            e.push_back(es(u, v, <span style="color:#f92672">-</span>w));
+        }
+        memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+        dis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span> (bf()) puts(<span style="color:#e6db74">&#34;YES&#34;</span>);  
+        <span style="color:#66d9ef">else</span> puts(<span style="color:#e6db74">&#34;NO&#34;</span>);
+        e.clear();
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="http://poj.org/problem?id=1860">POJ 1860 Currency Exchange</a></p>
+<ul>
+<li>题意：给你一个有向图，你手中有v元的a货币，每个顶点都是一个货币兑换点，每个兑换点都有自己的兑换费用和兑换比例，并且兑换是双向的，例如 a → b, b → a，但兑换比率和兑换费用不一定一样，由测试样例给，问你从某点出发，回到该点时，即兑换会原本的货币种类，他手中的钱能否变多</li>
+<li>思路：判断正环，唯一要注意的就是初始化  $ dis[s] = V $，其余初始化为0</li>
+</ul>
+</li>
+<li>
+<p>代码如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>;
+<span style="color:#66d9ef">int</span> n, m, s;
+<span style="color:#66d9ef">double</span> vv, dis[M] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>}; <span style="color:#75715e">//vv是一开始手中的钱的数量
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">es</span> {
+    <span style="color:#66d9ef">int</span> u, v;
+    <span style="color:#66d9ef">double</span> r, c;
+    es(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">double</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">double</span> d <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> u(a), v(b), r(c), c(d) {}
+} e[M];
+  
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">bf</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">+</span> m; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (dis[e[j].v] <span style="color:#f92672">&lt;</span> (dis[e[j].u] <span style="color:#f92672">-</span> e[j].c) <span style="color:#f92672">*</span> e[j].r) {
+                dis[e[j].v] <span style="color:#f92672">=</span> (dis[e[j].u] <span style="color:#f92672">-</span> e[j].c) <span style="color:#f92672">*</span> e[j].r;
+            }
+        }
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">+</span> m; j<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (dis[e[j].v] <span style="color:#f92672">&lt;</span> (dis[e[j].u] <span style="color:#f92672">-</span> e[j].c) <span style="color:#f92672">*</span> e[j].r) {
+            <span style="color:#66d9ef">return</span> true; <span style="color:#75715e">//手中的钱变多了
+</span><span style="color:#75715e"></span>        }
+    }
+    <span style="color:#66d9ef">return</span> false;<span style="color:#75715e">//手中的钱没变或者少了
+</span><span style="color:#75715e"></span>}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d%d%lf&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>s, <span style="color:#f92672">&amp;</span>vv);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v;
+        <span style="color:#66d9ef">double</span> a, b, c, d;
+        scanf(<span style="color:#e6db74">&#34;%d%d%lf%lf%lf%lf&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>c, <span style="color:#f92672">&amp;</span>d);
+        e[i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> es(u, v, a, b);         <span style="color:#75715e">//一个兑换点有从 a -&gt; b,
+</span><span style="color:#75715e"></span>        e[i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> es(v, u, c, d);     <span style="color:#75715e">//也有从 b -&gt; a
+</span><span style="color:#75715e"></span>    }
+  dis[s] <span style="color:#f92672">=</span> vv;
+  
+  <span style="color:#66d9ef">if</span> (bf()) puts(<span style="color:#e6db74">&#34;YES&#34;</span>);
+  <span style="color:#66d9ef">else</span> puts(<span style="color:#e6db74">&#34;NO&#34;</span>);
+  
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h3 id="floyd">Floyd</h3>
+<ul>
+<li>
+<p><a href="http://poj.org/problem?id=2253">POJ 2253 Frogger</a></p>
+<ul>
+<li>题意：一直青蛙想通过石头跳到另一只青蛙那里，但是他的跳跃能力是有封顶的，即他的能力是有限的，最多能跳1米的话，绝对跳不到1.1米远的石头上，给你石头的坐标，和两只青蛙的坐标，问你青蛙的最远能跳的封顶距离的最小值是多少</li>
+<li>思路：一个最短路的变形题，用Floyd比较好想（其他方法也可），转换成人话就是让你求从 a 点到 b 点的路径中，最小边权的最大值是多少，有点绕，自己草稿纸画个图就明白了</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+  
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">int</span> n, x[M], y[M], test <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">double</span> dis[M][M];
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Floyd</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; k <span style="color:#f92672">&lt;=</span> n; k<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (dis[i][j] <span style="color:#f92672">&gt;</span> max(dis[i][k], dis[k][j])) {
+                    dis[i][j] <span style="color:#f92672">=</span> max(dis[i][k], dis[k][j]);
+                }
+                <span style="color:#75715e">// dis[i][j] = min(dis[i][j], max(dis[i][k], dis[k][j]));//更清晰的代码
+</span><span style="color:#75715e"></span>            }
+        }
+    }
+}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n), n) {
+        scanf(<span style="color:#e6db74">&#34;%d%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>x[<span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>y[<span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>x[<span style="color:#ae81ff">2</span>], <span style="color:#f92672">&amp;</span>y[<span style="color:#ae81ff">2</span>]);
+        <span style="color:#66d9ef">double</span> a <span style="color:#f92672">=</span> x[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span> x[<span style="color:#ae81ff">1</span>], b <span style="color:#f92672">=</span> y[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span> y[<span style="color:#ae81ff">1</span>];
+        dis[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> sqrt(a <span style="color:#f92672">*</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">*</span> b);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>x[i], <span style="color:#f92672">&amp;</span>y[i]);
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>) {
+                a <span style="color:#f92672">=</span> x[i] <span style="color:#f92672">-</span> x[j], b <span style="color:#f92672">=</span> y[i] <span style="color:#f92672">-</span> y[j];
+                dis[i][j] <span style="color:#f92672">=</span> sqrt(a <span style="color:#f92672">*</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">*</span> b);
+                dis[j][i] <span style="color:#f92672">=</span> dis[i][j];
+            }
+        }
+        Floyd();
+        printf(<span style="color:#e6db74">&#34;Scenario #%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Frog Distance = %.3f</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>test, dis[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">2</span>]);
+        memset(dis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dis);
+    }
+  
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+<li>
+<p><a href="http://poj.org/problem?id=1125">POJ 1125 Stockbroker Grapevine</a></p>
+<ul>
+<li>题意：给你一个有向图，问你是否能从一点出发到达所有其他顶点，如果有输出该点编号并输出到达这些顶点的最短路中的最大值，否则输出&quot;disjoint&rdquo;</li>
+<li>思路：显然Floyd算法，在Floyd完了之后遍历每个最短路，看看取最短路的最大值和其起点，如果这个最大值是无穷大则说明没有一个顶点可以到达其他顶点</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+  
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">110</span>;
+<span style="color:#66d9ef">int</span> n, tm[M][M], dis[M][M];
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">floyd</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; k <span style="color:#f92672">&lt;=</span> n; k<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+                dis[i][j] <span style="color:#f92672">=</span> min(dis[i][j], dis[i][k] <span style="color:#f92672">+</span> dis[k][j]);
+            }
+        }
+    }
+}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n), n) {
+        memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+        memset(tm, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> tm);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">int</span> m;
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>m);
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> m; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> x, y;
+                scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>x, <span style="color:#f92672">&amp;</span>y);
+                dis[i][x] <span style="color:#f92672">=</span> y;
+            }
+        }
+        floyd();
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, Min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">!=</span> j <span style="color:#f92672">&amp;&amp;</span> dis[i][j] <span style="color:#f92672">&gt;</span> Max) {
+                    Max <span style="color:#f92672">=</span> dis[i][j];
+                }
+            }
+            <span style="color:#66d9ef">if</span> (Max <span style="color:#f92672">&lt;</span> Min) {
+                ans <span style="color:#f92672">=</span> i;
+                Min <span style="color:#f92672">=</span> Max;
+            }
+        }
+        <span style="color:#66d9ef">if</span> (Min <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x3f3f3f3f</span>) {
+            puts(<span style="color:#e6db74">&#34;disjoint&#34;</span>);
+            <span style="color:#66d9ef">continue</span>;
+        }
+        printf(<span style="color:#e6db74">&#34;%d %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans, Min);
+    }
+  
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h3 id="spfa">Spfa</h3>
+<ul>
+<li>
+<p>一种速度极快的最短路算法，但是听说被一位大佬卡死了，但是在一些题目上还是能用的，下面利用这个算法来解决上面的一些题</p>
+</li>
+<li>
+<p>存图的方式最好是邻接表法，这样比较方便松弛</p>
+</li>
+<li>
+<p>其实道理都差不多，题目的不同，主要修改的就是松弛操作部分的代码</p>
+</li>
+<li>
+<p>【例题】</p>
+</li>
+<li>
+<p><a href="http://poj.org/problem?id=3259">POJ 3259 Wormholes</a></p>
+<ul>
+<li>上面的Bellman - Ford算法的例题，除了存图的方式不同，松弛的操作还是不变</li>
+<li>直接上代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>  
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+  
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e4</span>;
+<span style="color:#66d9ef">int</span> n, m, ww, f, dis[<span style="color:#ae81ff">510</span>], head[<span style="color:#ae81ff">510</span>], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">es</span> {
+    <span style="color:#66d9ef">int</span> to, w, next;
+    es(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(a), w(b), next(c) {}
+};
+  
+vector<span style="color:#f92672">&lt;</span>es<span style="color:#f92672">&gt;</span> e;
+  
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    e[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> es(v, w, head[u]);
+    head[u] <span style="color:#f92672">=</span> cnt;
+}
+  
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">spfa</span>() {
+    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q;
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> inq(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+    q.push(<span style="color:#ae81ff">1</span>);
+    inq[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+    nums[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">while</span> (q.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> q.front();
+        q.pop();
+        inq[u] <span style="color:#f92672">=</span> false;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> e[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> e[i].to, w <span style="color:#f92672">=</span> e[i].w;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> w) {
+                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> w;
+                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>inq[v]) {
+                    q.push(v);
+                    inq[v] <span style="color:#f92672">=</span> true;
+                    nums[v]<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">if</span> (nums[v] <span style="color:#f92672">&gt;=</span> n)
+                        <span style="color:#66d9ef">return</span> true;
+                }
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> false;
+}
+  
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>f);
+    <span style="color:#66d9ef">while</span> (f<span style="color:#f92672">--</span>) {
+        cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>ww);
+        e <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>es<span style="color:#f92672">&gt;</span>(m <span style="color:#f92672">+</span> m <span style="color:#f92672">+</span> ww <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">int</span> u, v, w;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+            add(u, v, w);
+            add(v, u, w);
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> ww; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+            add(u, v, <span style="color:#f92672">-</span>w);
+        }
+        memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+        dis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span> (spfa()) puts(<span style="color:#e6db74">&#34;YES&#34;</span>);
+        <span style="color:#66d9ef">else</span> puts(<span style="color:#e6db74">&#34;NO&#34;</span>);
+
+        e.clear();
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h2 id="未完待续">未完待续</h2>
+
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/>https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%9B%BE%E8%AE%BA/">
+                    #图论</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/" class="prev" rel="prev" title="模板"><i
+                class="iconfont icon-left"></i>&nbsp;模板</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">2300 Words|Read in about 11
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

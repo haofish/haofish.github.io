@@ -12,6 +12,7 @@
   
   <link rel="prev" href="https://haofish.github.io/2020/654div2problemc/" />
   
+  <link rel="next" href="https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" />
   <link rel="canonical" href="https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -104,7 +105,7 @@
     "datePublished": "2020-07-13 17:12:35 \u002b0800 CST",
     "dateModified" : "2020-07-13 17:12:35 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/%E6%A8%A1%E6%9D%BF\/",
-    "wordCount" : "709",
+    "wordCount" : "1684",
     "keywords" : [ "模板", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -217,6 +218,9 @@
 <ul>
 <li><a href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84">树状数组</a></li>
 <li><a href="#%E7%BA%BF%E6%AE%B5%E6%A0%91">线段树</a></li>
+<li><a href="#dijkstra%E5%A0%86%E4%BC%98%E5%8C%96%E7%89%88">dijkstra(堆优化版)</a></li>
+<li><a href="#bellman---ford">bellman - ford</a></li>
+<li><a href="#floyd">floyd</a></li>
 </ul>
 </li>
 </ul>
@@ -432,7 +436,282 @@
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><h3 id="线段树">线段树</h3>
-<p>未完待续……</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">int</span> arr[M], tree[M <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>], lazy[M <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>], n;
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pushup</span>(<span style="color:#66d9ef">int</span> node) {
+    tree[node] <span style="color:#f92672">=</span> tree[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> tree[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>];
+}
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pushdown</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> node) {
+    <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (a <span style="color:#f92672">+</span> b) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+    tree[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> (mid <span style="color:#f92672">-</span> a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> lazy[node];
+    tree[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> (b <span style="color:#f92672">-</span> mid) <span style="color:#f92672">*</span> lazy[node];
+    lazy[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> lazy[node];
+    lazy[node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> lazy[node];
+    lazy[node] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">build</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> node) {
+    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> b) {
+        tree[node] <span style="color:#f92672">=</span> arr[a];
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (a <span style="color:#f92672">+</span> b) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+    build(a, mid, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+    build(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, b, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>);
+    pushup(node);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">int</span> L, <span style="color:#66d9ef">int</span> R, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> n, <span style="color:#66d9ef">int</span> node <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> (L <span style="color:#f92672">&lt;=</span> a <span style="color:#f92672">&amp;&amp;</span> b <span style="color:#f92672">&lt;=</span> R) {
+        tree[node] <span style="color:#f92672">=</span> (a <span style="color:#f92672">-</span> b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> v;
+        lazy[node] <span style="color:#f92672">+=</span> v;
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">if</span> (lazy[node])
+        pushdown(a, b, node);
+    <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (a <span style="color:#f92672">+</span> b) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (L <span style="color:#f92672">&lt;=</span> mid)
+        update(L, R, v, a, mid, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">if</span> (R <span style="color:#f92672">&gt;</span> mid)
+        update(L, R, v, mid, b, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>);
+    pushup(node);
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAsk</span>(<span style="color:#66d9ef">int</span> L, <span style="color:#66d9ef">int</span> R, <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> n, <span style="color:#66d9ef">int</span> node <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> (L <span style="color:#f92672">&lt;=</span> a <span style="color:#f92672">&amp;&amp;</span> b <span style="color:#f92672">&lt;=</span> R) {
+        <span style="color:#66d9ef">return</span> tree[node];
+    }
+    <span style="color:#66d9ef">if</span> (lazy[node])
+        pushdown(a, b, node);
+    <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (a <span style="color:#f92672">+</span> b) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>, res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (L <span style="color:#f92672">&lt;=</span> mid)
+        res <span style="color:#f92672">=</span> getAsk(L, R, a, mid, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">if</span> (R <span style="color:#f92672">&gt;</span> mid)
+        res <span style="color:#f92672">+=</span> getAsk(L, R, mid, b, node <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">return</span> res;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+</code></pre></div><h3 id="dijkstra堆优化版">dijkstra(堆优化版)</h3>
+<ul>
+<li>普通版本慢，而且优化版本代码量也不长</li>
+<li>下面是用邻接表实现的，顺便写上邻接表代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">typedef</span> pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pii;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span>, maxm <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e5</span>;
+
+<span style="color:#66d9ef">int</span> n, m, s; <span style="color:#75715e">//n 为顶点数， m 为边数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> head[maxn], cnt, dis[maxn];
+<span style="color:#66d9ef">bool</span> vis[maxn];
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+    memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+    memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+    memset(vis, false, <span style="color:#66d9ef">sizeof</span> vis);
+    cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> to, w, next;
+    edges(<span style="color:#66d9ef">int</span> to <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> next <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(to), w(w), next(next) {}
+} edge[maxm];
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edges</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, w, head[u]);
+    head[u] <span style="color:#f92672">=</span> cnt;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dijkstra</span>() {
+    dis[s] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    priority_queue<span style="color:#f92672">&lt;</span>pii<span style="color:#f92672">&gt;</span> heap;
+    heap.push(make_pair(<span style="color:#ae81ff">0</span>, s));
+    <span style="color:#66d9ef">while</span> (heap.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> heap.top().second;
+        heap.pop();
+        <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">continue</span>;
+        vis[u] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> edge[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> edge[i].to, w <span style="color:#f92672">=</span> edge[i].w;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> w) { <span style="color:#75715e">//松弛
+</span><span style="color:#75715e"></span>                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> w;
+                heap.push(make_pair(<span style="color:#f92672">-</span>dis[v], v));
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    init();
+    scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>s);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        add_edges(u, v, w);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="bellman---ford">bellman - ford</h3>
+<ul>
+<li>普通版（一般够用）</li>
+<li>注意：如果让判断无法到达，则需要再松弛时加一个判断dis[v] != INF</li>
+<li>如果没让判断负环，课在松弛循环前加上flag判断是否有松弛过，没有则直接退出bf</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span>, maxm <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e5</span>;
+<span style="color:#66d9ef">int</span> n, m, s; <span style="color:#75715e">// n 为顶点数， m 为边数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dis[maxn];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> u, v, w;
+    edges(<span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> u(u), v(v), w(w) {}
+} edge[maxm];
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">bf</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; k <span style="color:#f92672">&lt;</span> n; k<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (dis[edge[i].v] <span style="color:#f92672">&gt;</span> dis[edge[i].u] <span style="color:#f92672">+</span> edge[i].w) {<span style="color:#75715e">//松弛
+</span><span style="color:#75715e"></span>                dis[edge[i].v] <span style="color:#f92672">=</span> dis[edge[i].u] <span style="color:#f92672">+</span> edge[i].w;
+            }
+        }
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (dis[edge[i].v] <span style="color:#f92672">&gt;</span> dis[edge[i].u] <span style="color:#f92672">+</span> edge[i].w) {
+            <span style="color:#66d9ef">return</span> false;
+        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>s);
+    memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        edge[i] <span style="color:#f92672">=</span> edges(u, v, w);
+    }
+    dis[s] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (bf()) {
+        printf(<span style="color:#e6db74">&#34;没有负环&#34;</span>);
+    } <span style="color:#66d9ef">else</span> {
+        printf(<span style="color:#e6db74">&#34;有负环&#34;</span>);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>队列优化版（即spfa算法）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span>, maxm <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e5</span>;
+<span style="color:#66d9ef">int</span> n, m, s, dis[maxn], num[maxn], head[maxn], cnt; <span style="color:#75715e">//num 数组时判断是否有负环
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">bool</span> inq[maxn];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+    memset(inq, false, <span style="color:#66d9ef">sizeof</span> inq);
+    memset(dis, <span style="color:#ae81ff">0x3f</span>, <span style="color:#66d9ef">sizeof</span> dis);
+    memset(num, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> num);
+    memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+    cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span> {
+    <span style="color:#66d9ef">int</span> to, w, next;
+    edges(<span style="color:#66d9ef">int</span> to <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> next <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(to), w(w), next(next) {}
+} edge[maxm];
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edges</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v, <span style="color:#66d9ef">int</span> w) {
+    edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, w, head[u]);
+    head[u] <span style="color:#f92672">=</span> cnt;
+}
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">spfa</span>() {
+    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q;
+    q.push(s);
+    inq[s] <span style="color:#f92672">=</span> true;
+    num[s]<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">while</span> (q.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> q.front();
+        q.pop();
+        inq[u] <span style="color:#f92672">=</span> false;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>i; i <span style="color:#f92672">=</span> edge[i].next) {
+            <span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> edge[i].to, w <span style="color:#f92672">=</span> edge[i].next;
+            <span style="color:#66d9ef">if</span> (dis[v] <span style="color:#f92672">&gt;</span> dis[u] <span style="color:#f92672">+</span> w) {
+                dis[v] <span style="color:#f92672">=</span> dis[u] <span style="color:#f92672">+</span> w;
+                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>inq[v]) {
+                    q.push(v);
+                    inq[v] <span style="color:#f92672">=</span> true;
+                    num[v]<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">if</span> (num[v] <span style="color:#f92672">&gt;=</span> n) <span style="color:#66d9ef">return</span> false; <span style="color:#75715e">//如果从1号点到x的最短路中包含至少n个点（不包括自己），则存在环
+</span><span style="color:#75715e"></span>                }
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>s);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        add_edges(u, v, w);
+    }
+    dis[s] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (spfa()) {
+        printf(<span style="color:#e6db74">&#34;没有负环&#34;</span>);
+    } <span style="color:#66d9ef">else</span> {
+        printf(<span style="color:#e6db74">&#34;有负环&#34;</span>);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="floyd">floyd</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">2e2</span>;
+<span style="color:#66d9ef">int</span> n, m; <span style="color:#75715e">//顶点数和边数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> G[M][M];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">floyd</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; k <span style="color:#f92672">&lt;=</span> n; k<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (G[i][j] <span style="color:#f92672">&gt;</span> G[i][k] <span style="color:#f92672">+</span> G[k][j]) {
+                    G[i][j] <span style="color:#f92672">=</span> G[i][k] <span style="color:#f92672">+</span> G[k][j];
+                }
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> u, v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        G[u][v] <span style="color:#f92672">=</span> w;
+    }
+    floyd();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>未完待续……</p>
 
     </div>
 
@@ -475,6 +754,9 @@
                 class="iconfont icon-left"></i>&nbsp;C. A Cookie for You题解</a>
         
         
+        <a href="https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" class="next" rel="next"
+            title="图论刷题总结">图论刷题总结&nbsp;<i class="iconfont icon-right"></i></a>
+        
     </div>
 
     <div class="post-comment">
@@ -482,7 +764,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">800 Words|Read in about 4
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">1700 Words|Read in about 8
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
