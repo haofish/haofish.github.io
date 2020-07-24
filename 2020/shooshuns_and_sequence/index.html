@@ -10,10 +10,10 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/quasi_binary/" />
+  <link rel="prev" href="https://haofish.github.io/2020/tourists_notes/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/shooshuns_and_sequence/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/tourists_notes/" />
+  <link rel="next" href="https://haofish.github.io/2020/cosmic_tables/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/shooshuns_and_sequence/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +69,11 @@
   <title>
     
     
-    Tourist&#39;s_Notes | 🐟🐟🐟&lt;--
+    Shooshuns_and_Sequence | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="Tourist&#39;s_Notes | 🐟🐟🐟&lt;--">
+    content="Shooshuns_and_Sequence | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +92,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "Tourist\u0027s_Notes",
-    "headline" : "Tourist\u0027s_Notes",
+    "name" : "Shooshuns_and_Sequence",
+    "headline" : "Shooshuns_and_Sequence",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +102,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-07-24 09:56:16 \u002b0800 CST",
-    "dateModified" : "2020-07-24 09:56:16 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/tourists_notes\/",
-    "wordCount" : "181",
-    "keywords" : [ "模拟","题解", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-07-24 15:15:22 \u002b0800 CST",
+    "dateModified" : "2020-07-24 15:15:22 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/shooshuns_and_sequence\/",
+    "wordCount" : "106",
+    "keywords" : [ "模拟","题解","思维", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,7 +168,7 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Tourist&#39;s_Notes</h1>
+        <h1 class="post-title" itemprop="name headline">Shooshuns_and_Sequence</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
@@ -201,48 +201,43 @@
         
         
 
-        <h2 id="传送门httpscodeforcescomproblemsetproblem538c"><a href="https://codeforces.com/problemset/problem/538/C">传送门</a></h2>
+        <h2 id="传送门httpscodeforcescomcontest222problema"><a href="https://codeforces.com/contest/222/problem/A">传送门</a></h2>
 <ul>
-<li>题意：旅行者每天都会记录自己的海拔高度，他每天规定走海拔相差不超过1的路线，有一天他的记录丢失了，只剩下几天的，问你他之前有可能到达的最高海拔是多少，如果数据出现矛盾，输出&quot;IMPOSSIBLE&rdquo;</li>
-<li>思路：用两个数组记录天数和当天的海拔高度，如果相隔的海拔差比相隔的天数差还大的话就是矛盾，否则就这样计算相隔天数中可能的最大海拔高度：$MaxHight = ( day[i] + hight[i] - (day[i - 1] - hight[i - 1]) ) / 2$，最后取众多MaxHight的最大值</li>
-<li>注意：第一天和最后一天的数据可能没给，所以我们要自己造一个可能的最大高度，例如只给你第3天的海拔高度为5，总共旅行的天数为4，那么我们就自己造一个第一天的高度为7$(5 + 3 - 1)$，第4天的高度为6$(5 + (4 - 3))$，就是一开始没想到这个，wa了2发/(ㄒoㄒ)/~~</li>
-<li>代码如下：</li>
+<li>什么鬼，div2也出水题？还是我变强了？😂</li>
+<li>题意：给你一个长为n的序列，再给你一个k，你每次都必须要这样做：选择第k个数，把他复制到序列的最后，再把序列的第一个数给删了，问你要操作多少次可以使得序列数组的数全部相同，如果根本不可能通过上述操作使得序列数组的数全部相同，则输出-1</li>
+<li>思路：不难发现，如果一开始第k个数及后面的数有出现不同的数的话，是不可能通过上述操作使得整个数组完全相同，如果可能的话，就往k前找，即往左找，找到第一个与第k个数不同的数，输出他的下标就好了（因为要一直删到那个不同的数），模拟一下就好了。</li>
+<li>代码如下</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">int</span> n, m, d[M], h[M];
-<span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
 
+<span style="color:#66d9ef">int</span> n, k, arr[M];
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
-        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, d <span style="color:#f92672">+</span> i, h <span style="color:#f92672">+</span> i);
-        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> d[i] <span style="color:#f92672">-</span> d[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> abs(h[i] <span style="color:#f92672">-</span> h[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])) {
-            ok <span style="color:#f92672">=</span> false;
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, arr <span style="color:#f92672">+</span> i);
+    }
+    <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> arr[k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (arr[i] <span style="color:#f92672">!=</span> tmp) {
+            printf(<span style="color:#e6db74">&#34;-1&#34;</span>);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
         }
     }
-    <span style="color:#66d9ef">if</span> (ok) {
-        h[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> h[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> d[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, h[m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> h[m] <span style="color:#f92672">+</span> (n <span style="color:#f92672">-</span> d[m]);
-        d[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, d[m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> n;
-        <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> h[<span style="color:#ae81ff">0</span>];
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> (d[i] <span style="color:#f92672">+</span> h[i] <span style="color:#f92672">-</span> (d[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> h[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-            Max <span style="color:#f92672">=</span> max(Max, tmp);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> k <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>) {
+        <span style="color:#66d9ef">if</span> (arr[i] <span style="color:#f92672">!=</span> tmp) {
+            printf(<span style="color:#e6db74">&#34;%d&#34;</span>, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
         }
-        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Max);
-    } <span style="color:#66d9ef">else</span> {
-        printf(<span style="color:#e6db74">&#34;IMPOSSIBLE</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
     }
+    printf(<span style="color:#e6db74">&#34;0&#34;</span>);
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div>
@@ -254,7 +249,7 @@
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/tourists_notes/>https://haofish.github.io/2020/tourists_notes/</span>
+            <a href=https://haofish.github.io/2020/shooshuns_and_sequence/>https://haofish.github.io/2020/shooshuns_and_sequence/</span>
         </p>
         
         
@@ -276,6 +271,9 @@
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
             
+            <span class="tag"><a href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/">
+                    #思维</a></span>
+            
         </section>
         
         <section>
@@ -286,12 +284,12 @@
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/quasi_binary/" class="prev" rel="prev" title="Quasi_Binary"><i
-                class="iconfont icon-left"></i>&nbsp;Quasi_Binary</a>
+        <a href="https://haofish.github.io/2020/tourists_notes/" class="prev" rel="prev" title="Tourist&#39;s_Notes"><i
+                class="iconfont icon-left"></i>&nbsp;Tourist&#39;s_Notes</a>
         
         
-        <a href="https://haofish.github.io/2020/shooshuns_and_sequence/" class="next" rel="next"
-            title="Shooshuns_and_Sequence">Shooshuns_and_Sequence&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://haofish.github.io/2020/cosmic_tables/" class="next" rel="next"
+            title="Cosmic_Tables">Cosmic_Tables&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

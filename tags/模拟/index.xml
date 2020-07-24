@@ -6,10 +6,37 @@
     <description>Recent content in 模拟 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Jul 2020 09:56:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2020 19:25:00 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E6%A8%A1%E6%8B%9F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Olympiad</title>
+      <link>https://haofish.github.io/2020/olympiad/</link>
+      <pubDate>Fri, 24 Jul 2020 19:25:00 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/olympiad/</guid>
+      <description>传送门  题意：给你两个同长数组代表n个人两场比赛的成绩，再给你一个x，某两个数组的和$a_i + b_j \ge x$，问你两数组组合成满足式子的排名最高和最低是多少。具体看样例就懂了。 思路：此题对于最高排名一定是1，即第一名，而最低排名的话，一开始知道是一个双指针的贪心，但是就是不知道怎么贪，后来看到大佬的想法豁然开朗：只要找到组合后大于等于x的个数有多少就好了。 具体找法：一个数组a大到小排序，一个数组b小到大排序，然后只要从a从头开始一个一个遍历，从b数组中从头找能与a数组的数加起来大于等于x的数就好了，然后记录个数，就是答案 心得：贪心题目是难想，想到之后就很简单，代码量也不大，还有一个比较考验的就是模拟的功力了（从人的思维去想想如果这不是一道编程题，而是一个生活的益智题，你会怎么做？然后再用代码实现,说的简单，感觉还是要多刷题） 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt; using namespace std; const int M = 1e5 + 5; int n, x, a[M], b[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;x); for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%d&amp;#34;, a + i); } for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%d&amp;#34;, b + i); } printf(&amp;#34;1 &amp;#34;); sort(a, a + n); sort(b, b + n); reverse(a, a + n); //a从大到小排序  int j = 0, ans = 0; for (int i = 0; i &amp;lt; n; i++) { while (j &amp;lt; n &amp;amp;&amp;amp; b[j] + a[i] &amp;lt; x) { j++; } if (j &amp;gt;= n) break; ans++; j++; } printf(&amp;#34;%d&amp;#34;, ans); return 0; } </description>
+    </item>
+    
+    <item>
+      <title>Cosmic_Tables</title>
+      <link>https://haofish.github.io/2020/cosmic_tables/</link>
+      <pubDate>Fri, 24 Jul 2020 16:26:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/cosmic_tables/</guid>
+      <description>传送门  题意：给你一个矩阵，每次进行与行之间的交换，或者是列与列之间的交换，或者查询(x, y)点的值 思路：一开始想着是不是直接就纯模拟算了，后来想想，直接用数组把行和列也记录下来不就好了吗 代码如下  #include &amp;lt;cstdio&amp;gt; using namespace std; const int M = 1e3 + 10; int r[M], c[M], g[M][M], n, m, k; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d%d%d&amp;#34;, &amp;amp;n, &amp;amp;m, &amp;amp;k); for (int i = 1; i &amp;lt;= n; i++) r[i] = i; for (int i = 1; i &amp;lt;= m; i++) c[i] = i; for (int i = 1; i &amp;lt;= n; i++) { for (int j = 1; j &amp;lt;= m; j++) { scanf(&amp;#34;%d&amp;#34;, &amp;amp;g[i][j]); } } while (k--) { char a; int x, y; scanf(&amp;#34;\n%c %d %d&amp;#34;, &amp;amp;a, &amp;amp;x, &amp;amp;y); if (a == &amp;#39;r&amp;#39;) {//交换操作  r[x] ^= r[y], r[y] ^= r[x], r[x] ^= r[y]; } else if (a == &amp;#39;c&amp;#39;) { c[x] ^= c[y], c[y] ^= c[x], c[x] ^= c[y]; } else { printf(&amp;#34;%d\n&amp;#34;, g[r[x]][c[y]]); } } return 0; } </description>
+    </item>
+    
+    <item>
+      <title>Shooshuns_and_Sequence</title>
+      <link>https://haofish.github.io/2020/shooshuns_and_sequence/</link>
+      <pubDate>Fri, 24 Jul 2020 15:15:22 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/shooshuns_and_sequence/</guid>
+      <description>传送门  什么鬼，div2也出水题？还是我变强了？😂 题意：给你一个长为n的序列，再给你一个k，你每次都必须要这样做：选择第k个数，把他复制到序列的最后，再把序列的第一个数给删了，问你要操作多少次可以使得序列数组的数全部相同，如果根本不可能通过上述操作使得序列数组的数全部相同，则输出-1 思路：不难发现，如果一开始第k个数及后面的数有出现不同的数的话，是不可能通过上述操作使得整个数组完全相同，如果可能的话，就往k前找，即往左找，找到第一个与第k个数不同的数，输出他的下标就好了（因为要一直删到那个不同的数），模拟一下就好了。 代码如下  #include &amp;lt;cstdio&amp;gt; using namespace std; const int M = 1e5 + 10; int n, k, arr[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;k); for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%d&amp;#34;, arr + i); } int tmp = arr[k - 1]; for (int i = k; i &amp;lt; n; i++) { if (arr[i] !</description>
+    </item>
     
     <item>
       <title>Tourist&#39;s_Notes</title>
