@@ -1,62 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 🐟🐟🐟&lt;--</title>
-    <link>https://haofish.github.io/posts/</link>
-    <description>Recent content in Posts on 🐟🐟🐟&lt;--</description>
+    <title>cf补题 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/categories/cf%E8%A1%A5%E9%A2%98/</link>
+    <description>Recent content in cf补题 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Jul 2020 09:56:16 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2020 20:28:19 +0800</lastBuildDate>
     
-	<atom:link href="https://haofish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://haofish.github.io/categories/cf%E8%A1%A5%E9%A2%98/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Tourist&#39;s_Notes</title>
-      <link>https://haofish.github.io/2020/tourists_notes/</link>
-      <pubDate>Fri, 24 Jul 2020 09:56:16 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/tourists_notes/</guid>
-      <description>传送门  题意：旅行者每天都会记录自己的海拔高度，他每天规定走海拔相差不超过1的路线，有一天他的记录丢失了，只剩下几天的，问你他之前有可能到达的最高海拔是多少，如果数据出现矛盾，输出&amp;quot;IMPOSSIBLE&amp;rdquo; 思路：用两个数组记录天数和当天的海拔高度，如果相隔的海拔差比相隔的天数差还大的话就是矛盾，否则就这样计算相隔天数中可能的最大海拔高度：$MaxHight = ( day[i] + hight[i] - (day[i - 1] - hight[i - 1]) ) / 2$，最后取众多MaxHight的最大值 注意：第一天和最后一天的数据可能没给，所以我们要自己造一个可能的最大高度，例如只给你第3天的海拔高度为5，总共旅行的天数为4，那么我们就自己造一个第一天的高度为7$(5 + 3 - 1)$，第4天的高度为6$(5 + (4 - 3))$，就是一开始没想到这个，wa了2发/(ㄒoㄒ)/~~ 代码如下：  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; const int M = 1e5 + 10; int n, m, d[M], h[M]; bool ok = true; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m); for (int i = 1; i &amp;lt;= m; i++) { scanf(&amp;#34;%d%d&amp;#34;, d + i, h + i); if (i !</description>
-    </item>
-    
-    <item>
-      <title>Quasi_Binary</title>
-      <link>https://haofish.github.io/2020/quasi_binary/</link>
-      <pubDate>Thu, 23 Jul 2020 21:08:02 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/quasi_binary/</guid>
-      <description>传送门  题意：一个只由1和0组成的十进制数叫做Quasi Binary，例如11（十一）就是，现在给你一个n，让你求出他可能有哪些Quasi Binary的和组成，输出最少的Quasi Binary个数并将他们输出 思路：模拟，用个二维数组记录所有的结果位数结果，然后相加输出。例如32就是记录10、10、10、1、1，然后分别将不同位数的相加得到11（10 + 1），11（10 + 1），10（10 + 0） 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  int n; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); int t = n, sum = 0; while (t) { sum = max(t % 10, sum); t /= 10; } printf(&amp;#34;%d\n&amp;#34;, sum); int tmp, x = 0, y = 0, numset[7][10] = {0}, w = 1; while (n) { tmp = n % 10, y = 0; while (tmp) { numset[x][y++] = w; tmp--; } n /= 10, x++, w *= 10; } for (int i = 0; i &amp;lt; sum; i++) { int res = 0; for (int j = 0; j &amp;lt; 7; j++) { res += numset[j][i]; } printf(&amp;#34;%d &amp;#34;, res); } return 0; } </description>
-    </item>
-    
-    <item>
-      <title>Cutting_Banner</title>
-      <link>https://haofish.github.io/2020/cutting_banner/</link>
-      <pubDate>Thu, 23 Jul 2020 20:08:59 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/cutting_banner/</guid>
-      <description>传送门  题意：给你个字符串，减去一段子串，是否能将剩下的不改变顺序拼成&amp;quot;CODEFORCES&amp;rdquo;，能则输出&amp;quot;YES&amp;rdquo;，否则输出&amp;quot;NO&amp;rdquo; 思路：直接枚举减去的长度，然后暴力 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char aim[] = &amp;#34;CODEFORCES&amp;#34;, str[200], tmp[200]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%s&amp;#34;, str); if (strcmp(str, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } int len = strlen(str); for (int i = 1; i &amp;lt;= len; i++) { for (int j = 0; j + i - 1 &amp;lt; len; j++) { int ind = 0; for (int k = 0; k &amp;lt; len; k++) { if (k &amp;lt; j || k &amp;gt; j + i - 1) { tmp[ind++] = str[k]; } } tmp[ind] = &amp;#39;\0&amp;#39;; if (strcmp(tmp, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } } } puts(&amp;#34;NO&amp;#34;); return 0; } </description>
-    </item>
-    
-    <item>
-      <title>图论刷题总结</title>
-      <link>https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Tue, 21 Jul 2020 22:22:01 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/%E5%9B%BE%E8%AE%BA%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
-      <description>前言 总结 最短路  Dijkstra Bellman-Ford Floyd Spfa   未完待续  前言  起因是一次力扣周赛时被一道最短论的题给整蒙了，决定这几天恶补图论，正好POJ的刷题题单刷到了图 打算学习图论从零开始，目前刷的题不多  总结  关于存图  不同的存图方式可以使得不同的算法更加方便，例如：邻接表可以使Dijkstra算法在堆优化中方便不少，而邻接矩阵可以使Floyd算法更加方便   关于建图  有一些题目在描述的时候给的数据不好建图，这需要经验的积累 而有一些题目并没有直接说明是图，换句话说能否看出是使用图论的知识来解题也需要经验的累积   关于计算  题目中的要求并不是一成不变的，有时候最短路径并不是仅仅指的是值最短，有时候也有可能题目让你求最大值，但最短路依然可以解    最短路  先从最短路开始刷，刷到后面发现有些题三个算法（Dijkstra、Bellman-Ford、Floyd）都是可以解的  Dijkstra   [例题]
-  洛谷P4779 【模板】单源最短路径（标准版）
- 题意：最短路板子题，不解释 思路：直接用Dijkstra的堆优化做，因为没有负环 直接上代码  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;locale&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;utility&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; typedef long long ll; typedef pair&amp;lt;int, int&amp;gt; pii; const int M = 2e5 + 10; const ll INF = 0x3f3f3f3f; int n, m, s, cnt = 0; struct edges { int w, to, next; edges(int a = 0, int b = 0, int c = -1) : w(b), to(a), next(c) {} }; vector&amp;lt;int&amp;gt; head, dis; vector&amp;lt;edges&amp;gt; edge; inline void add(int u, int v, int w) { edge[++cnt] = edges(v, w, head[u]); head[u] = cnt; } void dij() { vector&amp;lt;bool&amp;gt; vis(n + 1, false); dis = vector&amp;lt;int&amp;gt;(n + 1, INF); priority_queue&amp;lt;pii, vector&amp;lt;pii&amp;gt;, greater&amp;lt;pii&amp;gt; &amp;gt; heap; dis[s] = 0; heap.</description>
-    </item>
-    
-    <item>
-      <title>模板</title>
-      <link>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</link>
-      <pubDate>Mon, 13 Jul 2020 17:12:35 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</guid>
-      <description>基础  二分 快速幂 最大公因数，最小公倍数 素数筛（埃式） 高精（不压位） 高精（压位） 离散化 未完待续……   数据结构  树状数组 线段树 dijkstra(堆优化版) bellman - ford floyd    基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1; else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
-    </item>
     
     <item>
       <title>C. A Cookie for You题解</title>
@@ -106,33 +59,6 @@
       <guid>https://haofish.github.io/2020/653div3problemb/</guid>
       <description>传送门
 题意  给一个数 n,问你只进行以下两种操作，要操作最少多少次能够使得 n 为 1：  把 n 除以 6 （前提是可以整除） 把 n 乘 2   输出最少的操作次数，如果无论如何都没办法得到 1，则输出 -1  思路  首先要知道的是，如果对一个数同时进行两个操作就相当于对 n 除以 3 思考一个极端的例子就是：n 的质因子只有 3，那么它一定可以最终得到 1。为什么呢？因为我们可以让每个 3 都乘 2， 这样他就有了因子 6， 便可以做第一个操作了，并且最终得到 1 如果这个数既有 2 又有 3 怎么办？ 很简单，只需要把一对 2 和 3 看成 6，最终剩下的因子如果是 2（因为已经无望再去除以 6 了），则不可能得到 1，如果是 3， 则当成只有因子 3 的数看待（即上述的极端情况） 最后一种情况就是 n 的质因子除了 3 和 2 还有其他的质因子的话，一定最终无法得到 1 所以最终的想法就是：计算出质因子 2 的个数a，和计算出质因子 3 的个数 b, 如果 $a &amp;gt; b$ 则无法得到 1，否则要操作的次数最少为 $(b - a) \times 2 + a$ 代码如下  #include &amp;lt;bits/stdc++.</description>
-    </item>
-    
-    <item>
-      <title>Dp总结</title>
-      <link>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型 4. 分类  ① 线性DP ② 区间DP ③ 树状DP  简介 【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  状态压缩简介 常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5. 优化dp的手段  ① 矩阵优化 ② 数据结构优化 ③ 单调队列优化 ④ 决策单调性优化 ⑤ 二进制优化 ⑥ 斜率优化 ⑦ 四边形不等式优化    1. 写在前面的话  之前写了一篇不像总结的动态规划总结，感觉更像是一个成长历程，所以就打算重写一篇。  2. 对DP简单的总结   dp的题目特点</description>
-    </item>
-    
-    <item>
-      <title>动态规划刷题总结</title>
-      <link>https://haofish.github.io/2020/dynamicprogramming/</link>
-      <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://haofish.github.io/2020/dynamicprogramming/</guid>
-      <description>1、写在前面 2、我对dp的看法和理解 3、典型例题  ①爬楼梯（leetcode #70）  题意 分析 小结      1、写在前面 这几天疯狂刷leetcode的dp题，刷到我都想吐了，看到一个题就先往dp想，感觉中毒不浅，话不多说，赶紧开始总结一下我的成长历程心得。
-2、我对dp的看法和理解   首先引入《算法笔记》里的一句话:
- 动态规划是一种非常精妙的算法思想，他没有固定的写法、极其灵活，常常需要具体问题具体分析。
- 没错正式这种具体问题具体分析的设定让我刷到吐了
-  平时在思考动态规划的往往是利用一个小小的公式：递推 = 递归 + 记忆化（下面会赘述我是怎么利用这个公式思考的）
-  虽然他是这么说，但是我还是觉得dp的是有套路可循的，例如给dp分类 （背包dp、树形dp、区间dp……），经典题的记忆 （爬楼梯、树塔问题、LIS……）
-  一般来说，我思考dp都是从结果往前想的（即从末尾开始想）
-  dp的基本使用条件： 1. 拥有重叠子问题、 2. 最优子结构、3.无后效性
-  dp思考三步走： 1. 状态定义 → 2.列状态转移方程 → 3.验证方程
-  我觉得的动规成长路线：小白 → 利用小公式辅助建立dp → 正常dp三步走思维思考 → 大佬 （我还没触及 将来一定达到( ఠൠఠ )ﾉ）</description>
     </item>
     
   </channel>

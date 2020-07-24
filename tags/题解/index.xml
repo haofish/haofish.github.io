@@ -6,10 +6,37 @@
     <description>Recent content in 题解 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jul 2020 20:28:19 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2020 09:56:16 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tourist&#39;s_Notes</title>
+      <link>https://haofish.github.io/2020/tourists_notes/</link>
+      <pubDate>Fri, 24 Jul 2020 09:56:16 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/tourists_notes/</guid>
+      <description>传送门  题意：旅行者每天都会记录自己的海拔高度，他每天规定走海拔相差不超过1的路线，有一天他的记录丢失了，只剩下几天的，问你他之前有可能到达的最高海拔是多少，如果数据出现矛盾，输出&amp;quot;IMPOSSIBLE&amp;rdquo; 思路：用两个数组记录天数和当天的海拔高度，如果相隔的海拔差比相隔的天数差还大的话就是矛盾，否则就这样计算相隔天数中可能的最大海拔高度：$MaxHight = ( day[i] + hight[i] - (day[i - 1] - hight[i - 1]) ) / 2$，最后取众多MaxHight的最大值 注意：第一天和最后一天的数据可能没给，所以我们要自己造一个可能的最大高度，例如只给你第3天的海拔高度为5，总共旅行的天数为4，那么我们就自己造一个第一天的高度为7$(5 + 3 - 1)$，第4天的高度为6$(5 + (4 - 3))$，就是一开始没想到这个，wa了2发/(ㄒoㄒ)/~~ 代码如下：  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; const int M = 1e5 + 10; int n, m, d[M], h[M]; bool ok = true; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m); for (int i = 1; i &amp;lt;= m; i++) { scanf(&amp;#34;%d%d&amp;#34;, d + i, h + i); if (i !</description>
+    </item>
+    
+    <item>
+      <title>Quasi_Binary</title>
+      <link>https://haofish.github.io/2020/quasi_binary/</link>
+      <pubDate>Thu, 23 Jul 2020 21:08:02 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/quasi_binary/</guid>
+      <description>传送门  题意：一个只由1和0组成的十进制数叫做Quasi Binary，例如11（十一）就是，现在给你一个n，让你求出他可能有哪些Quasi Binary的和组成，输出最少的Quasi Binary个数并将他们输出 思路：模拟，用个二维数组记录所有的结果位数结果，然后相加输出。例如32就是记录10、10、10、1、1，然后分别将不同位数的相加得到11（10 + 1），11（10 + 1），10（10 + 0） 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  int n; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); int t = n, sum = 0; while (t) { sum = max(t % 10, sum); t /= 10; } printf(&amp;#34;%d\n&amp;#34;, sum); int tmp, x = 0, y = 0, numset[7][10] = {0}, w = 1; while (n) { tmp = n % 10, y = 0; while (tmp) { numset[x][y++] = w; tmp--; } n /= 10, x++, w *= 10; } for (int i = 0; i &amp;lt; sum; i++) { int res = 0; for (int j = 0; j &amp;lt; 7; j++) { res += numset[j][i]; } printf(&amp;#34;%d &amp;#34;, res); } return 0; } </description>
+    </item>
+    
+    <item>
+      <title>Cutting_Banner</title>
+      <link>https://haofish.github.io/2020/cutting_banner/</link>
+      <pubDate>Thu, 23 Jul 2020 20:08:59 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/cutting_banner/</guid>
+      <description>传送门  题意：给你个字符串，减去一段子串，是否能将剩下的不改变顺序拼成&amp;quot;CODEFORCES&amp;rdquo;，能则输出&amp;quot;YES&amp;rdquo;，否则输出&amp;quot;NO&amp;rdquo; 思路：直接枚举减去的长度，然后暴力 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char aim[] = &amp;#34;CODEFORCES&amp;#34;, str[200], tmp[200]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%s&amp;#34;, str); if (strcmp(str, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } int len = strlen(str); for (int i = 1; i &amp;lt;= len; i++) { for (int j = 0; j + i - 1 &amp;lt; len; j++) { int ind = 0; for (int k = 0; k &amp;lt; len; k++) { if (k &amp;lt; j || k &amp;gt; j + i - 1) { tmp[ind++] = str[k]; } } tmp[ind] = &amp;#39;\0&amp;#39;; if (strcmp(tmp, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } } } puts(&amp;#34;NO&amp;#34;); return 0; } </description>
+    </item>
     
     <item>
       <title>C. A Cookie for You题解</title>

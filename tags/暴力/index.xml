@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>暴力 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E6%9A%B4%E5%8A%9B/</link>
+    <description>Recent content in 暴力 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Jul 2020 20:08:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E6%9A%B4%E5%8A%9B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cutting_Banner</title>
+      <link>https://haofish.github.io/2020/cutting_banner/</link>
+      <pubDate>Thu, 23 Jul 2020 20:08:59 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/cutting_banner/</guid>
+      <description>传送门  题意：给你个字符串，减去一段子串，是否能将剩下的不改变顺序拼成&amp;quot;CODEFORCES&amp;rdquo;，能则输出&amp;quot;YES&amp;rdquo;，否则输出&amp;quot;NO&amp;rdquo; 思路：直接枚举减去的长度，然后暴力 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char aim[] = &amp;#34;CODEFORCES&amp;#34;, str[200], tmp[200]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%s&amp;#34;, str); if (strcmp(str, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } int len = strlen(str); for (int i = 1; i &amp;lt;= len; i++) { for (int j = 0; j + i - 1 &amp;lt; len; j++) { int ind = 0; for (int k = 0; k &amp;lt; len; k++) { if (k &amp;lt; j || k &amp;gt; j + i - 1) { tmp[ind++] = str[k]; } } tmp[ind] = &amp;#39;\0&amp;#39;; if (strcmp(tmp, aim) == 0) { puts(&amp;#34;YES&amp;#34;); return 0; } } } puts(&amp;#34;NO&amp;#34;); return 0; } </description>
+    </item>
+    
+  </channel>
+</rss>
