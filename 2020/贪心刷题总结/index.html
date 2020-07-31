@@ -12,6 +12,7 @@
   
   <link rel="prev" href="https://haofish.github.io/2020/olympiad/" />
   
+  <link rel="next" href="https://haofish.github.io/2020/uva122/" />
   <link rel="canonical" href="https://haofish.github.io/2020/%E8%B4%AA%E5%BF%83%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -437,7 +438,7 @@ priority_queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef"
 <li>画图出来可能比较直观
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPICFishintMaster%E9%85%8D%E5%9B%BE.png" alt="fishing master配图"></li>
 <li>对于这个配图，即便是$t_i &lt; k$公式依旧成立</li>
-<li>显然，根据图，我们贪心的策略就是在煮鱼的空档里尽可能多地钓鱼,比如上图，就是钓2条，然后去等待鱼煮好久放下一条，假设这样下去我们总共在钓鱼的空档里钓的鱼数量为$num$</li>
+<li>显然，根据图，我们贪心的策略就是在煮鱼的空档里尽可能多地钓鱼,比如上图，就是钓2条，然后去等待鱼煮好就放下一条，假设这样下去我们总共在钓鱼的空档里钓的鱼数量为$num$</li>
 <li>正如上述第一条鱼钓的时间是不可避免的，所以接下来只剩下n - 1条鱼需要我们在煮鱼的空档时钓上来，假设$num \ge n - 1$，即我们在空档里钓的鱼比我们需要钓的鱼还多，那最终答案就是$k + \sum{t_i}$</li>
 <li>若$num &lt; n - 1$，即我们在空档的时候钓的鱼不够我们需要钓的，那我们就要在煮鱼的空档多钓一条了，如上图就是钓3条，这样的操作需要我们进行$n - 1 - num$次，很显然，我们希望总时间尽可能地短，那就必须让$k - t_i % k$尽可能地小</li>
 <li>对于上述的操作，代码里面只要用个数组mor记录$k - t_i % k$，然后再ans里面加上前$n - 1 - num$小的$k - t_i % k$就好了</li>
@@ -618,6 +619,9 @@ priority_queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef"
         <a href="https://haofish.github.io/2020/olympiad/" class="prev" rel="prev" title="Olympiad"><i
                 class="iconfont icon-left"></i>&nbsp;Olympiad</a>
         
+        
+        <a href="https://haofish.github.io/2020/uva122/" class="next" rel="next"
+            title="UVA122">UVA122&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
