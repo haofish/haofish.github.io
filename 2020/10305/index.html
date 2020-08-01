@@ -10,10 +10,10 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/uva548/" />
+  <link rel="prev" href="https://haofish.github.io/2020/uva572/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/uva839/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/uva679/" />
+  <link rel="next" href="https://haofish.github.io/2020/816/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/10305/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +69,11 @@
   <title>
     
     
-    UVA679 | 🐟🐟🐟&lt;--
+    10305 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="UVA679 | 🐟🐟🐟&lt;--">
+    content="10305 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +92,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "UVA679",
-    "headline" : "UVA679",
+    "name" : "10305",
+    "headline" : "10305",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +102,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-07-31 11:53:31 \u002b0800 CST",
-    "dateModified" : "2020-07-31 11:53:31 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/uva679\/",
-    "wordCount" : "81",
-    "keywords" : [ "题解","树","思维", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-08-01 09:47:35 \u002b0800 CST",
+    "dateModified" : "2020-08-01 09:47:35 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/10305\/",
+    "wordCount" : "127",
+    "keywords" : [ "题解","图","拓扑排序", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,21 +168,17 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">UVA679</h1>
+        <h1 class="post-title" itemprop="name headline">10305</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
             with ♥
             <span class="post-time">
-                on <time datetime=2020-07-31
-                    itemprop="datePublished">July 31, 2020</time>
+                on <time datetime=2020-08-01
+                    itemprop="datePublished">August 1, 2020</time>
             </span>
             in
-            <i class="iconfont icon-folder"></i>
-            <span class="post-category">
-                <a href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch6/"> 紫书刷题录-ch6 </a>
-                
-            </span>
+            
         </div>
     </header>
     <div class="post-content">
@@ -201,32 +197,50 @@
         
         
 
-        <h2 id="dropping-ballshttpsvjudgenetproblemuva-679"><a href="https://vjudge.net/problem/UVA-679">Dropping Balls</a></h2>
+        <h2 id="ordering-taskshttpsvjudgenetproblemuva-699"><a href="https://vjudge.net/problem/UVA-699">Ordering Tasks</a></h2>
+<ul>
+<li>简化了拓扑排序，只因根据题中的意思了解到一定是DAG</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<span style="color:#66d9ef">int</span> d, n, t;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">110</span>;
+<span style="color:#66d9ef">int</span> m, n, vis[M];
+<span style="color:#66d9ef">bool</span> g[M][M];
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> ans;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> u) {
+    vis[u] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>vis[i] <span style="color:#f92672">&amp;&amp;</span> g[u][i]) {
+            dfs(i);
+        }
+    }
+    ans.push_back(u);
+}
 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
-    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>) {
-        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>d, <span style="color:#f92672">&amp;</span>n);
-        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> d; i<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) {
-                ans <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>;
-                n <span style="color:#f92672">=</span> (n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-            } <span style="color:#66d9ef">else</span> {
-                ans <span style="color:#f92672">=</span> ans <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>;
-                n <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
-            }
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n), m <span style="color:#f92672">+</span> n) {
+        <span style="color:#66d9ef">int</span> x, y;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>x, <span style="color:#f92672">&amp;</span>y);
+            g[x][y] <span style="color:#f92672">=</span> true;
         }
-        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (vis[i]) <span style="color:#66d9ef">continue</span>;
+            dfs(i);
+        }
+        reverse(ans.begin(), ans.end());
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i : ans) printf(<span style="color:#e6db74">&#34;%d &#34;</span>, i);
+        puts(<span style="color:#e6db74">&#34;&#34;</span>);
+        ans.clear();
+        memset(g, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> g);
+        memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
@@ -239,7 +253,7 @@
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/uva679/>https://haofish.github.io/2020/uva679/</span>
+            <a href=https://haofish.github.io/2020/10305/>https://haofish.github.io/2020/10305/</span>
         </p>
         
         
@@ -258,11 +272,11 @@
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%A0%91/">
-                    #树</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%9B%BE/">
+                    #图</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/">
-                    #思维</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+                    #拓扑排序</a></span>
             
         </section>
         
@@ -274,12 +288,12 @@
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/uva548/" class="prev" rel="prev" title="UVA548"><i
-                class="iconfont icon-left"></i>&nbsp;UVA548</a>
+        <a href="https://haofish.github.io/2020/uva572/" class="prev" rel="prev" title="UVA572"><i
+                class="iconfont icon-left"></i>&nbsp;UVA572</a>
         
         
-        <a href="https://haofish.github.io/2020/uva839/" class="next" rel="next"
-            title="UVA839">UVA839&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://haofish.github.io/2020/816/" class="next" rel="next"
+            title="816">816&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -288,7 +302,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">100 Words|Read in about 1
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
