@@ -6,10 +6,64 @@
     <description>Recent content in 紫书刷题录-ch6 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jul 2020 20:13:07 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2020 20:27:46 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA12166</title>
+      <link>https://haofish.github.io/2020/uva12166/</link>
+      <pubDate>Mon, 03 Aug 2020 20:27:46 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva12166/</guid>
+      <description>Equilibrium Mobile  竟然是一道思维题，不行，这题要写写题解 思路：  假设这个数是一个满二叉树的，并且每个叶子节点每个叶子节点的重量（权值）都不一样，则最少的修改次数就是：叶子节点数 - 1，具体策略就是找一个叶子节点为基准点，设其重量为$x$，然后把其余的叶子节点的重量都修改成$x$，设数的深度为$h$，则此时整棵树的的重量为 $x \times 2 ^ {h - 1}$ 对于其他情况，我们可以根据上述的特殊情况来推导，假设以某个叶子节点为基准点，然后计算修改后整棵树的重量（根据公式 $x \times 2 ^ {h - 1}$） 所以策略就是，计算每个叶子节点以其为基准点修改后的整棵树的重量，这样计算下去，可能会出现计算结果相同的情况，就意味着以该叶子节点为基准点修改时，有不需要修改的叶子节点 那么我们就可以统计以每个叶子节点为基准点修改后的整棵树的重量的值，出现最多次数的就说明以该叶子节点为基准点修改，有最多的叶子节点不需要修改，固需要修改的叶子节点个数最少 剩下的就是代码实现了，由于重量可能很大，固用哈希来存放该重量的数量   代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int t, num; char str[1000005]; unordered_map&amp;lt;ll, int&amp;gt; myhash; void dfs(int l, int r, ll d) { if (str[l] == &amp;#39;[&amp;#39;) { int l_indx = l + 1, p = 0; while (l_indx &amp;lt; r) { if (str[l_indx] == &amp;#39;[&amp;#39;) p++; if (str[l_indx] == &amp;#39;]&amp;#39;) p--; if (p == 0) break; l_indx++; } int r_indx = strchr(&amp;amp;str[l_indx], &amp;#39;,&amp;#39;) - &amp;amp;str[l_indx] + l_indx; dfs(l + 1, l_indx, d + 1); dfs(r_indx + 1, r - 1, d + 1); return; } ll w = 0; sscanf(&amp;amp;str[l], &amp;#34;%lld&amp;#34;, &amp;amp;w); myhash[w * (1 &amp;lt;&amp;lt; d)]++; num++; } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+    </item>
+    
+    <item>
+      <title>UVA1600</title>
+      <link>https://haofish.github.io/2020/uva1600/</link>
+      <pubDate>Mon, 03 Aug 2020 16:26:13 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1600/</guid>
+      <description>Patrol Robot  BFS进阶题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, m, g[25][25], t, k; const int dx[] = {-1, 0, 1, 0}; const int dy[] = {0, -1, 0, 1}; inline bool check(int x, int y) { return x &amp;gt;= 1 &amp;amp;&amp;amp; y &amp;gt;= 1 &amp;amp;&amp;amp; x &amp;lt;= n &amp;amp;&amp;amp; y &amp;lt;= m; } struct coo{ int x, y, d, k; coo(){} coo(int x, int y, int d, int k) : x(x), y(y), d(d), k(k){} }; void bfs() { queue&amp;lt;coo&amp;gt; q; bool vis[25][25][25] = {0}; vis[1][1][0] = g[1][1] == 1; q.</description>
+    </item>
+    
+    <item>
+      <title>UVA439</title>
+      <link>https://haofish.github.io/2020/uva439/</link>
+      <pubDate>Sun, 02 Aug 2020 16:15:00 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva439/</guid>
+      <description>Knight Moves #include &amp;lt;bits/stdc++.h&amp;gt;#define mk(a, b) make_pair(a, b) using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; using pdi = pair&amp;lt;pii, int&amp;gt;; int sx, sy, ex, ey; bool vis[10][10]; char a[5], b[5]; const int dx[] = {-2, -1, 1, 2, 2, 1, -1, -2}; const int dy[] = {-1, -2, -2, -1, 1, 2, 2, 1}; inline bool cherk(int x, int y) { return x &amp;gt; 0 &amp;amp;&amp;amp; y &amp;gt; 0 &amp;amp;&amp;amp; x &amp;lt; 9 &amp;amp;&amp;amp; y &amp;lt; 9; } void print(int num) { printf(&amp;#34;To get from %s to %s takes %d knight moves.</description>
+    </item>
+    
+    <item>
+      <title>UVA536</title>
+      <link>https://haofish.github.io/2020/uva536/</link>
+      <pubDate>Sun, 02 Aug 2020 15:35:18 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva536/</guid>
+      <description>Tree Recovery #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; char pre[30], in[30]; void dfs(int a, int b, int c, int d) { if (c &amp;gt; d) return; char tmp = pre[a]; int indx = c; while (in[indx] != tmp) indx++; dfs(a + 1, a + indx - c, c, indx - 1); dfs(a + indx - c + 1, b, indx + 1, d); printf(&amp;#34;%c&amp;#34;, tmp); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+    </item>
+    
+    <item>
+      <title>UVA712</title>
+      <link>https://haofish.github.io/2020/uva712/</link>
+      <pubDate>Sun, 02 Aug 2020 14:41:02 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva712/</guid>
+      <description>S-Trees  不考虑变量的顺序  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, k, kase = 0;; char res[600], in[10]; void dfs(int indx, int x) { if (indx == n) { printf(&amp;#34;%c&amp;#34;, res[x - (1 &amp;lt;&amp;lt; n)]); return; } if (in[indx] == &amp;#39;0&amp;#39;) dfs(indx + 1, x &amp;lt;&amp;lt; 1); else dfs(indx + 1, x &amp;lt;&amp;lt; 1 | 1); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { char tmp[10]; for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%s&amp;#34;, tmp); } scanf(&amp;#34;%s&amp;#34;, res); printf(&amp;#34;S-Tree #%d:\n&amp;#34;, ++kase); scanf(&amp;#34;%d&amp;#34;, &amp;amp;k); while (k--) { scanf(&amp;#34;%s&amp;#34;, in); dfs(0, 1); } puts(&amp;#34;\n&amp;#34;); } return 0; }  考虑变量的顺序  #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+    <item>
+      <title>UVA672</title>
+      <link>https://haofish.github.io/2020/uva672/</link>
+      <pubDate>Sun, 02 Aug 2020 09:51:25 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva672/</guid>
+      <description>Parentheses Balance #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); getchar(); while (t--) { char str[150]; fgets(str, sizeof str, stdin); stack&amp;lt;char&amp;gt; st; for (int i = 0; str[i] != &amp;#39;\n&amp;#39;; i++) { if (str[i] == &amp;#39;)&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;(&amp;#39;) st.pop(); else if (str[i] == &amp;#39;]&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;[&amp;#39;) st.</description>
+    </item>
     
     <item>
       <title>UVA572</title>

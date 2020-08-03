@@ -10,10 +10,10 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/uva699/" />
+  <link rel="prev" href="https://haofish.github.io/2020/uva672/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/uva10305/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/uva572/" />
+  <link rel="next" href="https://haofish.github.io/2020/uva536/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva712/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +69,11 @@
   <title>
     
     
-    UVA572 | 🐟🐟🐟&lt;--
+    UVA712 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="UVA572 | 🐟🐟🐟&lt;--">
+    content="UVA712 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +92,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "UVA572",
-    "headline" : "UVA572",
+    "name" : "UVA712",
+    "headline" : "UVA712",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +102,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-07-31 20:13:07 \u002b0800 CST",
-    "dateModified" : "2020-07-31 20:13:07 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/uva572\/",
-    "wordCount" : "165",
-    "keywords" : [ "题解","图", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-08-02 14:41:02 \u002b0800 CST",
+    "dateModified" : "2020-08-02 14:41:02 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva712\/",
+    "wordCount" : "223",
+    "keywords" : [ "题解","树", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,14 +168,14 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">UVA572</h1>
+        <h1 class="post-title" itemprop="name headline">UVA712</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
             with ♥
             <span class="post-time">
-                on <time datetime=2020-07-31
-                    itemprop="datePublished">July 31, 2020</time>
+                on <time datetime=2020-08-02
+                    itemprop="datePublished">August 2, 2020</time>
             </span>
             in
             <i class="iconfont icon-folder"></i>
@@ -201,43 +201,85 @@
         
         
 
-        <h2 id="oil-depositshttpsvjudgenetproblemuva-572"><a href="https://vjudge.net/problem/UVA-572">Oil Deposits</a></h2>
+        <h2 id="s-treeshttpsvjudgenetproblemuva-712"><a href="https://vjudge.net/problem/UVA-712">S-Trees</a></h2>
+<ul>
+<li>不考虑变量的顺序</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<span style="color:#66d9ef">int</span> m, n, cont[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">110</span>];
-<span style="color:#66d9ef">char</span> g[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">110</span>];
+<span style="color:#66d9ef">int</span> n, k, kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;;
+<span style="color:#66d9ef">char</span> res[<span style="color:#ae81ff">600</span>], in[<span style="color:#ae81ff">10</span>];
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> num) {
-    <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> x <span style="color:#f92672">&gt;=</span> m <span style="color:#f92672">||</span> y <span style="color:#f92672">&gt;=</span> n <span style="color:#f92672">||</span> cont[x][y] <span style="color:#f92672">||</span> g[x][y] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;@&#39;</span>) <span style="color:#66d9ef">return</span>;
-    cont[x][y] <span style="color:#f92672">=</span> num;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> j <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) dfs(x <span style="color:#f92672">+</span> i, y <span style="color:#f92672">+</span> j, num);
-        }
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> indx, <span style="color:#66d9ef">int</span> x) {
+    <span style="color:#66d9ef">if</span> (indx <span style="color:#f92672">==</span> n) {
+        printf(<span style="color:#e6db74">&#34;%c&#34;</span>, res[x <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> n)]);
+        <span style="color:#66d9ef">return</span>;
     }
+    <span style="color:#66d9ef">if</span> (in[indx] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>) dfs(indx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">else</span> dfs(indx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>);
 }
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n), m <span style="color:#f92672">&amp;&amp;</span> n) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
-            scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, g[i]);
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n), n) {
+        <span style="color:#66d9ef">char</span> tmp[<span style="color:#ae81ff">10</span>];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, tmp);
         }
-        <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>) {
-                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>cont[i][j] <span style="color:#f92672">&amp;&amp;</span> g[i][j] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;@&#39;</span>) {
-                    dfs(i, j, <span style="color:#f92672">++</span>num);
-                }
-            }
+        scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, res);
+        printf(<span style="color:#e6db74">&#34;S-Tree #%d:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>k);
+        <span style="color:#66d9ef">while</span> (k<span style="color:#f92672">--</span>) {
+            scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, in);
+            dfs(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
         }
-        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, num);
-        memset(cont, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> cont);
+        puts(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>考虑变量的顺序</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, k, num[<span style="color:#ae81ff">10</span>], kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;;
+<span style="color:#66d9ef">char</span> res[<span style="color:#ae81ff">600</span>], in[<span style="color:#ae81ff">10</span>];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> indx, <span style="color:#66d9ef">int</span> x) {
+    <span style="color:#66d9ef">if</span> (indx <span style="color:#f92672">==</span> n) {
+        printf(<span style="color:#e6db74">&#34;%c&#34;</span>, res[x <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> n)]);
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">if</span> (in[num[indx]] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>) dfs(indx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">else</span> dfs(indx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span>);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n), n) {
+        <span style="color:#66d9ef">char</span> tmp[<span style="color:#ae81ff">10</span>];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, tmp);
+            num[i] <span style="color:#f92672">=</span> tmp[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+        scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, res);
+        printf(<span style="color:#e6db74">&#34;S-Tree #%d:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>k);
+        <span style="color:#66d9ef">while</span> (k<span style="color:#f92672">--</span>) {
+            scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, in);
+            dfs(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
+        }
+        puts(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
@@ -250,7 +292,7 @@
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/uva572/>https://haofish.github.io/2020/uva572/</span>
+            <a href=https://haofish.github.io/2020/uva712/>https://haofish.github.io/2020/uva712/</span>
         </p>
         
         
@@ -269,8 +311,8 @@
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E5%9B%BE/">
-                    #图</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/%E6%A0%91/">
+                    #树</a></span>
             
         </section>
         
@@ -282,12 +324,12 @@
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/uva699/" class="prev" rel="prev" title="UVA699"><i
-                class="iconfont icon-left"></i>&nbsp;UVA699</a>
+        <a href="https://haofish.github.io/2020/uva672/" class="prev" rel="prev" title="UVA672"><i
+                class="iconfont icon-left"></i>&nbsp;UVA672</a>
         
         
-        <a href="https://haofish.github.io/2020/uva10305/" class="next" rel="next"
-            title="UVA10305">UVA10305&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://haofish.github.io/2020/uva536/" class="next" rel="next"
+            title="UVA536">UVA536&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -296,7 +338,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
