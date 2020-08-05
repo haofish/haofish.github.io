@@ -10,10 +10,9 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/uva1600/" />
+  <link rel="prev" href="https://haofish.github.io/2020/uva806/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/uva804/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/uva12166/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva10410/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +68,11 @@
   <title>
     
     
-    UVA12166 | 🐟🐟🐟&lt;--
+    UVA10410 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="UVA12166 | 🐟🐟🐟&lt;--">
+    content="UVA10410 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +91,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "UVA12166",
-    "headline" : "UVA12166",
+    "name" : "UVA10410",
+    "headline" : "UVA10410",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +101,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-08-03 20:27:46 \u002b0800 CST",
-    "dateModified" : "2020-08-03 20:27:46 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/uva12166\/",
-    "wordCount" : "182",
-    "keywords" : [ "题解","树","思维", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-08-05 10:12:16 \u002b0800 CST",
+    "dateModified" : "2020-08-05 10:12:16 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva10410\/",
+    "wordCount" : "135",
+    "keywords" : [ "题解","树", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,14 +167,14 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">UVA12166</h1>
+        <h1 class="post-title" itemprop="name headline">UVA10410</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
             with ♥
             <span class="post-time">
-                on <time datetime=2020-08-03
-                    itemprop="datePublished">August 3, 2020</time>
+                on <time datetime=2020-08-05
+                    itemprop="datePublished">August 5, 2020</time>
             </span>
             in
             <i class="iconfont icon-folder"></i>
@@ -201,63 +200,50 @@
         
         
 
-        <h2 id="equilibrium-mobilehttpsvjudgenetproblemuva-12166"><a href="https://vjudge.net/problem/UVA-12166">Equilibrium Mobile</a></h2>
+        <h2 id="tree-reconstructionhttpsvjudgenetproblemuva-10410"><a href="https://vjudge.net/problem/UVA-10410">Tree Reconstruction</a></h2>
 <ul>
-<li>竟然是一道思维题，不行，这题要写写题解</li>
-<li>思路：
-<ul>
-<li>假设这个数是一个满二叉树的，并且每个叶子节点每个叶子节点的重量（权值）都不一样，则最少的修改次数就是：叶子节点数 - 1，具体策略就是找一个叶子节点为基准点，设其重量为$x$，然后把其余的叶子节点的重量都修改成$x$，设数的深度为$h$，则此时整棵树的的重量为 $x \times 2 ^ {h - 1}$</li>
-<li>对于其他情况，我们可以根据上述的特殊情况来推导，假设以某个叶子节点为基准点，然后计算修改后整棵树的重量（根据公式 $x \times 2 ^ {h - 1}$）</li>
-<li>所以策略就是，计算每个叶子节点以其为基准点修改后的整棵树的重量，这样计算下去，可能会出现计算结果相同的情况，就意味着以该叶子节点为基准点修改时，有不需要修改的叶子节点</li>
-<li>那么我们就可以统计以每个叶子节点为基准点修改后的整棵树的重量的值，出现最多次数的就说明以该叶子节点为基准点修改，有最多的叶子节点不需要修改，固需要修改的叶子节点个数最少</li>
-<li>剩下的就是代码实现了，由于重量可能很大，固用哈希来存放该重量的数量</li>
-</ul>
-</li>
+<li>直接说思路：栈的运用，题目说输出任意可能的答案，所以把树当成一个二叉树来做，bfs本质就是树的一层一层的遍历，当一个节点在bfs序中下标为 $x$，则 $x + 1$可以认为是他的兄弟节点，其后面的都是下层的节点；而dfs的本质是一个链式的深度搜索，也就是说dfs中连续的很可能就是树的一条链式。根据以上性质，用栈来模拟dfs的建造过程，再更具上诉bfs的性质来判断某节点是否是栈顶的一个子节点</li>
 <li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">using</span> ll <span style="color:#f92672">=</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>;
 
-<span style="color:#66d9ef">int</span> t, num;
-<span style="color:#66d9ef">char</span> str[<span style="color:#ae81ff">1000005</span>];
-unordered_map<span style="color:#f92672">&lt;</span>ll, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> myhash;
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r, ll d) {
-    <span style="color:#66d9ef">if</span> (str[l] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;[&#39;</span>) {
-        <span style="color:#66d9ef">int</span> l_indx <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">while</span> (l_indx <span style="color:#f92672">&lt;</span> r) {
-            <span style="color:#66d9ef">if</span> (str[l_indx] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;[&#39;</span>) p<span style="color:#f92672">++</span>;
-            <span style="color:#66d9ef">if</span> (str[l_indx] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;]&#39;</span>) p<span style="color:#f92672">--</span>;
-            <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">break</span>;
-            l_indx<span style="color:#f92672">++</span>;
-        }
-        <span style="color:#66d9ef">int</span> r_indx <span style="color:#f92672">=</span> strchr(<span style="color:#f92672">&amp;</span>str[l_indx], <span style="color:#e6db74">&#39;,&#39;</span>) <span style="color:#f92672">-</span> <span style="color:#f92672">&amp;</span>str[l_indx] <span style="color:#f92672">+</span> l_indx;
-        dfs(l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, l_indx, d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-        dfs(r_indx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-        <span style="color:#66d9ef">return</span>;
-    }
-    ll w <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    sscanf(<span style="color:#f92672">&amp;</span>str[l], <span style="color:#e6db74">&#34;%lld&#34;</span>, <span style="color:#f92672">&amp;</span>w);
-    myhash[w <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> d)]<span style="color:#f92672">++</span>;
-    num<span style="color:#f92672">++</span>;
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
+<span style="color:#66d9ef">int</span> n, x;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
-    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>) {
-        myhash.clear();
-        num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        scanf(<span style="color:#e6db74">&#34;%s&#34;</span>, str);
-        <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> strlen(str), ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        dfs(<span style="color:#ae81ff">0</span>, len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i : myhash) ans <span style="color:#f92672">=</span> max(ans, i.second);
-        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, num <span style="color:#f92672">-</span> ans);
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (; <span style="color:#f92672">~</span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);) {
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> node[<span style="color:#ae81ff">1010</span>], dfs(n), bfs(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+            bfs[x] <span style="color:#f92672">=</span> i;
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>i : dfs) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>i);
+        stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> st;
+        <span style="color:#66d9ef">int</span> root <span style="color:#f92672">=</span> dfs[<span style="color:#ae81ff">0</span>];
+        st.push(root);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (;;) {
+                <span style="color:#66d9ef">int</span> fa <span style="color:#f92672">=</span> st.top();
+                <span style="color:#66d9ef">if</span> (bfs[fa] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> bfs[dfs[i]] <span style="color:#f92672">||</span> fa <span style="color:#f92672">==</span> root) {
+                    node[fa].push_back(dfs[i]);
+                    st.push(dfs[i]);
+                    <span style="color:#66d9ef">break</span>;
+                } <span style="color:#66d9ef">else</span> {
+                    st.pop();
+                }
+            }
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            printf(<span style="color:#e6db74">&#34;%d:&#34;</span>, i);
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> it : node[i]) {
+                printf(<span style="color:#e6db74">&#34; %d&#34;</span>, it);
+            }
+            puts(<span style="color:#e6db74">&#34;&#34;</span>);
+        }
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
@@ -270,7 +256,7 @@ unordered_map<span style="color:#f92672">&lt;</span>ll, <span style="color:#66d9
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/uva12166/>https://haofish.github.io/2020/uva12166/</span>
+            <a href=https://haofish.github.io/2020/uva10410/>https://haofish.github.io/2020/uva10410/</span>
         </p>
         
         
@@ -292,9 +278,6 @@ unordered_map<span style="color:#f92672">&lt;</span>ll, <span style="color:#66d9
             <span class="tag"><a href="https://haofish.github.io/tags/%E6%A0%91/">
                     #树</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/">
-                    #思维</a></span>
-            
         </section>
         
         <section>
@@ -305,12 +288,9 @@ unordered_map<span style="color:#f92672">&lt;</span>ll, <span style="color:#66d9
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/uva1600/" class="prev" rel="prev" title="UVA1600"><i
-                class="iconfont icon-left"></i>&nbsp;UVA1600</a>
+        <a href="https://haofish.github.io/2020/uva806/" class="prev" rel="prev" title="UVA806"><i
+                class="iconfont icon-left"></i>&nbsp;UVA806</a>
         
-        
-        <a href="https://haofish.github.io/2020/uva804/" class="next" rel="next"
-            title="UVA804">UVA804&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

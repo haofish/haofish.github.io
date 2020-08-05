@@ -6,10 +6,37 @@
     <description>Recent content in 紫书刷题录-ch6 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2020 20:27:46 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 10:12:16 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA10410</title>
+      <link>https://haofish.github.io/2020/uva10410/</link>
+      <pubDate>Wed, 05 Aug 2020 10:12:16 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva10410/</guid>
+      <description>Tree Reconstruction  直接说思路：栈的运用，题目说输出任意可能的答案，所以把树当成一个二叉树来做，bfs本质就是树的一层一层的遍历，当一个节点在bfs序中下标为 $x$，则 $x + 1$可以认为是他的兄弟节点，其后面的都是下层的节点；而dfs的本质是一个链式的深度搜索，也就是说dfs中连续的很可能就是树的一条链式。根据以上性质，用栈来模拟dfs的建造过程，再更具上诉bfs的性质来判断某节点是否是栈顶的一个子节点 代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, x; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; ~scanf(&amp;#34;%d&amp;#34;, &amp;amp;n);) { vector&amp;lt;int&amp;gt; node[1010], dfs(n), bfs(n + 1); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, &amp;amp;x); bfs[x] = i; } for (auto &amp;amp;i : dfs) scanf(&amp;#34;%d&amp;#34;, &amp;amp;i); stack&amp;lt;int&amp;gt; st; int root = dfs[0]; st.</description>
+    </item>
+    
+    <item>
+      <title>UVA806</title>
+      <link>https://haofish.github.io/2020/uva806/</link>
+      <pubDate>Tue, 04 Aug 2020 18:02:01 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva806/</guid>
+      <description>Spatial Structures  毒瘤题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int n, kase = 0; char g[70][70], m[70][70]; vector&amp;lt;ll&amp;gt; ans; void dfs(int r1, int c1, int r2, int c2, ll all, int d, int pos) { if (r1 == r2) { if (m[r1][c1] == &amp;#39;1&amp;#39;) ans.push_back(all + pos * pow(5, d - 1)); return; } int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0; for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = c1; j &amp;lt;= (c2 + c1) / 2; j++) { sum1 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum2 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = c1; j &amp;lt;= (c1 + c2) / 2; j++) { sum3 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum4 += m[i][j] - &amp;#39;0&amp;#39;; } } int sum = sum1 + sum2 + sum3 + sum4; ll x = 0; if (d) x = all + pos*pow(5, d - 1); if (sum == (r2 - r1 + 1) * (c2 - c1 + 1)) { if (x) ans.</description>
+    </item>
+    
+    <item>
+      <title>UVA804</title>
+      <link>https://haofish.github.io/2020/uva804/</link>
+      <pubDate>Tue, 04 Aug 2020 14:26:40 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva804/</guid>
+      <description>Petri Net Simulation #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
+    </item>
     
     <item>
       <title>UVA12166</title>

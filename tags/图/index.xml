@@ -6,10 +6,19 @@
     <description>Recent content in 图 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2020 16:26:13 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2020 14:26:40 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA804</title>
+      <link>https://haofish.github.io/2020/uva804/</link>
+      <pubDate>Tue, 04 Aug 2020 14:26:40 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva804/</guid>
+      <description>Petri Net Simulation #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
+    </item>
     
     <item>
       <title>UVA1600</title>
