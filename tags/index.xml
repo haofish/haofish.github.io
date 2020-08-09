@@ -6,10 +6,64 @@
     <description>Recent content in Tags on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2020 10:12:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 20:37:14 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BFS</title>
+      <link>https://haofish.github.io/tags/bfs/</link>
+      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/bfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>题解</title>
+      <link>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DFS</title>
+      <link>https://haofish.github.io/tags/dfs/</link>
+      <pubDate>Sun, 09 Aug 2020 15:45:24 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/dfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>回溯</title>
+      <link>https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/</link>
+      <pubDate>Sun, 09 Aug 2020 15:45:24 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>剪枝</title>
+      <link>https://haofish.github.io/tags/%E5%89%AA%E6%9E%9D/</link>
+      <pubDate>Fri, 07 Aug 2020 19:53:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E5%89%AA%E6%9E%9D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>暴力美学</title>
+      <link>https://haofish.github.io/tags/%E6%9A%B4%E5%8A%9B%E7%BE%8E%E5%AD%A6/</link>
+      <pubDate>Thu, 06 Aug 2020 18:27:25 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E6%9A%B4%E5%8A%9B%E7%BE%8E%E5%AD%A6/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>树</title>
@@ -17,15 +71,6 @@
       <pubDate>Wed, 05 Aug 2020 10:12:16 +0800</pubDate>
       
       <guid>https://haofish.github.io/tags/%E6%A0%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>题解</title>
-      <link>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
-      <pubDate>Wed, 05 Aug 2020 10:12:16 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>剪枝 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E5%89%AA%E6%9E%9D/</link>
+    <description>Recent content in 剪枝 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Aug 2020 19:53:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E5%89%AA%E6%9E%9D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UVA140</title>
+      <link>https://haofish.github.io/2020/uva140/</link>
+      <pubDate>Fri, 07 Aug 2020 19:53:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva140/</guid>
+      <description>Bandwidth  按照紫书的指导，剪了两种枝，但是感觉剪一种的速度差不多，两者交上去都是$0ms$，毕竟节点不多，剪一种枝就行了 以下代码是剪了两种枝的，如果只剪一种，只要把28，60，62注释就行了  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char str[200]; bool ext[26], ok[26][26]; int head[26], n, indx[26], vis[26], mind, con[26]; struct es{ int to, next; es(int to = 0, int next = -1) : to (to), next(next) {} }; vector&amp;lt;es&amp;gt; e; vector&amp;lt;char&amp;gt; node, res, ans; void add_edge(int u, int v) { e.push_back(es(v, head[u])); head[u] = e.size() - 1, con[u]++; if (!ext[u]) node.push_back(u + &amp;#39;A&amp;#39;); ext[u] = true; } bool check(int cur, int u) { if (!</description>
+    </item>
+    
+  </channel>
+</rss>

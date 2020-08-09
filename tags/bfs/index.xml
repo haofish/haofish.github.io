@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BFS on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/bfs/</link>
+    <description>Recent content in BFS on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Aug 2020 20:37:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UVA10603</title>
+      <link>https://haofish.github.io/2020/uva10603/</link>
+      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva10603/</guid>
+      <description>Fill  按照书中的说法这是一个隐式图，求最短路，最短路的评判标志是倒水量  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;queue&amp;gt; using namespace std; const int M = 210; int cap[3], d, ans[M]; bool vis[M][M]; struct nodes{ int v[3], d; nodes(){} nodes(int v0, int v1, int v2, int d) :d(d) { v[0] = v0, v[1] = v1, v[2] = v2; } bool operator &amp;lt; (const nodes&amp;amp; tmp) const { return d &amp;gt; tmp.d; } }; void init() { memset(ans, -1, sizeof ans); memset(vis, 0, sizeof vis); } void update(nodes &amp;amp;u) { for (int i = 0; i &amp;lt; 3; i++) { if (ans[u.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,82 @@
     <description>Recent content in 题解 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2020 10:12:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 20:37:14 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA10603</title>
+      <link>https://haofish.github.io/2020/uva10603/</link>
+      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva10603/</guid>
+      <description>Fill  按照书中的说法这是一个隐式图，求最短路，最短路的评判标志是倒水量  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;queue&amp;gt; using namespace std; const int M = 210; int cap[3], d, ans[M]; bool vis[M][M]; struct nodes{ int v[3], d; nodes(){} nodes(int v0, int v1, int v2, int d) :d(d) { v[0] = v0, v[1] = v1, v[2] = v2; } bool operator &amp;lt; (const nodes&amp;amp; tmp) const { return d &amp;gt; tmp.d; } }; void init() { memset(ans, -1, sizeof ans); memset(vis, 0, sizeof vis); } void update(nodes &amp;amp;u) { for (int i = 0; i &amp;lt; 3; i++) { if (ans[u.</description>
+    </item>
+    
+    <item>
+      <title>UVA1354</title>
+      <link>https://haofish.github.io/2020/uva1354/</link>
+      <pubDate>Sun, 09 Aug 2020 15:45:24 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1354/</guid>
+      <description>Mobile Computing  做了两天，习得了两种dfs非枚举子集的办法（到时再回头研究刘神方法），只选择了一种学习，当然另一种也看了 自底向上枚举二叉树，思想有点像哈夫曼建树，选择两个节点来合并，然后就是递归回溯的事 dfs(n) ：代表还剩下 n 个节点可以拼接 w[i] ：代表第 i 个节点的重量，w[i] = 0 则表示该节点已经被用了 l[i]、r[i] ：代表第 i 节点的左右宽度的最大值 值得注意的是在求 l[i] 和 r[i] 时同时要考虑当前另一个节点，例如在计算 l[i] 时，不仅要考虑 左子树的左最大宽度 + 当前节点的左宽度，还要考虑 右子树的左最大宽度 - 当前节点的右宽度，前者很好理解，关键是后者：因为有可能右子树的左最大宽度会超过左子树 具体看图，右子树同理   显然橙色节点的距离超过了黄色节点 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; using vi = vector&amp;lt;int&amp;gt;; double d, Max, l[10], r[10]; int n, cnt, k = 0; vi w; void dfs(int num) { if (num == 1) { for (int i = 0; i &amp;lt; n; i++) { if (!</description>
+    </item>
+    
+    <item>
+      <title>UVA140</title>
+      <link>https://haofish.github.io/2020/uva140/</link>
+      <pubDate>Fri, 07 Aug 2020 19:53:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva140/</guid>
+      <description>Bandwidth  按照紫书的指导，剪了两种枝，但是感觉剪一种的速度差不多，两者交上去都是$0ms$，毕竟节点不多，剪一种枝就行了 以下代码是剪了两种枝的，如果只剪一种，只要把28，60，62注释就行了  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char str[200]; bool ext[26], ok[26][26]; int head[26], n, indx[26], vis[26], mind, con[26]; struct es{ int to, next; es(int to = 0, int next = -1) : to (to), next(next) {} }; vector&amp;lt;es&amp;gt; e; vector&amp;lt;char&amp;gt; node, res, ans; void add_edge(int u, int v) { e.push_back(es(v, head[u])); head[u] = e.size() - 1, con[u]++; if (!ext[u]) node.push_back(u + &amp;#39;A&amp;#39;); ext[u] = true; } bool check(int cur, int u) { if (!</description>
+    </item>
+    
+    <item>
+      <title>UVA129</title>
+      <link>https://haofish.github.io/2020/uva129/</link>
+      <pubDate>Fri, 07 Aug 2020 11:57:39 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva129/</guid>
+      <description>Krypton Factor #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int n, L, num = 0; bool ok = true; char ans[100], a[50], b[50]; bool check(int len) { if (!len) return false; for (int i = 1; i + i &amp;lt;= len + 1; i++) { memcpy(a, &amp;amp;ans[len - i + 1], sizeof(char) * i); memcpy(b, &amp;amp;ans[len - i - i + 1], sizeof(char) * i); a[i] = &amp;#39;\0&amp;#39;, b[i] = &amp;#39;\0&amp;#39;; if (strcmp(a, b) == 0) return true; } return false; } void dfs(int cur) { if (num &amp;gt; n) return; if (num == n) { size_t len = strlen(ans), s = 0, l = 0; for (size_t i = 0; i &amp;lt; len; i++) { if (s++ == 4) { if (l !</description>
+    </item>
+    
+    <item>
+      <title>UVA524</title>
+      <link>https://haofish.github.io/2020/uva524/</link>
+      <pubDate>Thu, 06 Aug 2020 20:32:38 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva524/</guid>
+      <description>Prime Ring Problem #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int kase = 0, n, arr[30]; bool isp[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0}; bool vis[30]; void dfs(int cur, int *A) { if (cur == n - 1) { if (!</description>
+    </item>
+    
+    <item>
+      <title>UVA10976</title>
+      <link>https://haofish.github.io/2020/uva10976/</link>
+      <pubDate>Thu, 06 Aug 2020 18:27:25 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva10976/</guid>
+      <description>Fractions Again?! #include &amp;lt;cstdio&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; using ll = long long; ll n; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (~scanf(&amp;#34;%lld&amp;#34;, &amp;amp;n)) { vector&amp;lt;ll&amp;gt; a, b; for (ll i = n + 1; i &amp;lt;= n + n; i++) { if (n * i % (i - n) == 0) { a.push_back(n * i / (i - n)); b.push_back(i); } } printf(&amp;#34;%zu\n&amp;#34;, a.</description>
+    </item>
+    
+    <item>
+      <title>UVA11059</title>
+      <link>https://haofish.github.io/2020/uva11059/</link>
+      <pubDate>Thu, 06 Aug 2020 17:34:18 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva11059/</guid>
+      <description>Maximum Product #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; using ll = long long; int n, kase = 0; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while(~scanf(&amp;#34;%d&amp;#34;, &amp;amp;n)) { ll Max = 0; vector&amp;lt;ll&amp;gt; arr(n); for (auto &amp;amp;x : arr) scanf(&amp;#34;%lld&amp;#34;, &amp;amp;x); for (int i = 0; i &amp;lt; n; i++) { ll tmp = arr[i]; Max = max(Max, tmp); for (int j = i + 1; j &amp;lt; n; j++) { tmp *= arr[j]; Max = max(Max, tmp); } } printf(&amp;#34;Case #%d: The maximum product is %lld.</description>
+    </item>
+    
+    <item>
+      <title>UVA725</title>
+      <link>https://haofish.github.io/2020/uva725/</link>
+      <pubDate>Thu, 06 Aug 2020 16:25:28 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva725/</guid>
+      <description>Division #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 1e5; int n; bool check(int a, int b) { bool num[10] = {0}; if (b &amp;lt; 10000) num[0] = true; while (a || b) { num[a % 10] = true; num[b % 10] = true; a /= 10, b /= 10; } int x = 0; for (auto i : num) if (i) x++; return x == 10; } bool check(int a) { bool num[10] = {0}; if (a &amp;lt; 10000) num[0] = true; while (a) { num[a % 10] = true; a /= 10; } int x = 0; for (auto i : num) if (i) x++; return x == 5; } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+    </item>
     
     <item>
       <title>UVA10410</title>
