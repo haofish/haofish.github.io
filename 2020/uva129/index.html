@@ -105,7 +105,7 @@
     "datePublished": "2020-08-07 11:57:39 \u002b0800 CST",
     "dateModified" : "2020-08-07 11:57:39 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva129\/",
-    "wordCount" : "209",
+    "wordCount" : "213",
     "keywords" : [ "题解","回溯","DFS", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -202,6 +202,12 @@
         
 
         <h2 id="krypton-factorhttpsvjudgenetproblemuva-129"><a href="https://vjudge.net/problem/UVA-129">Krypton Factor</a></h2>
+<ul>
+<li>定义一个串是容易串：有相邻的相同的字串；反之就是困难串</li>
+<li>让你求只利用前k个大写字母的第n个困难串</li>
+<li>dfs模拟一下，值得注意的是剪枝时只看当前串的后缀即可，例如遍历到ABCDEFGH时，就只判断H和G、GH和EF、FGH和CDE、EFGH和ABCD就行了</li>
+<li>代码如下</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>

@@ -105,7 +105,7 @@
     "datePublished": "2020-08-05 10:12:16 \u002b0800 CST",
     "dateModified" : "2020-08-05 10:12:16 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva10410\/",
-    "wordCount" : "135",
+    "wordCount" : "136",
     "keywords" : [ "题解","树", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -203,6 +203,7 @@
 
         <h2 id="tree-reconstructionhttpsvjudgenetproblemuva-10410"><a href="https://vjudge.net/problem/UVA-10410">Tree Reconstruction</a></h2>
 <ul>
+<li>题意：给你一个DFS和一个BFS遍历的树（具体遍历方式都是小的权值优先），让你求出每个节点的子节点</li>
 <li>直接说思路：栈的运用，题目说输出任意可能的答案，所以把树当成一个二叉树来做，bfs本质就是树的一层一层的遍历，当一个节点在bfs序中下标为 $x$，则 $x + 1$可以认为是他的兄弟节点，其后面的都是下层的节点；而dfs的本质是一个链式的深度搜索，也就是说dfs中连续的很可能就是树的一条链式。根据以上性质，用栈来模拟dfs的建造过程，再更具上诉bfs的性质来判断某节点是否是栈顶的一个子节点</li>
 <li>代码如下</li>
 </ul>

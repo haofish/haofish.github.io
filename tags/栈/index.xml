@@ -17,7 +17,7 @@
       <pubDate>Sun, 02 Aug 2020 09:51:25 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva672/</guid>
-      <description>Parentheses Balance #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); getchar(); while (t--) { char str[150]; fgets(str, sizeof str, stdin); stack&amp;lt;char&amp;gt; st; for (int i = 0; str[i] != &amp;#39;\n&amp;#39;; i++) { if (str[i] == &amp;#39;)&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;(&amp;#39;) st.pop(); else if (str[i] == &amp;#39;]&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;[&amp;#39;) st.</description>
+      <description>Parentheses Balance  让你判断括号是否合法，栈的经典例题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); getchar(); while (t--) { char str[150]; fgets(str, sizeof str, stdin); stack&amp;lt;char&amp;gt; st; for (int i = 0; str[i] != &amp;#39;\n&amp;#39;; i++) { if (str[i] == &amp;#39;)&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;(&amp;#39;) st.pop(); else if (str[i] == &amp;#39;]&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 31 Jul 2020 11:48:14 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva514/</guid>
-      <description>Rails #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;stack&amp;gt; using namespace std; const int M = 1e3 + 10; int n, arr[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;arr[1]), arr[1]) { for (int i = 2; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, arr + i); } stack&amp;lt;int&amp;gt; st; int in = 1, out = 1; bool ok = true; while (out &amp;lt;= n) { if (in == arr[out]) { in++, out++; } else if (st.</description>
+      <description>Rails  让你判断列车出站是否正确，栈的运用  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;stack&amp;gt; using namespace std; const int M = 1e3 + 10; int n, arr[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;arr[1]), arr[1]) { for (int i = 2; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, arr + i); } stack&amp;lt;int&amp;gt; st; int in = 1, out = 1; bool ok = true; while (out &amp;lt;= n) { if (in == arr[out]) { in++, out++; } else if (st.</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Fri, 31 Jul 2020 11:44:20 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva442/</guid>
-      <description>Matrix Chain Multiplication #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; int n; pii m[30]; char str[100000]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 0; i &amp;lt; n; i++) { char a; int x, y; scanf(&amp;#34;\n%c%d%d&amp;#34;, &amp;amp;a, &amp;amp;x, &amp;amp;y); m[a - &amp;#39;A&amp;#39;] = make_pair(x, y); } getchar(); while (fgets(str, sizeof str, stdin)) { stack&amp;lt;pii&amp;gt; st; int len = strlen(str), ans = 0; if (str[len - 1] == &amp;#39;\n&amp;#39;) str[len-- - 1] = &amp;#39;\0&amp;#39;; bool ok = true; for (int i = 0; i &amp;lt; len; i++) { if (isalpha(str[i])) { st.</description>
+      <description>Matrix Chain Multiplication  矩阵链乘，栈的运用  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; int n; pii m[30]; char str[100000]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 0; i &amp;lt; n; i++) { char a; int x, y; scanf(&amp;#34;\n%c%d%d&amp;#34;, &amp;amp;a, &amp;amp;x, &amp;amp;y); m[a - &amp;#39;A&amp;#39;] = make_pair(x, y); } getchar(); while (fgets(str, sizeof str, stdin)) { stack&amp;lt;pii&amp;gt; st; int len = strlen(str), ans = 0; if (str[len - 1] == &amp;#39;\n&amp;#39;) str[len-- - 1] = &amp;#39;\0&amp;#39;; bool ok = true; for (int i = 0; i &amp;lt; len; i++) { if (isalpha(str[i])) { st.</description>
     </item>
     
     <item>

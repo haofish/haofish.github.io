@@ -17,7 +17,7 @@
       <pubDate>Wed, 05 Aug 2020 10:12:16 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva10410/</guid>
-      <description>Tree Reconstruction  直接说思路：栈的运用，题目说输出任意可能的答案，所以把树当成一个二叉树来做，bfs本质就是树的一层一层的遍历，当一个节点在bfs序中下标为 $x$，则 $x + 1$可以认为是他的兄弟节点，其后面的都是下层的节点；而dfs的本质是一个链式的深度搜索，也就是说dfs中连续的很可能就是树的一条链式。根据以上性质，用栈来模拟dfs的建造过程，再更具上诉bfs的性质来判断某节点是否是栈顶的一个子节点 代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, x; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; ~scanf(&amp;#34;%d&amp;#34;, &amp;amp;n);) { vector&amp;lt;int&amp;gt; node[1010], dfs(n), bfs(n + 1); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, &amp;amp;x); bfs[x] = i; } for (auto &amp;amp;i : dfs) scanf(&amp;#34;%d&amp;#34;, &amp;amp;i); stack&amp;lt;int&amp;gt; st; int root = dfs[0]; st.</description>
+      <description>Tree Reconstruction  题意：给你一个DFS和一个BFS遍历的树（具体遍历方式都是小的权值优先），让你求出每个节点的子节点 直接说思路：栈的运用，题目说输出任意可能的答案，所以把树当成一个二叉树来做，bfs本质就是树的一层一层的遍历，当一个节点在bfs序中下标为 $x$，则 $x + 1$可以认为是他的兄弟节点，其后面的都是下层的节点；而dfs的本质是一个链式的深度搜索，也就是说dfs中连续的很可能就是树的一条链式。根据以上性质，用栈来模拟dfs的建造过程，再更具上诉bfs的性质来判断某节点是否是栈顶的一个子节点 代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, x; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; ~scanf(&amp;#34;%d&amp;#34;, &amp;amp;n);) { vector&amp;lt;int&amp;gt; node[1010], dfs(n), bfs(n + 1); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, &amp;amp;x); bfs[x] = i; } for (auto &amp;amp;i : dfs) scanf(&amp;#34;%d&amp;#34;, &amp;amp;i); stack&amp;lt;int&amp;gt; st; int root = dfs[0]; st.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 04 Aug 2020 18:02:01 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva806/</guid>
-      <description>Spatial Structures  毒瘤题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int n, kase = 0; char g[70][70], m[70][70]; vector&amp;lt;ll&amp;gt; ans; void dfs(int r1, int c1, int r2, int c2, ll all, int d, int pos) { if (r1 == r2) { if (m[r1][c1] == &amp;#39;1&amp;#39;) ans.push_back(all + pos * pow(5, d - 1)); return; } int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0; for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = c1; j &amp;lt;= (c2 + c1) / 2; j++) { sum1 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum2 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = c1; j &amp;lt;= (c1 + c2) / 2; j++) { sum3 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum4 += m[i][j] - &amp;#39;0&amp;#39;; } } int sum = sum1 + sum2 + sum3 + sum4; ll x = 0; if (d) x = all + pos*pow(5, d - 1); if (sum == (r2 - r1 + 1) * (c2 - c1 + 1)) { if (x) ans.</description>
+      <description>Spatial Structures  类似于计算像素的，读懂题意直接模拟就好了 毒瘤题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int n, kase = 0; char g[70][70], m[70][70]; vector&amp;lt;ll&amp;gt; ans; void dfs(int r1, int c1, int r2, int c2, ll all, int d, int pos) { if (r1 == r2) { if (m[r1][c1] == &amp;#39;1&amp;#39;) ans.push_back(all + pos * pow(5, d - 1)); return; } int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0; for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = c1; j &amp;lt;= (c2 + c1) / 2; j++) { sum1 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = r1; i &amp;lt;= (r2 + r1) / 2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum2 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = c1; j &amp;lt;= (c1 + c2) / 2; j++) { sum3 += m[i][j] - &amp;#39;0&amp;#39;; } } for (int i = (r1 + r2) / 2 + 1; i &amp;lt;= r2; i++) { for (int j = (c1 + c2) / 2 + 1; j &amp;lt;= c2; j++) { sum4 += m[i][j] - &amp;#39;0&amp;#39;; } } int sum = sum1 + sum2 + sum3 + sum4; ll x = 0; if (d) x = all + pos*pow(5, d - 1); if (sum == (r2 - r1 + 1) * (c2 - c1 + 1)) { if (x) ans.</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 04 Aug 2020 14:26:40 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva804/</guid>
-      <description>Petri Net Simulation #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
+      <description>Petri Net Simulation  每个T变迁都有限制，必须是指定的P库有足够的token才行（注意，T指定的P库不一定只有一个），直接模拟就好了  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Mon, 03 Aug 2020 20:27:46 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva12166/</guid>
-      <description>Equilibrium Mobile  竟然是一道思维题，不行，这题要写写题解 思路：  假设这个数是一个满二叉树的，并且每个叶子节点每个叶子节点的重量（权值）都不一样，则最少的修改次数就是：叶子节点数 - 1，具体策略就是找一个叶子节点为基准点，设其重量为$x$，然后把其余的叶子节点的重量都修改成$x$，设数的深度为$h$，则此时整棵树的的重量为 $x \times 2 ^ {h - 1}$ 对于其他情况，我们可以根据上述的特殊情况来推导，假设以某个叶子节点为基准点，然后计算修改后整棵树的重量（根据公式 $x \times 2 ^ {h - 1}$） 所以策略就是，计算每个叶子节点以其为基准点修改后的整棵树的重量，这样计算下去，可能会出现计算结果相同的情况，就意味着以该叶子节点为基准点修改时，有不需要修改的叶子节点 那么我们就可以统计以每个叶子节点为基准点修改后的整棵树的重量的值，出现最多次数的就说明以该叶子节点为基准点修改，有最多的叶子节点不需要修改，固需要修改的叶子节点个数最少 剩下的就是代码实现了，由于重量可能很大，固用哈希来存放该重量的数量   代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int t, num; char str[1000005]; unordered_map&amp;lt;ll, int&amp;gt; myhash; void dfs(int l, int r, ll d) { if (str[l] == &amp;#39;[&amp;#39;) { int l_indx = l + 1, p = 0; while (l_indx &amp;lt; r) { if (str[l_indx] == &amp;#39;[&amp;#39;) p++; if (str[l_indx] == &amp;#39;]&amp;#39;) p--; if (p == 0) break; l_indx++; } int r_indx = strchr(&amp;amp;str[l_indx], &amp;#39;,&amp;#39;) - &amp;amp;str[l_indx] + l_indx; dfs(l + 1, l_indx, d + 1); dfs(r_indx + 1, r - 1, d + 1); return; } ll w = 0; sscanf(&amp;amp;str[l], &amp;#34;%lld&amp;#34;, &amp;amp;w); myhash[w * (1 &amp;lt;&amp;lt; d)]++; num++; } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+      <description>Equilibrium Mobile  题意：给你一个天平，修改某些节点可以使得天平平衡，让你求出最小的修改数量 竟然是一道思维题，不行，这题要写写题解 思路：  假设这个数是一个满二叉树的，并且每个叶子节点每个叶子节点的重量（权值）都不一样，则最少的修改次数就是：叶子节点数 - 1，具体策略就是找一个叶子节点为基准点，设其重量为$x$，然后把其余的叶子节点的重量都修改成$x$，设数的深度为$h$，则此时整棵树的的重量为 $x \times 2 ^ {h - 1}$ 对于其他情况，我们可以根据上述的特殊情况来推导，假设以某个叶子节点为基准点，然后计算修改后整棵树的重量（根据公式 $x \times 2 ^ {h - 1}$） 所以策略就是，计算每个叶子节点以其为基准点修改后的整棵树的重量，这样计算下去，可能会出现计算结果相同的情况，就意味着以该叶子节点为基准点修改时，有不需要修改的叶子节点 那么我们就可以统计以每个叶子节点为基准点修改后的整棵树的重量的值，出现最多次数的就说明以该叶子节点为基准点修改，有最多的叶子节点不需要修改，固需要修改的叶子节点个数最少 剩下的就是代码实现了，由于重量可能很大，固用哈希来存放该重量的数量   代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using ll = long long; int t, num; char str[1000005]; unordered_map&amp;lt;ll, int&amp;gt; myhash; void dfs(int l, int r, ll d) { if (str[l] == &amp;#39;[&amp;#39;) { int l_indx = l + 1, p = 0; while (l_indx &amp;lt; r) { if (str[l_indx] == &amp;#39;[&amp;#39;) p++; if (str[l_indx] == &amp;#39;]&amp;#39;) p--; if (p == 0) break; l_indx++; } int r_indx = strchr(&amp;amp;str[l_indx], &amp;#39;,&amp;#39;) - &amp;amp;str[l_indx] + l_indx; dfs(l + 1, l_indx, d + 1); dfs(r_indx + 1, r - 1, d + 1); return; } ll w = 0; sscanf(&amp;amp;str[l], &amp;#34;%lld&amp;#34;, &amp;amp;w); myhash[w * (1 &amp;lt;&amp;lt; d)]++; num++; } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Mon, 03 Aug 2020 16:26:13 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva1600/</guid>
-      <description>Patrol Robot  BFS进阶题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, m, g[25][25], t, k; const int dx[] = {-1, 0, 1, 0}; const int dy[] = {0, -1, 0, 1}; inline bool check(int x, int y) { return x &amp;gt;= 1 &amp;amp;&amp;amp; y &amp;gt;= 1 &amp;amp;&amp;amp; x &amp;lt;= n &amp;amp;&amp;amp; y &amp;lt;= m; } struct coo{ int x, y, d, k; coo(){} coo(int x, int y, int d, int k) : x(x), y(y), d(d), k(k){} }; void bfs() { queue&amp;lt;coo&amp;gt; q; bool vis[25][25][25] = {0}; vis[1][1][0] = g[1][1] == 1; q.</description>
+      <description>Patrol Robot  BFS进阶题 题意：有个移动的机器人，从（1， 1）点出发，目标是（m， n）点，0为可以通过的点，1为障碍点，机器人一次最多只能穿越k障碍，问你最少要走多少步到达终点 BFS走，要注意个是要记录到达障碍点的最短穿越障碍个数  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, m, g[25][25], t, k; const int dx[] = {-1, 0, 1, 0}; const int dy[] = {0, -1, 0, 1}; inline bool check(int x, int y) { return x &amp;gt;= 1 &amp;amp;&amp;amp; y &amp;gt;= 1 &amp;amp;&amp;amp; x &amp;lt;= n &amp;amp;&amp;amp; y &amp;lt;= m; } struct coo{ int x, y, d, k; coo(){} coo(int x, int y, int d, int k) : x(x), y(y), d(d), k(k){} }; void bfs() { queue&amp;lt;coo&amp;gt; q; bool vis[25][25][25] = {0}; vis[1][1][0] = g[1][1] == 1; q.</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sun, 02 Aug 2020 16:15:00 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva439/</guid>
-      <description>Knight Moves #include &amp;lt;bits/stdc++.h&amp;gt;#define mk(a, b) make_pair(a, b) using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; using pdi = pair&amp;lt;pii, int&amp;gt;; int sx, sy, ex, ey; bool vis[10][10]; char a[5], b[5]; const int dx[] = {-2, -1, 1, 2, 2, 1, -1, -2}; const int dy[] = {-1, -2, -2, -1, 1, 2, 2, 1}; inline bool cherk(int x, int y) { return x &amp;gt; 0 &amp;amp;&amp;amp; y &amp;gt; 0 &amp;amp;&amp;amp; x &amp;lt; 9 &amp;amp;&amp;amp; y &amp;lt; 9; } void print(int num) { printf(&amp;#34;To get from %s to %s takes %d knight moves.</description>
+      <description>Knight Moves  题意：在象棋里，给马的起点和终点，计算最小移动步数  #include &amp;lt;bits/stdc++.h&amp;gt;#define mk(a, b) make_pair(a, b) using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; using pdi = pair&amp;lt;pii, int&amp;gt;; int sx, sy, ex, ey; bool vis[10][10]; char a[5], b[5]; const int dx[] = {-2, -1, 1, 2, 2, 1, -1, -2}; const int dy[] = {-1, -2, -2, -1, 1, 2, 2, 1}; inline bool cherk(int x, int y) { return x &amp;gt; 0 &amp;amp;&amp;amp; y &amp;gt; 0 &amp;amp;&amp;amp; x &amp;lt; 9 &amp;amp;&amp;amp; y &amp;lt; 9; } void print(int num) { printf(&amp;#34;To get from %s to %s takes %d knight moves.</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Sun, 02 Aug 2020 15:35:18 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva536/</guid>
-      <description>Tree Recovery #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; char pre[30], in[30]; void dfs(int a, int b, int c, int d) { if (c &amp;gt; d) return; char tmp = pre[a]; int indx = c; while (in[indx] != tmp) indx++; dfs(a + 1, a + indx - c, c, indx - 1); dfs(a + indx - c + 1, b, indx + 1, d); printf(&amp;#34;%c&amp;#34;, tmp); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+      <description>Tree Recovery  给你一个二叉树的先序和中序遍历，输出对应的后序遍历  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; char pre[30], in[30]; void dfs(int a, int b, int c, int d) { if (c &amp;gt; d) return; char tmp = pre[a]; int indx = c; while (in[indx] != tmp) indx++; dfs(a + 1, a + indx - c, c, indx - 1); dfs(a + indx - c + 1, b, indx + 1, d); printf(&amp;#34;%c&amp;#34;, tmp); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Sun, 02 Aug 2020 14:41:02 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva712/</guid>
-      <description>S-Trees  不考虑变量的顺序  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, k, kase = 0;; char res[600], in[10]; void dfs(int indx, int x) { if (indx == n) { printf(&amp;#34;%c&amp;#34;, res[x - (1 &amp;lt;&amp;lt; n)]); return; } if (in[indx] == &amp;#39;0&amp;#39;) dfs(indx + 1, x &amp;lt;&amp;lt; 1); else dfs(indx + 1, x &amp;lt;&amp;lt; 1 | 1); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { char tmp[10]; for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%s&amp;#34;, tmp); } scanf(&amp;#34;%s&amp;#34;, res); printf(&amp;#34;S-Tree #%d:\n&amp;#34;, ++kase); scanf(&amp;#34;%d&amp;#34;, &amp;amp;k); while (k--) { scanf(&amp;#34;%s&amp;#34;, in); dfs(0, 1); } puts(&amp;#34;\n&amp;#34;); } return 0; }  考虑变量的顺序  #include &amp;lt;bits/stdc++.</description>
+      <description>S-Trees  题意：一棵二叉树，每个层节点都有有个逻辑布尔变量，0往左走，1往右走，给你最后一层的结果值，再给你每个变量的取值，问你最后走到的最后一层叶子节点的值 这题有点迷，一开始忘记记录变量的顺序尽然也过了，后来记录了也能过 不考虑变量的顺序  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int n, k, kase = 0;; char res[600], in[10]; void dfs(int indx, int x) { if (indx == n) { printf(&amp;#34;%c&amp;#34;, res[x - (1 &amp;lt;&amp;lt; n)]); return; } if (in[indx] == &amp;#39;0&amp;#39;) dfs(indx + 1, x &amp;lt;&amp;lt; 1); else dfs(indx + 1, x &amp;lt;&amp;lt; 1 | 1); } int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { char tmp[10]; for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%s&amp;#34;, tmp); } scanf(&amp;#34;%s&amp;#34;, res); printf(&amp;#34;S-Tree #%d:\n&amp;#34;, ++kase); scanf(&amp;#34;%d&amp;#34;, &amp;amp;k); while (k--) { scanf(&amp;#34;%s&amp;#34;, in); dfs(0, 1); } puts(&amp;#34;\n&amp;#34;); } return 0; }  考虑变量的顺序  #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Sun, 02 Aug 2020 09:51:25 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva672/</guid>
-      <description>Parentheses Balance #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); getchar(); while (t--) { char str[150]; fgets(str, sizeof str, stdin); stack&amp;lt;char&amp;gt; st; for (int i = 0; str[i] != &amp;#39;\n&amp;#39;; i++) { if (str[i] == &amp;#39;)&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;(&amp;#39;) st.pop(); else if (str[i] == &amp;#39;]&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;[&amp;#39;) st.</description>
+      <description>Parentheses Balance  让你判断括号是否合法，栈的经典例题  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t; int main () { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); getchar(); while (t--) { char str[150]; fgets(str, sizeof str, stdin); stack&amp;lt;char&amp;gt; st; for (int i = 0; str[i] != &amp;#39;\n&amp;#39;; i++) { if (str[i] == &amp;#39;)&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.top() == &amp;#39;(&amp;#39;) st.pop(); else if (str[i] == &amp;#39;]&amp;#39; &amp;amp;&amp;amp; st.size() &amp;amp;&amp;amp; st.</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Fri, 31 Jul 2020 20:13:07 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva572/</guid>
-      <description>Oil Deposits #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int m, n, cont[110][110]; char g[110][110]; void dfs(int x, int y, int num) { if (x &amp;lt; 0 || y &amp;lt; 0 || x &amp;gt;= m || y &amp;gt;= n || cont[x][y] || g[x][y] != &amp;#39;@&amp;#39;) return; cont[x][y] = num; for (int i = -1; i &amp;lt;= 1; i++) { for (int j = -1; j &amp;lt;= 1; j++) { if (i != 0 || j !</description>
+      <description>Oil Deposits  给你一个矩形图，让你求连通的“@”块，一个连通的定义是该点的八个方向都是连通的，dfs就行了  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int m, n, cont[110][110]; char g[110][110]; void dfs(int x, int y, int num) { if (x &amp;lt; 0 || y &amp;lt; 0 || x &amp;gt;= m || y &amp;gt;= n || cont[x][y] || g[x][y] != &amp;#39;@&amp;#39;) return; cont[x][y] = num; for (int i = -1; i &amp;lt;= 1; i++) { for (int j = -1; j &amp;lt;= 1; j++) { if (i !</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Fri, 31 Jul 2020 19:38:47 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva699/</guid>
-      <description>The Falling Leaves  所有数据要以空行相隔，UVA特色  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 5e5; int node[M], t = 0; void build(int mid) { int v; scanf(&amp;#34;%d&amp;#34;, &amp;amp;v); if (v == -1) return; node[mid] += v; build(mid - 1); build(mid + 1); } bool read() { int v, mid = M &amp;gt;&amp;gt; 1; scanf(&amp;#34;%d&amp;#34;, &amp;amp;v); if (v == -1) return false; memset(node, 0, sizeof node); node[mid] = v; build(mid - 1); build(mid + 1); return true; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
+      <description>The Falling Leaves  二叉树的计算，直接递归读入遍历即可 所有数据要以空行相隔，UVA特色  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 5e5; int node[M], t = 0; void build(int mid) { int v; scanf(&amp;#34;%d&amp;#34;, &amp;amp;v); if (v == -1) return; node[mid] += v; build(mid - 1); build(mid + 1); } bool read() { int v, mid = M &amp;gt;&amp;gt; 1; scanf(&amp;#34;%d&amp;#34;, &amp;amp;v); if (v == -1) return false; memset(node, 0, sizeof node); node[mid] = v; build(mid - 1); build(mid + 1); return true; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Fri, 31 Jul 2020 17:53:32 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva839/</guid>
-      <description>Not so Mobile #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t, w; bool ok; void read(int &amp;amp;w) { int wl, dl, wr, dr; scanf(&amp;#34;%d%d%d%d&amp;#34;, &amp;amp;wl, &amp;amp;dl, &amp;amp;wr, &amp;amp;dr); if (wl == 0) read(wl); if (wr == 0) read(wr); w = wl + wr; if (wl * dl != wr * dr) ok = false; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); while (t--) { ok = true; read(w); if (ok) puts(&amp;#34;YES&amp;#34;); else puts(&amp;#34;NO&amp;#34;); if (t) puts(&amp;#34;&amp;#34;); } return 0; }  总结：这题是一个很特殊的树，在输入时就开始递归，值得学习  </description>
+      <description>Not so Mobile  题意：天平平衡，题意很好懂，就是让你判断给的天平平不平衡，直接递归读入就好了  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int t, w; bool ok; void read(int &amp;amp;w) { int wl, dl, wr, dr; scanf(&amp;#34;%d%d%d%d&amp;#34;, &amp;amp;wl, &amp;amp;dl, &amp;amp;wr, &amp;amp;dr); if (wl == 0) read(wl); if (wr == 0) read(wr); w = wl + wr; if (wl * dl != wr * dr) ok = false; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); while (t--) { ok = true; read(w); if (ok) puts(&amp;#34;YES&amp;#34;); else puts(&amp;#34;NO&amp;#34;); if (t) puts(&amp;#34;&amp;#34;); } return 0; }  总结：这题是一个很特殊的树，在输入时就开始递归，值得学习  </description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@
       <pubDate>Fri, 31 Jul 2020 11:53:31 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva679/</guid>
-      <description>Dropping Balls #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int d, n, t; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); while (t--) { scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;d, &amp;amp;n); int ans = 1; for (int i = 1; i &amp;lt; d; i++) { if (n &amp;amp; 1) { ans &amp;lt;&amp;lt;= 1; n = (n + 1) &amp;gt;&amp;gt; 1; } else { ans = ans &amp;lt;&amp;lt; 1 | 1; n &amp;gt;&amp;gt;= 1; } } printf(&amp;#34;%d\n&amp;#34;, ans); } return 0; } </description>
+      <description>Dropping Balls  题意：小球在一个二叉树上下落，每个节点都有一个开关，起初全是关的，如果节点是开小球往右走，反之往左走，让你求最后一个球落到了哪个节点 如果直接单纯的模拟是会超时的，观察可以发现一个节点的第奇数个球都会落到左子树，第偶数个球都落到了右边，自己草稿模拟一下就好了 代码如下  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int d, n, t; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); while (t--) { scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;d, &amp;amp;n); int ans = 1; for (int i = 1; i &amp;lt; d; i++) { if (n &amp;amp; 1) { ans &amp;lt;&amp;lt;= 1; n = (n + 1) &amp;gt;&amp;gt; 1; } else { ans = ans &amp;lt;&amp;lt; 1 | 1; n &amp;gt;&amp;gt;= 1; } } printf(&amp;#34;%d\n&amp;#34;, ans); } return 0; } </description>
     </item>
     
     <item>
@@ -134,7 +134,7 @@
       <pubDate>Fri, 31 Jul 2020 11:50:26 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva548/</guid>
-      <description>Tree #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 1e4 + 10; string str; int ino[M], posto[M], ans, Max, lson[M], rson[M], len = 0; void dfs(int u, int sum) { if (!lson[u] &amp;amp;&amp;amp; !rson[u]) { if (sum &amp;lt; Max || (sum == Max &amp;amp;&amp;amp; ans &amp;gt; u)) { ans = u, Max = sum; } } if (lson[u] != 0) dfs(lson[u], sum + lson[u]); if (rson[u] != 0) dfs(rson[u], sum + rson[u]); } int build(int a, int b, int c, int d) { if (c &amp;gt; d) return 0; int v = posto[b], indx = c; while (ino[indx] !</description>
+      <description>Tree  给你二叉树的中序和先序遍历，让你求从根节点到叶节点的的距离权值和最小，如果有多解，叶节点的权值要小，输出叶节点的权值  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 1e4 + 10; string str; int ino[M], posto[M], ans, Max, lson[M], rson[M], len = 0; void dfs(int u, int sum) { if (!lson[u] &amp;amp;&amp;amp; !rson[u]) { if (sum &amp;lt; Max || (sum == Max &amp;amp;&amp;amp; ans &amp;gt; u)) { ans = u, Max = sum; } } if (lson[u] != 0) dfs(lson[u], sum + lson[u]); if (rson[u] !</description>
     </item>
     
     <item>
@@ -143,7 +143,7 @@
       <pubDate>Fri, 31 Jul 2020 11:48:14 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva514/</guid>
-      <description>Rails #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;stack&amp;gt; using namespace std; const int M = 1e3 + 10; int n, arr[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;arr[1]), arr[1]) { for (int i = 2; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, arr + i); } stack&amp;lt;int&amp;gt; st; int in = 1, out = 1; bool ok = true; while (out &amp;lt;= n) { if (in == arr[out]) { in++, out++; } else if (st.</description>
+      <description>Rails  让你判断列车出站是否正确，栈的运用  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;stack&amp;gt; using namespace std; const int M = 1e3 + 10; int n, arr[M]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;arr[1]), arr[1]) { for (int i = 2; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, arr + i); } stack&amp;lt;int&amp;gt; st; int in = 1, out = 1; bool ok = true; while (out &amp;lt;= n) { if (in == arr[out]) { in++, out++; } else if (st.</description>
     </item>
     
     <item>
@@ -152,7 +152,7 @@
       <pubDate>Fri, 31 Jul 2020 11:44:20 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva442/</guid>
-      <description>Matrix Chain Multiplication #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; int n; pii m[30]; char str[100000]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 0; i &amp;lt; n; i++) { char a; int x, y; scanf(&amp;#34;\n%c%d%d&amp;#34;, &amp;amp;a, &amp;amp;x, &amp;amp;y); m[a - &amp;#39;A&amp;#39;] = make_pair(x, y); } getchar(); while (fgets(str, sizeof str, stdin)) { stack&amp;lt;pii&amp;gt; st; int len = strlen(str), ans = 0; if (str[len - 1] == &amp;#39;\n&amp;#39;) str[len-- - 1] = &amp;#39;\0&amp;#39;; bool ok = true; for (int i = 0; i &amp;lt; len; i++) { if (isalpha(str[i])) { st.</description>
+      <description>Matrix Chain Multiplication  矩阵链乘，栈的运用  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; using pii = pair&amp;lt;int, int&amp;gt;; int n; pii m[30]; char str[100000]; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 0; i &amp;lt; n; i++) { char a; int x, y; scanf(&amp;#34;\n%c%d%d&amp;#34;, &amp;amp;a, &amp;amp;x, &amp;amp;y); m[a - &amp;#39;A&amp;#39;] = make_pair(x, y); } getchar(); while (fgets(str, sizeof str, stdin)) { stack&amp;lt;pii&amp;gt; st; int len = strlen(str), ans = 0; if (str[len - 1] == &amp;#39;\n&amp;#39;) str[len-- - 1] = &amp;#39;\0&amp;#39;; bool ok = true; for (int i = 0; i &amp;lt; len; i++) { if (isalpha(str[i])) { st.</description>
     </item>
     
     <item>
@@ -161,7 +161,7 @@
       <pubDate>Fri, 31 Jul 2020 11:19:07 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva122/</guid>
-      <description>Trees on the level #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 1e5 + 10; int lson[M], rson[M], cnt, node[M]; bool ok, in[M] = {false};//in记录节点是否存在 vector&amp;lt;int&amp;gt; ans; int newnode() {//申请新的地址  int u = ++cnt; lson[u] = rson[u] = 0; return u; } void newtree() {//建新树  lson[1] = rson[1] = 0; in[1] = false; cnt = 1; } void build(int v, char *s) { int indx = 0, u = 1; while (s[indx] !</description>
+      <description>Trees on the level  二叉树的建立  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; const int M = 1e5 + 10; int lson[M], rson[M], cnt, node[M]; bool ok, in[M] = {false};//in记录节点是否存在 vector&amp;lt;int&amp;gt; ans; int newnode() {//申请新的地址  int u = ++cnt; lson[u] = rson[u] = 0; return u; } void newtree() {//建新树  lson[1] = rson[1] = 0; in[1] = false; cnt = 1; } void build(int v, char *s) { int indx = 0, u = 1; while (s[indx] !</description>
     </item>
     
   </channel>

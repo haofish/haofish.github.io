@@ -105,7 +105,7 @@
     "datePublished": "2020-08-01 15:56:21 \u002b0800 CST",
     "dateModified" : "2020-08-01 15:56:21 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva816\/",
-    "wordCount" : "393",
+    "wordCount" : "395",
     "keywords" : [ "题解","图", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -199,6 +199,8 @@
 
         <h2 id="abbotts-revengehttpsvjudgenetproblemuva-816"><a href="https://vjudge.net/problem/UVA-816">Abbott&rsquo;s Revenge</a></h2>
 <ul>
+<li>题意：给你起点和终点，每个点面向不同的方向有不用的指定方向，问你从起点到终点最短路</li>
+<li>BFS就好，但是要注意的是每个点都有不用的方向，所以要多加一维来保存这些方向，即每个点相当于是4个点</li>
 <li>一道值得学习深究的一题</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">

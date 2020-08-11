@@ -105,7 +105,7 @@
     "datePublished": "2020-08-06 20:32:38 \u002b0800 CST",
     "dateModified" : "2020-08-06 20:32:38 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva524\/",
-    "wordCount" : "197",
+    "wordCount" : "204",
     "keywords" : [ "题解","回溯","DFS", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -202,6 +202,12 @@
         
 
         <h2 id="prime-ring-problemhttpsvjudgenetproblemuva-524"><a href="https://vjudge.net/problem/UVA-524">Prime Ring Problem</a></h2>
+<ul>
+<li>题意：给你一个数n，让你求出所有素数环，素数环：利用 1 ~ n来排列组合成的一个环，相邻的两个数的和必须都是素数</li>
+<li>直接dfs遍历所有排列，途中要剪枝，如果当前放的数和前面的数的和不是素数就直接剪了</li>
+<li>画出解答树更好懂</li>
+<li>代码如下</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -311,7 +317,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 1
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

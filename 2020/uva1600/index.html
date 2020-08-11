@@ -105,7 +105,7 @@
     "datePublished": "2020-08-03 16:26:13 \u002b0800 CST",
     "dateModified" : "2020-08-03 16:26:13 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva1600\/",
-    "wordCount" : "231",
+    "wordCount" : "235",
     "keywords" : [ "题解","图", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -204,6 +204,8 @@
         <h2 id="patrol-robothttpsvjudgenetproblemuva-1600"><a href="https://vjudge.net/problem/UVA-1600">Patrol Robot</a></h2>
 <ul>
 <li>BFS进阶题</li>
+<li>题意：有个移动的机器人，从（1， 1）点出发，目标是（m， n）点，0为可以通过的点，1为障碍点，机器人一次最多只能穿越k障碍，问你最少要走多少步到达终点</li>
+<li>BFS走，要注意个是要记录到达障碍点的最短穿越障碍个数</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -236,8 +238,8 @@
             <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> u.x <span style="color:#f92672">+</span> dx[i], y <span style="color:#f92672">=</span> u.y <span style="color:#f92672">+</span> dy[i];
             <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>check(x, y)) <span style="color:#66d9ef">continue</span>;
             <span style="color:#66d9ef">if</span> (g[y][x]) {
-                <span style="color:#66d9ef">if</span> (u.k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;</span> k) <span style="color:#66d9ef">continue</span>;
-                q.push(coo(x, y, u.d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, u.k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+                <span style="color:#66d9ef">if</span> (u.k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;</span> k) <span style="color:#66d9ef">continue</span>;<span style="color:#75715e">//如果穿越障碍个数比之前算的还大就不计入
+</span><span style="color:#75715e"></span>                q.push(coo(x, y, u.d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, u.k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
             } <span style="color:#66d9ef">else</span> {
                 q.push(coo(x, y, u.d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>));
             }
@@ -254,7 +256,7 @@
 </span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
     <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>) {
         scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>k);
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) 
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>)
             <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>)
                 scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>g[i][j]);
         bfs();

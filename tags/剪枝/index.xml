@@ -17,7 +17,7 @@
       <pubDate>Fri, 07 Aug 2020 19:53:14 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva140/</guid>
-      <description>Bandwidth  按照紫书的指导，剪了两种枝，但是感觉剪一种的速度差不多，两者交上去都是$0ms$，毕竟节点不多，剪一种枝就行了 以下代码是剪了两种枝的，如果只剪一种，只要把28，60，62注释就行了  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char str[200]; bool ext[26], ok[26][26]; int head[26], n, indx[26], vis[26], mind, con[26]; struct es{ int to, next; es(int to = 0, int next = -1) : to (to), next(next) {} }; vector&amp;lt;es&amp;gt; e; vector&amp;lt;char&amp;gt; node, res, ans; void add_edge(int u, int v) { e.push_back(es(v, head[u])); head[u] = e.size() - 1, con[u]++; if (!ext[u]) node.push_back(u + &amp;#39;A&amp;#39;); ext[u] = true; } bool check(int cur, int u) { if (!</description>
+      <description>Bandwidth  题意：给你一个无向图，让你输出一种序列使得每个节点到该节点在图中相连的节点的最远距离的最小值，直接看题目比较好懂 dfs遍历所有可能的序列，然后求出一个最小值，我的代码用了邻接表 剪枝的话一种是利用计算好最小带宽的一种来剪枝，第二种就是计算未确定位置的节点的最小带宽来剪 按照紫书的指导，剪了两种枝，但是感觉剪一种的速度差不多，两者交上去都是$0ms$，毕竟节点不多，剪一种枝就行了 以下代码是剪了两种枝的，如果只剪一种，只要把28，60，62注释就行了  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; char str[200]; bool ext[26], ok[26][26]; int head[26], n, indx[26], vis[26], mind, con[26]; struct es{ int to, next; es(int to = 0, int next = -1) : to (to), next(next) {} }; vector&amp;lt;es&amp;gt; e; vector&amp;lt;char&amp;gt; node, res, ans; void add_edge(int u, int v) { e.push_back(es(v, head[u])); head[u] = e.size() - 1, con[u]++; if (!ext[u]) node.push_back(u + &amp;#39;A&amp;#39;); ext[u] = true; } bool check(int cur, int u) { if (!</description>
     </item>
     
   </channel>

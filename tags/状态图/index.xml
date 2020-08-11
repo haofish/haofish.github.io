@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>状态图 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E7%8A%B6%E6%80%81%E5%9B%BE/</link>
+    <description>Recent content in 状态图 on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Aug 2020 17:00:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/%E7%8A%B6%E6%80%81%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UVA1601</title>
+      <link>https://haofish.github.io/2020/uva1601/</link>
+      <pubDate>Mon, 10 Aug 2020 17:00:48 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1601/</guid>
+      <description>The Morning after Halloween  题意：给你一个图，&amp;quot;#&amp;ldquo;为障碍物，&amp;rdquo; &amp;ldquo;为通路，图里面最多有3个小写字母（a, b, c）和于其对应的大写字母（A, B, C），每次移动每个小写字母都有4个方向和不动5种方案，一次移动可以有多个小写字母一起移动，不能一个空格点不能同时有多个小写字母，问你最少要移动多少次才能让这些小写字母移动到对应的大写字母上 受紫书的启发，了解到了一个规矩图或者迷宫亦或是题目给的不是图（例如上次的倒水题），也能够利用“状态”来简化成一个平时我们更多看到的点对点的图，看来是几个能够相互连接产生关系的状态，就能考虑利用状态图来解 这题的“状态”是对每个坐标的压缩，压缩成一个一维的标志，看起来就好像是给每家每户上一个门牌号一样，因为坐标最大是（16, 16），也就是说最多有256个“门牌号”，这对于一个图来说还是有点多，幸运的是题中说每 $2 \times 2$ 的格子至少有一个可走的点，这样我们只要考虑可以走的点就行了 按出现顺序给可走的点编上“门牌号”，并记录上字母的门牌号 还要记录每个点能到哪些点，这样就能当成一个有向图来看了 如果题目给的鬼的数量不到3个，那可以假装他给了，为没给的字母强行加个门牌号，并且他们已经到了自己的目的地，即相应的大小写字母在同一个位置 以下代码是单向的BFS, vj上测得是930ms  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cctype&amp;gt; using namespace std; const int M = 210, f = 0xff; char g[M][M]; int w, n, h, s[3], t[3], id[20][20], dir[M][M][M]; const int dx[] = {-1, 0, 1, 0, 0}; const int dy[] = {0, -1, 0, 1, 0}; inline bool check(int x, int y) { return x &amp;gt;= 0 &amp;amp;&amp;amp; y &amp;gt;= 0 &amp;amp;&amp;amp; x &amp;lt;= w &amp;amp;&amp;amp; y &amp;lt;= h; } inline int ID(int a, int b, int c) { return (a &amp;lt;&amp;lt; 16) | (b &amp;lt;&amp;lt; 8) | c; }//状态压缩 inline bool move(int a, int b, int ago, int bgo) {//检车移动是否合法，即不能一步交换位置，不能到同一个位置  return (a == bgo &amp;amp;&amp;amp; b == ago) || ago == bgo; } struct pos{ int x, y, n, go[5]; } p[200]; void BFS() { memset(dir, -1, sizeof dir); queue&amp;lt;int&amp;gt; q; q.</description>
+    </item>
+    
+    <item>
+      <title>UVA10603</title>
+      <link>https://haofish.github.io/2020/uva10603/</link>
+      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva10603/</guid>
+      <description>Fill  题意：给你3个没有刻度的杯子，每个杯子的都有自己的容量，现利用这三个杯子量出体积为d的水，现在问最少的倒水量，如果量不到d，就量和d想接近的d&amp;rsquo; 按照书中的说法这是一个隐式图，求最短路，最短路的评判标志是倒水量  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;queue&amp;gt; using namespace std; const int M = 210; int cap[3], d, ans[M]; bool vis[M][M]; struct nodes{ int v[3], d; nodes(){} nodes(int v0, int v1, int v2, int d) :d(d) { v[0] = v0, v[1] = v1, v[2] = v2; } bool operator &amp;lt; (const nodes&amp;amp; tmp) const { return d &amp;gt; tmp.d; } }; void init() { memset(ans, -1, sizeof ans); memset(vis, 0, sizeof vis); } void update(nodes &amp;amp;u) { for (int i = 0; i &amp;lt; 3; i++) { if (ans[u.</description>
+    </item>
+    
+  </channel>
+</rss>

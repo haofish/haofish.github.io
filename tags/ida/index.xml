@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IDA* on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/ida/</link>
+    <description>Recent content in IDA* on 🐟🐟🐟&lt;--</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Aug 2020 10:02:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://haofish.github.io/tags/ida/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UVA11212</title>
+      <link>https://haofish.github.io/2020/uva11212/</link>
+      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva11212/</guid>
+      <description>Editing a Book  题意：给你一个排列，你一次能够剪切一段字串，然后在别的地方插入粘贴，让你求最少的剪切粘贴次数使得排列是1~n按顺序的 IDA*的题，每次规定递归的层数，长度为n的排列最多是剪切粘贴n - 1次 剪枝精髓：移动一次最多改变 3 个数字的后继数字，例如从{a，b，c，d}到{a, c, b, d},只有a, c, b（字母均代表区间）三个区间最后一个数的后继改变了 假设当前递归到d层，还有h个数字的后继不正确（最后一个数字的评判依据是是否是最后一个数，即$n - 1$），的最少还要遍历 $d + h / 3$ 层，当前设置了最大层数为Max, 则当 $d + h / 3 &amp;gt; Max$ 即 $3 \times d + h &amp;gt; 3 \times Max$ 就剪枝 代码如下，跑了300ms  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, arr[15], tmp[15], kase = 0; bool check() { for (int i = 0; i &amp;lt; n; i++) { if (arr[i] !</description>
+    </item>
+    
+  </channel>
+</rss>

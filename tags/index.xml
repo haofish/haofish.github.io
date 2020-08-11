@@ -6,44 +6,71 @@
     <description>Recent content in Tags on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Aug 2020 20:37:14 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2020 10:02:22 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>BFS</title>
-      <link>https://haofish.github.io/tags/bfs/</link>
-      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/tags/bfs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>题解</title>
-      <link>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
-      <pubDate>Sun, 09 Aug 2020 20:37:14 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DFS</title>
       <link>https://haofish.github.io/tags/dfs/</link>
-      <pubDate>Sun, 09 Aug 2020 15:45:24 +0800</pubDate>
+      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
       
       <guid>https://haofish.github.io/tags/dfs/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>IDA*</title>
+      <link>https://haofish.github.io/tags/ida/</link>
+      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/ida/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>回溯</title>
       <link>https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/</link>
-      <pubDate>Sun, 09 Aug 2020 15:45:24 +0800</pubDate>
+      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
       
       <guid>https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>题解</title>
+      <link>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BFS</title>
+      <link>https://haofish.github.io/tags/bfs/</link>
+      <pubDate>Mon, 10 Aug 2020 17:00:48 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/bfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>双BFS</title>
+      <link>https://haofish.github.io/tags/%E5%8F%8Cbfs/</link>
+      <pubDate>Mon, 10 Aug 2020 17:00:48 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E5%8F%8Cbfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>状态图</title>
+      <link>https://haofish.github.io/tags/%E7%8A%B6%E6%80%81%E5%9B%BE/</link>
+      <pubDate>Mon, 10 Aug 2020 17:00:48 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/tags/%E7%8A%B6%E6%80%81%E5%9B%BE/</guid>
       <description></description>
     </item>
     

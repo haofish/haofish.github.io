@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva10603/" />
+  
+  <link rel="next" href="https://haofish.github.io/2020/uva11212/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva1601/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA1601 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA1601 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA1601",
+    "headline" : "UVA1601",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-10 17:00:48 \u002b0800 CST",
+    "dateModified" : "2020-08-10 17:00:48 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva1601\/",
+    "wordCount" : "916",
+    "keywords" : [ "题解","BFS","状态图","双BFS", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA1601</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-10
+                    itemprop="datePublished">August 10, 2020</time>
+            </span>
+            in
+            
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="the-morning-after-halloweenhttpsvjudgenetproblemuva-1601"><a href="https://vjudge.net/problem/UVA-1601">The Morning after Halloween</a></h2>
+<ul>
+<li>题意：给你一个图，&quot;#&ldquo;为障碍物，&rdquo; &ldquo;为通路，图里面最多有3个小写字母（a, b, c）和于其对应的大写字母（A, B, C），每次移动每个小写字母都有4个方向和不动5种方案，一次移动可以有多个小写字母一起移动，不能一个空格点不能同时有多个小写字母，问你最少要移动多少次才能让这些小写字母移动到对应的大写字母上</li>
+<li>受紫书的启发，了解到了一个规矩图或者迷宫亦或是题目给的不是图（例如上次的倒水题），也能够利用“状态”来简化成一个平时我们更多看到的点对点的图，看来是几个能够相互连接产生关系的状态，就能考虑利用状态图来解</li>
+<li>这题的“状态”是对每个坐标的压缩，压缩成一个一维的标志，看起来就好像是给每家每户上一个门牌号一样，因为坐标最大是（16, 16），也就是说最多有256个“门牌号”，这对于一个图来说还是有点多，幸运的是题中说每 $2 \times 2$ 的格子至少有一个可走的点，这样我们只要考虑可以走的点就行了</li>
+<li>按出现顺序给可走的点编上“门牌号”，并记录上字母的门牌号</li>
+<li>还要记录每个点能到哪些点，这样就能当成一个有向图来看了</li>
+<li>如果题目给的鬼的数量不到3个，那可以假装他给了，为没给的字母强行加个门牌号，并且他们已经到了自己的目的地，即相应的大小写字母在同一个位置</li>
+<li>以下代码是单向的BFS, vj上测得是930ms</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">210</span>, f <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xff</span>;
+
+<span style="color:#66d9ef">char</span> g[M][M];
+<span style="color:#66d9ef">int</span> w, n, h, s[<span style="color:#ae81ff">3</span>], t[<span style="color:#ae81ff">3</span>], id[<span style="color:#ae81ff">20</span>][<span style="color:#ae81ff">20</span>], dir[M][M][M];
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> dx[] <span style="color:#f92672">=</span> {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> dy[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>};
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;=</span> w <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&lt;=</span> h; }
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ID</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> c) { <span style="color:#66d9ef">return</span> (a <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">|</span> (b <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">|</span> c; }<span style="color:#75715e">//状态压缩
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">move</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> ago, <span style="color:#66d9ef">int</span> bgo) {<span style="color:#75715e">//检车移动是否合法，即不能一步交换位置，不能到同一个位置
+</span><span style="color:#75715e"></span>     <span style="color:#66d9ef">return</span> (a <span style="color:#f92672">==</span> bgo <span style="color:#f92672">&amp;&amp;</span> b <span style="color:#f92672">==</span> ago) <span style="color:#f92672">||</span> ago <span style="color:#f92672">==</span> bgo;
+}
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">pos</span>{ <span style="color:#66d9ef">int</span> x, y, n, go[<span style="color:#ae81ff">5</span>]; } p[<span style="color:#ae81ff">200</span>];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BFS</span>() {
+    memset(dir, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> dir);
+    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q;
+    q.push(ID(s[<span style="color:#ae81ff">0</span>], s[<span style="color:#ae81ff">1</span>], s[<span style="color:#ae81ff">2</span>]));
+    dir[s[<span style="color:#ae81ff">0</span>]][s[<span style="color:#ae81ff">1</span>]][s[<span style="color:#ae81ff">2</span>]] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (q.size()) {
+        <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> q.front();
+        q.pop();
+        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> u <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>, b <span style="color:#f92672">=</span> (u <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">&amp;</span> f, c <span style="color:#f92672">=</span> u <span style="color:#f92672">&amp;</span> f;
+        <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> t[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> b <span style="color:#f92672">==</span> t[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">==</span> t[<span style="color:#ae81ff">2</span>]) <span style="color:#66d9ef">return</span>;
+        <span style="color:#75715e">// printf(&#34;()&#34;);
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> p[a].n; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">int</span> ago <span style="color:#f92672">=</span> p[a].go[i];
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> p[b].n; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> bgo <span style="color:#f92672">=</span> p[b].go[j];
+                <span style="color:#66d9ef">if</span> (move(a, b, ago, bgo)) <span style="color:#66d9ef">continue</span>;
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> p[c].n; k<span style="color:#f92672">++</span>) {
+                    <span style="color:#66d9ef">int</span> cgo <span style="color:#f92672">=</span> p[c].go[k];
+                    <span style="color:#66d9ef">if</span> (move(a, c, ago ,cgo))<span style="color:#66d9ef">continue</span>;
+                    <span style="color:#66d9ef">if</span> (move(b, c, bgo, cgo))<span style="color:#66d9ef">continue</span>;
+                    <span style="color:#66d9ef">if</span> (dir[ago][bgo][cgo] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">continue</span>;
+                    dir[ago][bgo][cgo] <span style="color:#f92672">=</span> dir[a][b][c] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                    q.push(ID(ago, bgo, cgo));
+                }
+            }
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>w, <span style="color:#f92672">&amp;</span>h, <span style="color:#f92672">&amp;</span>n), w <span style="color:#f92672">+</span> h <span style="color:#f92672">+</span> n) {
+        <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> h; i<span style="color:#f92672">++</span>) {
+            getchar();
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> w; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> g[i][j] <span style="color:#f92672">=</span> getchar();
+                <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>) <span style="color:#66d9ef">continue</span>;
+                p[cnt].x <span style="color:#f92672">=</span> j, p[cnt].y <span style="color:#f92672">=</span> i, id[i][j] <span style="color:#f92672">=</span> cnt;
+                <span style="color:#66d9ef">if</span> (islower(c)) s[c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span>] <span style="color:#f92672">=</span> cnt;
+                <span style="color:#66d9ef">if</span> (isupper(c)) t[c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>] <span style="color:#f92672">=</span> cnt;
+                cnt<span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cnt; i<span style="color:#f92672">++</span>) {
+            p[i].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> nowx <span style="color:#f92672">=</span> p[i].x <span style="color:#f92672">+</span> dx[j], nowy <span style="color:#f92672">=</span> p[i].y <span style="color:#f92672">+</span> dy[j];
+                <span style="color:#66d9ef">if</span> (g[nowy][nowx] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>check(nowx, nowy)) <span style="color:#66d9ef">continue</span>;
+                p[i].go[p[i].n<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> id[nowy][nowx];
+            }
+        }
+        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) p[cnt].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, p[cnt].go[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> cnt, s[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> t[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">++</span>;<span style="color:#75715e">//假装给满了3个鬼
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) p[cnt].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, p[cnt].go[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> cnt, s[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> t[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">++</span>;
+        BFS();
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dir[t[<span style="color:#ae81ff">0</span>]][t[<span style="color:#ae81ff">1</span>]][t[<span style="color:#ae81ff">2</span>]]);
+        memset(p, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> p);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>以下代码是双向的bfs，测得是590ms</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">210</span>, f <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xff</span>;
+
+<span style="color:#66d9ef">char</span> g[M][M];
+<span style="color:#66d9ef">int</span> w, n, h, s[<span style="color:#ae81ff">3</span>], t[<span style="color:#ae81ff">3</span>], id[<span style="color:#ae81ff">20</span>][<span style="color:#ae81ff">20</span>], dir[M][M][M][<span style="color:#ae81ff">2</span>], ans;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> dx[] <span style="color:#f92672">=</span> {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> dy[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>};
+
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;=</span> w <span style="color:#f92672">&amp;&amp;</span> y <span style="color:#f92672">&lt;=</span> h; }
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ID</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> c) { <span style="color:#66d9ef">return</span> (a <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">|</span> (b <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">|</span> c; }
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">move</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> ago, <span style="color:#66d9ef">int</span> bgo) {
+     <span style="color:#66d9ef">return</span> (a <span style="color:#f92672">==</span> bgo <span style="color:#f92672">&amp;&amp;</span> b <span style="color:#f92672">==</span> ago) <span style="color:#f92672">||</span> ago <span style="color:#f92672">==</span> bgo;
+}
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">pos</span>{ <span style="color:#66d9ef">int</span> x, y, n, go[<span style="color:#ae81ff">5</span>]; } p[<span style="color:#ae81ff">200</span>];
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">BFS</span>(queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>q, <span style="color:#66d9ef">int</span> st) {
+    <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> q.front();
+    q.pop();
+    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> u <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>, b <span style="color:#f92672">=</span> (u <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">&amp;</span> f, c <span style="color:#f92672">=</span> u <span style="color:#f92672">&amp;</span> f;
+    <span style="color:#66d9ef">if</span> (dir[a][b][c][<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> st] <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> dir[a][b][c][st] <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {<span style="color:#75715e">//如果碰头了就是答案了
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> dir[a][b][c][<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> st] <span style="color:#f92672">+</span> dir[a][b][c][st];
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> p[a].n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> ago <span style="color:#f92672">=</span> p[a].go[i];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> p[b].n; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">int</span> bgo <span style="color:#f92672">=</span> p[b].go[j];
+            <span style="color:#66d9ef">if</span> (move(a, b, ago, bgo)) <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> p[c].n; k<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> cgo <span style="color:#f92672">=</span> p[c].go[k];
+                <span style="color:#66d9ef">if</span> (move(a, c, ago ,cgo))<span style="color:#66d9ef">continue</span>;
+                <span style="color:#66d9ef">if</span> (move(b, c, bgo, cgo))<span style="color:#66d9ef">continue</span>;
+                <span style="color:#66d9ef">if</span> (dir[ago][bgo][cgo][st] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">continue</span>;
+                dir[ago][bgo][cgo][st] <span style="color:#f92672">=</span> dir[a][b][c][st] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                q.push(ID(ago, bgo, cgo));
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">double_bfs</span>() {
+    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q[<span style="color:#ae81ff">2</span>];
+    memset(dir, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> dir);
+    q[<span style="color:#ae81ff">0</span>].push(ID(s[<span style="color:#ae81ff">0</span>], s[<span style="color:#ae81ff">1</span>], s[<span style="color:#ae81ff">2</span>]));
+    q[<span style="color:#ae81ff">1</span>].push(ID(t[<span style="color:#ae81ff">0</span>], t[<span style="color:#ae81ff">1</span>], t[<span style="color:#ae81ff">2</span>]));
+    dir[s[<span style="color:#ae81ff">0</span>]][s[<span style="color:#ae81ff">1</span>]][s[<span style="color:#ae81ff">2</span>]][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    dir[t[<span style="color:#ae81ff">0</span>]][t[<span style="color:#ae81ff">1</span>]][t[<span style="color:#ae81ff">2</span>]][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {<span style="color:#75715e">//起点和终点各跑一次
+</span><span style="color:#75715e"></span>        ans <span style="color:#f92672">=</span> BFS(q[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span>;
+        ans <span style="color:#f92672">=</span> BFS(q[<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span>;
+    }
+}
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>w, <span style="color:#f92672">&amp;</span>h, <span style="color:#f92672">&amp;</span>n), w <span style="color:#f92672">+</span> h <span style="color:#f92672">+</span> n) {
+        <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> h; i<span style="color:#f92672">++</span>) {
+            getchar();
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> w; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> g[i][j] <span style="color:#f92672">=</span> getchar();
+                <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>) <span style="color:#66d9ef">continue</span>;
+                p[cnt].x <span style="color:#f92672">=</span> j, p[cnt].y <span style="color:#f92672">=</span> i, id[i][j] <span style="color:#f92672">=</span> cnt;
+                <span style="color:#66d9ef">if</span> (islower(c)) s[c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span>] <span style="color:#f92672">=</span> cnt;
+                <span style="color:#66d9ef">if</span> (isupper(c)) t[c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>] <span style="color:#f92672">=</span> cnt;
+                cnt<span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cnt; i<span style="color:#f92672">++</span>) {
+            p[i].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">int</span> nowx <span style="color:#f92672">=</span> p[i].x <span style="color:#f92672">+</span> dx[j], nowy <span style="color:#f92672">=</span> p[i].y <span style="color:#f92672">+</span> dy[j];
+                <span style="color:#66d9ef">if</span> (g[nowy][nowx] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>check(nowx, nowy)) <span style="color:#66d9ef">continue</span>;
+                p[i].go[p[i].n<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> id[nowy][nowx];
+            }
+        }
+        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) p[cnt].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, p[cnt].go[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> cnt, s[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> t[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) p[cnt].n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, p[cnt].go[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> cnt, s[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> t[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> cnt<span style="color:#f92672">++</span>;
+        double_bfs();
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+        memset(p, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> p);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva1601/>https://haofish.github.io/2020/uva1601/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/bfs/">
+                    #BFS</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E7%8A%B6%E6%80%81%E5%9B%BE/">
+                    #状态图</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8F%8Cbfs/">
+                    #双BFS</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva10603/" class="prev" rel="prev" title="UVA10603"><i
+                class="iconfont icon-left"></i>&nbsp;UVA10603</a>
+        
+        
+        <a href="https://haofish.github.io/2020/uva11212/" class="next" rel="next"
+            title="UVA11212">UVA11212&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">1000 Words|Read in about 5
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

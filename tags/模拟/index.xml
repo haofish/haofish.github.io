@@ -17,7 +17,7 @@
       <pubDate>Tue, 04 Aug 2020 14:26:40 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva804/</guid>
-      <description>Petri Net Simulation #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
+      <description>Petri Net Simulation  每个T变迁都有限制，必须是指定的P库有足够的token才行（注意，T指定的P库不一定只有一个），直接模拟就好了  #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; int p[110], np, nt, kase = 0; struct T { int in[110], out[110]; T() { memset(in, 0, sizeof in); memset(out, 0, sizeof out); } }; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;np), np;) { for (int i = 1; i &amp;lt;= np; i++) { scanf(&amp;#34;%d&amp;#34;, p + i); } scanf(&amp;#34;%d&amp;#34;, &amp;amp;nt); int x; T ts[110]; for (int i = 1; i &amp;lt;= nt; i++) { for (; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x), x;) { if (x &amp;lt; 0) ts[i].</description>
     </item>
     
     <item>

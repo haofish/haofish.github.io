@@ -105,7 +105,7 @@
     "datePublished": "2020-08-04 18:02:01 \u002b0800 CST",
     "dateModified" : "2020-08-04 18:02:01 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/uva806\/",
-    "wordCount" : "698",
+    "wordCount" : "699",
     "keywords" : [ "题解","树", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -203,6 +203,7 @@
 
         <h2 id="spatial-structureshttpsvjudgenetproblemuva-806"><a href="https://vjudge.net/problem/UVA-806">Spatial Structures</a></h2>
 <ul>
+<li>类似于计算像素的，读懂题意直接模拟就好了</li>
 <li>毒瘤题</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
@@ -240,7 +241,7 @@ vector<span style="color:#f92672">&lt;</span>ll<span style="color:#f92672">&gt;<
         }
     }
     <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> sum1 <span style="color:#f92672">+</span> sum2 <span style="color:#f92672">+</span> sum3 <span style="color:#f92672">+</span> sum4;
-    ll x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+    ll x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">if</span> (d) x <span style="color:#f92672">=</span> all <span style="color:#f92672">+</span> pos<span style="color:#f92672">*</span>pow(<span style="color:#ae81ff">5</span>, d <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
     <span style="color:#66d9ef">if</span> (sum <span style="color:#f92672">==</span> (r2 <span style="color:#f92672">-</span> r1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (c2 <span style="color:#f92672">-</span> c1 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) {
         <span style="color:#66d9ef">if</span> (x) ans.push_back(x);
@@ -285,9 +286,9 @@ vector<span style="color:#f92672">&lt;</span>ll<span style="color:#f92672">&gt;<
                 <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> r1; i <span style="color:#f92672">&lt;=</span> r2; i<span style="color:#f92672">++</span>)
                     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> c1; j <span style="color:#f92672">&lt;=</span> c2; j<span style="color:#f92672">++</span>)
                         g[i][j] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;*&#39;</span>;
-            } 
+            }
             printf(<span style="color:#e6db74">&#34;Image %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
-            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">-</span>n; i<span style="color:#f92672">++</span>) { 
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">-</span>n; i<span style="color:#f92672">++</span>) {
                 <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">-</span>n; j<span style="color:#f92672">++</span>){
                     printf(<span style="color:#e6db74">&#34;%c&#34;</span>, g[i][j]);
                 }
