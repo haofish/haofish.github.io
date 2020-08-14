@@ -17,7 +17,7 @@
       <pubDate>Thu, 06 Aug 2020 18:27:25 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva10976/</guid>
-      <description>Fractions Again?! #include &amp;lt;cstdio&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; using ll = long long; ll n; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (~scanf(&amp;#34;%lld&amp;#34;, &amp;amp;n)) { vector&amp;lt;ll&amp;gt; a, b; for (ll i = n + 1; i &amp;lt;= n + n; i++) { if (n * i % (i - n) == 0) { a.push_back(n * i / (i - n)); b.push_back(i); } } printf(&amp;#34;%zu\n&amp;#34;, a.</description>
+      <description>Fractions Again?!  给你一个k,让你求所有 $1 / k = 1 / x + 1/ y$ 的答案 $x \ge y$ 计算可以发现 y 最大不会超过2k,最小是k + 1  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;vector&amp;gt; using namespace std; using ll = long long; ll n; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (~scanf(&amp;#34;%lld&amp;#34;, &amp;amp;n)) { vector&amp;lt;ll&amp;gt; a, b; for (ll i = n + 1; i &amp;lt;= n + n; i++) { if (n * i % (i - n) == 0) { a.</description>
     </item>
     
     <item>

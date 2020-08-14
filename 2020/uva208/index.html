@@ -10,10 +10,10 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/uva11059/" />
+  <link rel="prev" href="https://haofish.github.io/2020/uva11212/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/uva524/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/uva10976/" />
+  <link rel="next" href="https://haofish.github.io/2020/uva225/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva208/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +69,11 @@
   <title>
     
     
-    UVA10976 | 🐟🐟🐟&lt;--
+    UVA208 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="UVA10976 | 🐟🐟🐟&lt;--">
+    content="UVA208 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +92,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "UVA10976",
-    "headline" : "UVA10976",
+    "name" : "UVA208",
+    "headline" : "UVA208",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +102,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-08-06 18:27:25 \u002b0800 CST",
-    "dateModified" : "2020-08-06 18:27:25 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/uva10976\/",
-    "wordCount" : "114",
-    "keywords" : [ "题解","暴力美学", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-08-12 10:24:20 \u002b0800 CST",
+    "dateModified" : "2020-08-12 10:24:20 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva208\/",
+    "wordCount" : "220",
+    "keywords" : [ "题解","DFS","回溯", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,14 +168,14 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">UVA10976</h1>
+        <h1 class="post-title" itemprop="name headline">UVA208</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
             with ♥
             <span class="post-time">
-                on <time datetime=2020-08-06
-                    itemprop="datePublished">August 6, 2020</time>
+                on <time datetime=2020-08-12
+                    itemprop="datePublished">August 12, 2020</time>
             </span>
             in
             <i class="iconfont icon-folder"></i>
@@ -201,36 +201,76 @@
         
         
 
-        <h2 id="fractions-againhttpsvjudgenetproblemuva-10976"><a href="https://vjudge.net/problem/UVA-10976">Fractions Again?!</a></h2>
+        <h2 id="firetruckhttpsvjudgenetproblemuva-208"><a href="https://vjudge.net/problem/UVA-208">Firetruck</a></h2>
 <ul>
-<li>给你一个k,让你求所有 $1 / k = 1 / x + 1/ y$ 的答案 $x \ge y$</li>
-<li>计算可以发现 y 最大不会超过2k,最小是k + 1</li>
+<li>题意：给你一个无向图，让你求出从1号节点到n号节点的所有路径，按顺序输出，具体看样例</li>
+<li>DFS和BFS都可以，这里我用了DFS，利用了一个ans的vector数组来储存答案，根据题目要求，优先递归节点权值小的</li>
+<li>注意：要先判断1号节点能否到达n号节点，不然会tle，这里我用了一个类似于并查集的思想来判断是否能到达n号节点</li>
+<li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">using</span> ll <span style="color:#f92672">=</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>;
+<span style="color:#66d9ef">using</span> vi <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>;
 
-ll n;
+<span style="color:#66d9ef">int</span> t, cnt, Kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, nums, fa[<span style="color:#ae81ff">25</span>];
+<span style="color:#66d9ef">bool</span> vis[<span style="color:#ae81ff">25</span>], f, num[<span style="color:#ae81ff">25</span>], v[<span style="color:#ae81ff">25</span>];
+vi nodes[<span style="color:#ae81ff">25</span>], ans;
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+    cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, nums <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>i : nodes) i.clear();
+    ans.clear();
+    ans.push_back(<span style="color:#ae81ff">1</span>);
+    memset(num, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> num);
+    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+    memset(v, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> v);
+    vis[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">25</span>; i<span style="color:#f92672">++</span>) fa[i] <span style="color:#f92672">=</span> i;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DFS</span>(<span style="color:#66d9ef">int</span> n) {
+    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> t) {
+        cnt<span style="color:#f92672">++</span>, f <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i : ans) { <span style="color:#66d9ef">if</span> (f) f <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>f; <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34; &#34;</span>); printf(<span style="color:#e6db74">&#34;%d&#34;</span>, i); }
+        puts(<span style="color:#e6db74">&#34;&#34;</span>);
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> x : nodes[n]) {
+        <span style="color:#66d9ef">if</span> (vis[x]) <span style="color:#66d9ef">continue</span>;
+        vis[x] <span style="color:#f92672">=</span> true;
+        ans.push_back(x);
+        DFS(x);
+        vis[x] <span style="color:#f92672">=</span> false;
+        ans.pop_back();
+    }
+}
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i : nodes[n]) { <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>v[i]) { fa[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, v[i] <span style="color:#f92672">=</span> true; check(i); } }
+    <span style="color:#66d9ef">return</span> fa[t] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
-</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
-    freopen(<span style="color:#e6db74">&#34;test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">~</span>scanf(<span style="color:#e6db74">&#34;%lld&#34;</span>, <span style="color:#f92672">&amp;</span>n)) {
-        vector<span style="color:#f92672">&lt;</span>ll<span style="color:#f92672">&gt;</span> a, b;
-        <span style="color:#66d9ef">for</span> (ll i <span style="color:#f92672">=</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n <span style="color:#f92672">+</span> n; i<span style="color:#f92672">++</span>) {
-            <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">*</span> i <span style="color:#f92672">%</span> (i <span style="color:#f92672">-</span> n) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-                a.push_back(n <span style="color:#f92672">*</span> i <span style="color:#f92672">/</span> (i <span style="color:#f92672">-</span> n));
-                b.push_back(i);
-            }
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">~</span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t)) {
+        printf(<span style="color:#e6db74">&#34;CASE %d:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>Kase);
+        <span style="color:#66d9ef">int</span> u, v;
+        init();
+        <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>u, <span style="color:#f92672">&amp;</span>v), u <span style="color:#f92672">+</span> v) {
+            nodes[u].push_back(v);
+            nodes[v].push_back(u);
         }
-        printf(<span style="color:#e6db74">&#34;%zu</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a.size());
-        <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> a.size(); i<span style="color:#f92672">++</span>) {
-            printf(<span style="color:#e6db74">&#34;1/%lld = 1/%lld + 1/%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, n, a[i], b[i]);
-        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>i : nodes) sort(i.begin(), i.end());
+        <span style="color:#66d9ef">if</span>(check()) DFS(<span style="color:#ae81ff">1</span>);
+        printf(<span style="color:#e6db74">&#34;There are %d routes from the firestation to streetcorner %d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, cnt, t);
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
@@ -243,7 +283,7 @@ ll n;
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/uva10976/>https://haofish.github.io/2020/uva10976/</span>
+            <a href=https://haofish.github.io/2020/uva208/>https://haofish.github.io/2020/uva208/</span>
         </p>
         
         
@@ -262,8 +302,11 @@ ll n;
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%9A%B4%E5%8A%9B%E7%BE%8E%E5%AD%A6/">
-                    #暴力美学</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/dfs/">
+                    #DFS</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/">
+                    #回溯</a></span>
             
         </section>
         
@@ -275,12 +318,12 @@ ll n;
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/uva11059/" class="prev" rel="prev" title="UVA11059"><i
-                class="iconfont icon-left"></i>&nbsp;UVA11059</a>
+        <a href="https://haofish.github.io/2020/uva11212/" class="prev" rel="prev" title="UVA11212"><i
+                class="iconfont icon-left"></i>&nbsp;UVA11212</a>
         
         
-        <a href="https://haofish.github.io/2020/uva524/" class="next" rel="next"
-            title="UVA524">UVA524&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://haofish.github.io/2020/uva225/" class="next" rel="next"
+            title="UVA225">UVA225&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -289,7 +332,7 @@ ll n;
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

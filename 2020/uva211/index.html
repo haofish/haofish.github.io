@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva225/" />
+  
+  <link rel="next" href="https://haofish.github.io/2020/uva690/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva211/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA211 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA211 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA211",
+    "headline" : "UVA211",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-13 14:46:51 \u002b0800 CST",
+    "dateModified" : "2020-08-13 14:46:51 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva211\/",
+    "wordCount" : "353",
+    "keywords" : [ "题解","DFS","回溯", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA211</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-13
+                    itemprop="datePublished">August 13, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch7/"> 紫书刷题录-ch7 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="the-domino-effecthttpsvjudgenetproblemuva-211"><a href="https://vjudge.net/problem/UVA-211">The Domino Effect</a></h2>
+<ul>
+<li>题意：一个多米诺骨牌有两个面，一共有28个不同的多米诺骨牌，放在那，可能横着，可能竖着，这样就形成了一个$7 \times 8$的一个数字图，问你所有可能的摆放方式</li>
+<li>dfs就好了，一开始没想到怎么dfs，绞尽脑汁，一开始一格一格来，失败，后来采用每一行都用一个二进制状态来描述是横还是竖，还是失败了，最后看了下题解，豁然开朗</li>
+<li>也是dfs，但是不能再单纯地一格一格得dfs，要一行一行来，不然可能会像我一开始那样，会遗漏很多格子没递归到，所以要一行一行来，方式就是每行一格一格地递归，递归到最后一列的才换行（代码24行处），最终将28个牌都遍历一遍才能输出</li>
+<li>至于骨牌号码的储存方式，考虑到数据小，所以用了压缩来储存起骨牌的号码</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> domi[<span style="color:#ae81ff">10</span>][<span style="color:#ae81ff">10</span>], id[<span style="color:#ae81ff">400</span>], ans[<span style="color:#ae81ff">10</span>][<span style="color:#ae81ff">10</span>], nums <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">bool</span> vis[<span style="color:#ae81ff">30</span>];
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> dr[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>}, dc[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>};
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">ID</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) { <span style="color:#66d9ef">return</span> (min(a, b) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">|</span> max(a, b); }
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(<span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> c) { <span style="color:#66d9ef">return</span> r <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; }
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>(){ memset(ans, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> ans); memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis); nums <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; }
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> c, <span style="color:#66d9ef">int</span> num) {
+    <span style="color:#66d9ef">if</span> (num <span style="color:#f92672">==</span> <span style="color:#ae81ff">28</span>) {
+        nums<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; j<span style="color:#f92672">++</span>) { printf(<span style="color:#e6db74">&#34;%4d&#34;</span>, ans[i][j]); }
+            puts(<span style="color:#e6db74">&#34;&#34;</span>);
+        }
+        puts(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>) r<span style="color:#f92672">++</span>, c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (ans[r][c]) { dfs(r, c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, num); <span style="color:#66d9ef">return</span>; }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> newr <span style="color:#f92672">=</span> r <span style="color:#f92672">+</span> dr[i], newc <span style="color:#f92672">=</span> c <span style="color:#f92672">+</span> dc[i];
+        <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> ID(domi[r][c], domi[newr][newc]), res <span style="color:#f92672">=</span> id[x];
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>check(newr, newc) <span style="color:#f92672">||</span> vis[res] <span style="color:#f92672">||</span> ans[newr][newc]) <span style="color:#66d9ef">continue</span>;
+        ans[r][c] <span style="color:#f92672">=</span> ans[newr][newc] <span style="color:#f92672">=</span> res, vis[res] <span style="color:#f92672">=</span> true;
+        dfs(r, c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, num <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        ans[r][c] <span style="color:#f92672">=</span> ans[newr][newc] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, vis[res] <span style="color:#f92672">=</span> false;
+
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true, f <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i; j <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>; j<span style="color:#f92672">++</span>) { id[ID(i, j)] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>cnt; }
+    }
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> ok; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!~</span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>domi[i][j])) { ok <span style="color:#f92672">=</span> false; <span style="color:#66d9ef">break</span>; }
+            }
+        }
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ok) <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">if</span> (f) f <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>f;
+        <span style="color:#66d9ef">else</span> puts(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n\n\n</span><span style="color:#e6db74">&#34;</span>);
+        printf(<span style="color:#e6db74">&#34;Layout #%d:</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; i<span style="color:#f92672">++</span>) {
+            puts(<span style="color:#e6db74">&#34;&#34;</span>);
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; j<span style="color:#f92672">++</span>) printf(<span style="color:#e6db74">&#34;%4d&#34;</span>, domi[i][j]);
+        }
+        printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">Maps resulting from layout #%d are:</span><span style="color:#ae81ff">\n\n\n</span><span style="color:#e6db74">&#34;</span>, kase);
+        init();
+        dfs(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        printf(<span style="color:#e6db74">&#34;There are %d solution(s) for layout #%d.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, nums, kase);
+
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva211/>https://haofish.github.io/2020/uva211/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/dfs/">
+                    #DFS</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%9B%9E%E6%BA%AF/">
+                    #回溯</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva225/" class="prev" rel="prev" title="UVA225"><i
+                class="iconfont icon-left"></i>&nbsp;UVA225</a>
+        
+        
+        <a href="https://haofish.github.io/2020/uva690/" class="next" rel="next"
+            title="UVA690">UVA690&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">400 Words|Read in about 2
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
