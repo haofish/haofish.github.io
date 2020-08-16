@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva12113/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/uva12558/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA12558 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA12558 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA12558",
+    "headline" : "UVA12558",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-16 21:28:14 \u002b0800 CST",
+    "dateModified" : "2020-08-16 21:28:14 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva12558\/",
+    "wordCount" : "326",
+    "keywords" : [ "题解","IDA*","迭代加深搜","DFS", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA12558</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-16
+                    itemprop="datePublished">August 16, 2020</time>
+            </span>
+            in
+            
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <ul>
+<li>题意：埃及分数问题困难版，问你一个真分数$a/b$，在表达成$a/b = 1/c + 1/d ……$，选的分数尽量少，相同情况下自小的分数尽量大，限制有$k(k \le 5)$个数不能用来做分母，让你求解</li>
+<li>思路，IDA*的经典题，和普通埃及分数差不多的写法，就是要加一个限制，即有些数不能用</li>
+<li>一开始写了一个分数的结构体，后来发现没必要，直接IDA*就好了</li>
+<li>注意几个剪枝的地方，
+<ul>
+<li>到达目标层时
+<ul>
+<li>判断分子是否为1</li>
+<li>判断最后一个分母是否重复</li>
+<li>判断最后一个分母是否可用</li>
+<li>判断是否是更优解</li>
+</ul>
+</li>
+<li>未达到目标层时
+<ul>
+<li>预测选用当前的抉择是否会超出目标层（IDA*的关键剪枝）</li>
+<li>判断当前抉择的分母是否可用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">using</span> ll <span style="color:#f92672">=</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>;
+
+ll kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, can[<span style="color:#ae81ff">1005</span>], k, ans[<span style="color:#ae81ff">10000</span>], tmp[<span style="color:#ae81ff">10000</span>], a, b, x;
+
+ll <span style="color:#a6e22e">gcd</span>(ll a, ll b) { ll m <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#66d9ef">while</span>(m) m <span style="color:#f92672">=</span> a <span style="color:#f92672">%</span> b, a <span style="color:#f92672">=</span> b, b <span style="color:#f92672">=</span> m; <span style="color:#66d9ef">return</span> a; }
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">dfs</span>(ll now, <span style="color:#66d9ef">const</span> ll <span style="color:#f92672">&amp;</span>h, ll first, ll a, ll b) {
+    <span style="color:#66d9ef">if</span> (now <span style="color:#f92672">==</span> h) {
+        <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> false;
+        <span style="color:#66d9ef">if</span> (b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1001</span> <span style="color:#f92672">&amp;&amp;</span> can[b]) <span style="color:#66d9ef">return</span> false;
+        <span style="color:#66d9ef">if</span> (b <span style="color:#f92672">==</span> tmp[h <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>]) <span style="color:#66d9ef">return</span> false;
+        tmp[h <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> b;
+        <span style="color:#66d9ef">if</span> (ans[h <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) memcpy(ans, tmp, <span style="color:#66d9ef">sizeof</span>(ll) <span style="color:#f92672">*</span> h);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> h <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>) {
+            <span style="color:#66d9ef">if</span> (ans[i] <span style="color:#f92672">==</span> tmp[i]) <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (ans[i] <span style="color:#f92672">&gt;</span> tmp[i]) memcpy(ans, tmp, <span style="color:#66d9ef">sizeof</span>(ll) <span style="color:#f92672">*</span> h); 
+            <span style="color:#66d9ef">break</span>;
+        }
+        <span style="color:#66d9ef">return</span> true;
+    }
+    <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> false;
+    <span style="color:#66d9ef">for</span> (ll i <span style="color:#f92672">=</span> max(first, b <span style="color:#f92672">/</span> a) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; ; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">*</span> i <span style="color:#f92672">&gt;=</span> (h <span style="color:#f92672">-</span> now <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> b) <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1001</span> <span style="color:#f92672">&amp;&amp;</span> can[i]) <span style="color:#66d9ef">continue</span>;
+        tmp[now <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> i;
+        ll g <span style="color:#f92672">=</span> gcd(b <span style="color:#f92672">*</span> i, a <span style="color:#f92672">*</span> i <span style="color:#f92672">-</span> b);
+        <span style="color:#66d9ef">if</span> (dfs(now <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, h, i, (a <span style="color:#f92672">*</span> i <span style="color:#f92672">-</span> b) <span style="color:#f92672">/</span> g, b <span style="color:#f92672">*</span> i <span style="color:#f92672">/</span> g)) ok <span style="color:#f92672">=</span> true;
+    }
+    <span style="color:#66d9ef">return</span> ok;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>() {
+    scanf(<span style="color:#e6db74">&#34;%lld%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>k);
+    printf(<span style="color:#e6db74">&#34;Case %lld: %lld/%lld=&#34;</span>, <span style="color:#f92672">++</span>kase, a, b);
+    <span style="color:#66d9ef">while</span> (k<span style="color:#f92672">--</span>) { scanf(<span style="color:#e6db74">&#34;%lld&#34;</span>, <span style="color:#f92672">&amp;</span>x); can[x] <span style="color:#f92672">=</span> true; }
+    <span style="color:#66d9ef">for</span> (ll i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; ; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (dfs(<span style="color:#ae81ff">1</span>, i, <span style="color:#ae81ff">0</span>, a, b)) {
+            <span style="color:#66d9ef">for</span> (ll j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">++</span>) printf(<span style="color:#e6db74">&#34;1/%lld+&#34;</span>, ans[j]);
+            printf(<span style="color:#e6db74">&#34;1/%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+            <span style="color:#66d9ef">break</span>;
+        }
+    }
+    memset(tmp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> tmp);
+    memset(can, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> can);
+    memset(ans, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> ans);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> T;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
+    <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>) solve();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva12558/>https://haofish.github.io/2020/uva12558/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/ida/">
+                    #IDA*</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C/">
+                    #迭代加深搜</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/dfs/">
+                    #DFS</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva12113/" class="prev" rel="prev" title="UVA12113"><i
+                class="iconfont icon-left"></i>&nbsp;UVA12113</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">400 Words|Read in about 2
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

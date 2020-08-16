@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>IDA* on 🐟🐟🐟&lt;--</title>
-    <link>https://haofish.github.io/tags/ida/</link>
-    <description>Recent content in IDA* on 🐟🐟🐟&lt;--</description>
+    <title>迭代加深搜 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C/</link>
+    <description>Recent content in 迭代加深搜 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Aug 2020 21:28:14 +0800</lastBuildDate>
     
-	<atom:link href="https://haofish.github.io/tags/ida/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://haofish.github.io/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://haofish.github.io/2020/uva12558/</guid>
       <description>题意：埃及分数问题困难版，问你一个真分数$a/b$，在表达成$a/b = 1/c + 1/d ……$，选的分数尽量少，相同情况下自小的分数尽量大，限制有$k(k \le 5)$个数不能用来做分母，让你求解 思路，IDA*的经典题，和普通埃及分数差不多的写法，就是要加一个限制，即有些数不能用 一开始写了一个分数的结构体，后来发现没必要，直接IDA*就好了 注意几个剪枝的地方，  到达目标层时  判断分子是否为1 判断最后一个分母是否重复 判断最后一个分母是否可用 判断是否是更优解   未达到目标层时  预测选用当前的抉择是否会超出目标层（IDA*的关键剪枝） 判断当前抉择的分母是否可用     代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; using ll = long long; ll kase = 0, can[1005], k, ans[10000], tmp[10000], a, b, x; ll gcd(ll a, ll b) { ll m = 1; while(m) m = a % b, a = b, b = m; return a; } bool dfs(ll now, const ll &amp;amp;h, ll first, ll a, ll b) { if (now == h) { if (a !</description>
-    </item>
-    
-    <item>
-      <title>UVA11212</title>
-      <link>https://haofish.github.io/2020/uva11212/</link>
-      <pubDate>Tue, 11 Aug 2020 10:02:22 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/uva11212/</guid>
-      <description>Editing a Book  题意：给你一个排列，你一次能够剪切一段字串，然后在别的地方插入粘贴，让你求最少的剪切粘贴次数使得排列是1~n按顺序的 IDA*的题，每次规定递归的层数，长度为n的排列最多是剪切粘贴n - 1次 剪枝精髓：移动一次最多改变 3 个数字的后继数字，例如从{a，b，c，d}到{a, c, b, d},只有a, c, b（字母均代表区间）三个区间最后一个数的后继改变了 假设当前递归到d层，还有h个数字的后继不正确（最后一个数字的评判依据是是否是最后一个数，即$n - 1$），的最少还要遍历 $d + h / 3$ 层，当前设置了最大层数为Max, 则当 $d + h / 3 &amp;gt; Max$ 即 $3 \times d + h &amp;gt; 3 \times Max$ 就剪枝 代码如下，跑了300ms  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, arr[15], tmp[15], kase = 0; bool check() { for (int i = 0; i &amp;lt; n; i++) { if (arr[i] !</description>
     </item>
     
   </channel>
