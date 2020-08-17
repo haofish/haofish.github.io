@@ -6,10 +6,37 @@
     <description>Recent content in Posts on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Aug 2020 21:28:14 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2020 19:54:27 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA1152</title>
+      <link>https://haofish.github.io/2020/uva1152/</link>
+      <pubDate>Mon, 17 Aug 2020 19:54:27 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1152/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UVA1605</title>
+      <link>https://haofish.github.io/2020/uva1605/</link>
+      <pubDate>Mon, 17 Aug 2020 11:43:31 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1605/</guid>
+      <description>Building for UN  题意：有一栋楼，有$n(n \le 50)$个国家要开会，每个国家至少分配一个位置，让你输出一种方案，H层，每层W行L列，使得任意两个国家要能相邻，层数也算相邻 按紫书说的构造一种解出来，只需要两层就好了，每层$n \times n$的格子，第一层第i行是第i个国家,第二层第j列是第j个国家， 这个模型有点像放筷子，有n双筷子，分别都有左和右，要想让每个左筷子都能接触到其他右筷子的方案就是在第一层筷子横着放，第二层竖着放就行了 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;using namespace std; int n; char str[55]; void solve() { printf(&amp;#34;%d %d %d\n&amp;#34;, 2, n, n); for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; n; j++) printf(&amp;#34;%c&amp;#34;, str[i]); puts(&amp;#34;&amp;#34;); } puts(&amp;#34;&amp;#34;); for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; n; j++) printf(&amp;#34;%c&amp;#34;, str[j]); puts(&amp;#34;&amp;#34;); } } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
+    </item>
+    
+    <item>
+      <title>UVA120</title>
+      <link>https://haofish.github.io/2020/uva120/</link>
+      <pubDate>Mon, 17 Aug 2020 11:16:52 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva120/</guid>
+      <description>Stacks of Flapjacks  题意：给你一个序列，每次选一个数k，从序列的后往前数第k个数然后把它及它之前时数都翻转一下，问你一种选法使得序列从小到大排好序 有点像选择排序，不过为了不影响后面的，应该先把排好最大的数，如果已经就位就排第二大的数，具体策略是先把它调到最前面再调到相应的正确位置，一直排到有序为止 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int cnt, arr[50], tmp[50]; char line[150]; void solve() { memcpy(tmp, arr, sizeof(int) * cnt); sort(tmp, tmp + cnt); int indx = cnt - 1; for (int i = cnt - 1; i &amp;gt;= 0; i--) { if (tmp[indx] == arr[i]) { indx--; } else { int nums = i, k = cnt - i; while (arr[nums] !</description>
+    </item>
     
     <item>
       <title>UVA12558</title>
@@ -17,7 +44,7 @@
       <pubDate>Sun, 16 Aug 2020 21:28:14 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva12558/</guid>
-      <description>题意：埃及分数问题困难版，问你一个真分数$a/b$，在表达成$a/b = 1/c + 1/d ……$，选的分数尽量少，相同情况下自小的分数尽量大，限制有$k(k \le 5)$个数不能用来做分母，让你求解 思路，IDA*的经典题，和普通埃及分数差不多的写法，就是要加一个限制，即有些数不能用 一开始写了一个分数的结构体，后来发现没必要，直接IDA*就好了 注意几个剪枝的地方，  到达目标层时  判断分子是否为1 判断最后一个分母是否重复 判断最后一个分母是否可用 判断是否是更优解   未达到目标层时  预测选用当前的抉择是否会超出目标层（IDA*的关键剪枝） 判断当前抉择的分母是否可用     代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; using ll = long long; ll kase = 0, can[1005], k, ans[10000], tmp[10000], a, b, x; ll gcd(ll a, ll b) { ll m = 1; while(m) m = a % b, a = b, b = m; return a; } bool dfs(ll now, const ll &amp;amp;h, ll first, ll a, ll b) { if (now == h) { if (a !</description>
+      <description>Egyptian Fractions (HARD version)  题意：埃及分数问题困难版，问你一个真分数$a/b$，在表达成$a/b = 1/c + 1/d ……$，选的分数尽量少，相同情况下自小的分数尽量大，限制有$k(k \le 5)$个数不能用来做分母，让你求解 思路，IDA*的经典题，和普通埃及分数差不多的写法，就是要加一个限制，即有些数不能用 一开始写了一个分数的结构体，后来发现没必要，直接IDA*就好了 注意几个剪枝的地方，  到达目标层时  判断分子是否为1 判断最后一个分母是否重复 判断最后一个分母是否可用 判断是否是更优解   未达到目标层时  预测选用当前的抉择是否会超出目标层（IDA*的关键剪枝） 判断当前抉择的分母是否可用     代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; using ll = long long; ll kase = 0, can[1005], k, ans[10000], tmp[10000], a, b, x; ll gcd(ll a, ll b) { ll m = 1; while(m) m = a % b, a = b, b = m; return a; } bool dfs(ll now, const ll &amp;amp;h, ll first, ll a, ll b) { if (now == h) { if (a !</description>
     </item>
     
     <item>
@@ -408,7 +435,7 @@
       <pubDate>Mon, 13 Jul 2020 17:12:35 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</guid>
-      <description>基础  二分 快速幂 最大公因数，最小公倍数 素数筛（埃式） 高精（不压位） 高精（压位） 离散化 未完待续……   数据结构  树状数组 线段树 dijkstra(堆优化版) bellman - ford floyd    基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1; else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
+      <description>基础  二分 快速幂 最大公因数，最小公倍数 素数筛（埃式） 高精（不压位） 高精（压位） 离散化 未完待续……   数据结构  树状数组 线段树 简单的整数哈希（二进制版线性探查） dijkstra(堆优化版) bellman - ford floyd    基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1; else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
     </item>
     
     <item>

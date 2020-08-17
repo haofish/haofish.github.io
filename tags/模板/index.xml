@@ -17,7 +17,7 @@
       <pubDate>Mon, 13 Jul 2020 17:12:35 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/%E6%A8%A1%E6%9D%BF/</guid>
-      <description>基础  二分 快速幂 最大公因数，最小公倍数 素数筛（埃式） 高精（不压位） 高精（压位） 离散化 未完待续……   数据结构  树状数组 线段树 dijkstra(堆优化版) bellman - ford floyd    基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1; else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
+      <description>基础  二分 快速幂 最大公因数，最小公倍数 素数筛（埃式） 高精（不压位） 高精（压位） 离散化 未完待续……   数据结构  树状数组 线段树 简单的整数哈希（二进制版线性探查） dijkstra(堆优化版) bellman - ford floyd    基础 二分    二分分法：[l, mid) 和 [mid, r],目标值符合右区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r) &amp;gt;&amp;gt; 1;//相当于 l + r 后向下取整  if (/* 探针落在左区间 */) l = mid + 1; else r = mid; } return l; }   二分分法：[l, mid] 和 (mid, r], 目标值符合左区间及其端点    int bsearch(int l, int r){ while (l &amp;lt; r) { int mid = (long long)(l + r + 1) &amp;gt;&amp;gt; 1; //相当于 l + r 后向上取整，否则陷入死循环，例如 此时 l = 1, r = 2, 那么探针就会一直落到左区间 l 上（l + r &amp;gt;&amp;gt; 1 = 1），下一步 l = mid = l,就会死循环  if (/* 探针落在左区间 */) l = mid; else r = mid - 1; } return l; } 二分参考资料</description>
     </item>
     
   </channel>

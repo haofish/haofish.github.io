@@ -6,10 +6,28 @@
     <description>Recent content in 思维 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Aug 2020 20:27:46 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2020 11:43:31 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA1605</title>
+      <link>https://haofish.github.io/2020/uva1605/</link>
+      <pubDate>Mon, 17 Aug 2020 11:43:31 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1605/</guid>
+      <description>Building for UN  题意：有一栋楼，有$n(n \le 50)$个国家要开会，每个国家至少分配一个位置，让你输出一种方案，H层，每层W行L列，使得任意两个国家要能相邻，层数也算相邻 按紫书说的构造一种解出来，只需要两层就好了，每层$n \times n$的格子，第一层第i行是第i个国家,第二层第j列是第j个国家， 这个模型有点像放筷子，有n双筷子，分别都有左和右，要想让每个左筷子都能接触到其他右筷子的方案就是在第一层筷子横着放，第二层竖着放就行了 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;using namespace std; int n; char str[55]; void solve() { printf(&amp;#34;%d %d %d\n&amp;#34;, 2, n, n); for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; n; j++) printf(&amp;#34;%c&amp;#34;, str[i]); puts(&amp;#34;&amp;#34;); } puts(&amp;#34;&amp;#34;); for (int i = 0; i &amp;lt; n; i++) { for (int j = 0; j &amp;lt; n; j++) printf(&amp;#34;%c&amp;#34;, str[j]); puts(&amp;#34;&amp;#34;); } } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
+    </item>
+    
+    <item>
+      <title>UVA120</title>
+      <link>https://haofish.github.io/2020/uva120/</link>
+      <pubDate>Mon, 17 Aug 2020 11:16:52 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva120/</guid>
+      <description>Stacks of Flapjacks  题意：给你一个序列，每次选一个数k，从序列的后往前数第k个数然后把它及它之前时数都翻转一下，问你一种选法使得序列从小到大排好序 有点像选择排序，不过为了不影响后面的，应该先把排好最大的数，如果已经就位就排第二大的数，具体策略是先把它调到最前面再调到相应的正确位置，一直排到有序为止 代码如下  #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int cnt, arr[50], tmp[50]; char line[150]; void solve() { memcpy(tmp, arr, sizeof(int) * cnt); sort(tmp, tmp + cnt); int indx = cnt - 1; for (int i = cnt - 1; i &amp;gt;= 0; i--) { if (tmp[indx] == arr[i]) { indx--; } else { int nums = i, k = cnt - i; while (arr[nums] !</description>
+    </item>
     
     <item>
       <title>UVA12166</title>
