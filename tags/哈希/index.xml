@@ -17,7 +17,7 @@
       <pubDate>Mon, 17 Aug 2020 19:54:27 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva1152/</guid>
-      <description>4 Values whose Sum is 0  题意：给你4个长度为$n(n \le 4000)$的集合，让你在4个集合里分别取a、b、c、d，使得$a + b + c + d = 0$，问你有多少种取法 按紫书说的“中途相遇法”，从象个不同的方向来解决问题，最终“汇集”在一起 用哈希记录$a + b$，然后再计算$-c - d$的哈希个数就好了，用slt提供的unordered_map足够过这题了，跑了6000ms多，a掉了 后来看了一位大佬自己写的hash，跑了一下，平均650ms，一个很快的哈希表 原理大概和线性探查法差不多，不过这里用的不是取余（取余很慢），这里用的位运算里的与运算，保证了数值在给定的哈希范围内 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 4e3 + 10, H = 0x7fffff; int n, arr[5][M], real[H + 5], val[H + 5]; struct Hash{ void clear() { memset(val, 0, sizeof val); } int&amp;amp; operator[] (const int&amp;amp; num) { int i = num &amp;amp; H; while (val[i] &amp;amp;&amp;amp; real[i] !</description>
+      <description>4 Values whose Sum is 0  题意：给你4个长度为$n(n \le 4000)$的集合，让你在4个集合里分别取a、b、c、d，使得$a + b + c + d = 0$，问你有多少种取法 按紫书说的“中途相遇法”，从象个不同的方向来解决问题，最终“汇集”在一起 用哈希记录$a + b$，然后再计算$-c - d$的哈希个数就好了，用slt提供的unordered_map足够过这题了，跑了6000ms多，a掉了 后来看了一位大佬自己写的hash，跑了一下，平均650ms，一个很快的哈希表 原理大概和线性探查法差不多，不过这里用的不是取余（取余很慢），这里用的位运算里的与运算，保证了数值在给定的哈希范围内 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 4e3 + 10, H = 0x7fffff; int n, arr[5][M]; struct Hash{ int real[H + 5], val[H + 5] void clear() { memset(val, 0, sizeof val); } int&amp;amp; operator[] (const int&amp;amp; num) { int i = num &amp;amp; H; while (val[i] &amp;amp;&amp;amp; real[i] !</description>
     </item>
     
   </channel>

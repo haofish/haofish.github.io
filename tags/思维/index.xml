@@ -6,10 +6,28 @@
     <description>Recent content in 思维 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Aug 2020 19:54:27 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 11:57:07 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA11572</title>
+      <link>https://haofish.github.io/2020/uva11572/</link>
+      <pubDate>Tue, 18 Aug 2020 11:57:07 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva11572/</guid>
+      <description>Unique Snowflakes  题意：给你一个长度为$n(n \le 1000000)$的数组，问你最长有不重复数字的连续子序列有多长 用set和map的速度都差不多，set记录是否重复，map记录当前数字在此之前最近出现的位置，如果没有就是-1 如果嫌set和map慢的话直接用unordered_set或者unordered_map 这里用了上次偶遇了一种很牛逼很简洁的hash方式后就喜欢上这个hash，跑进了100ms 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 1e6 + 10, H = 0xfffff; int n, arr[M], last[M]; struct Hash{ int real[H + 5], val[H + 5]; void clear() { memset(val, -1, sizeof val); }//初始化-1  int&amp;amp; operator[] (const int &amp;amp;k) { int i = k &amp;amp; H; while (real[i] != k &amp;amp;&amp;amp; ~val[i]) i = (i + 1) &amp;amp; H; real[i] = k; return val[i]; } }h; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
+    </item>
+    
+    <item>
+      <title>UVA11054</title>
+      <link>https://haofish.github.io/2020/uva11054/</link>
+      <pubDate>Tue, 18 Aug 2020 10:55:44 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva11054/</guid>
+      <description>Wine trading in Gergovia  题意：有n个村庄，每个村庄都有对酒的需求，正数代表要送出多少酒，负数代表需要多少酒，把k单位的酒运到相邻的村庄要k单位的体力，让你计算最小需要的体力 对于第一个村庄，他的需求量x无论正负，都需要右边的村庄搬过来或者搬过去右边的村庄，然后把多余的需求继承到下一个村庄，和紫书上讲的思想差不多 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;cmath&amp;gt; using namespace std; using ll = long long; const int M = 1e5 + 10; int n; ll arr[M], ans; int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.in&amp;#34;, &amp;#34;r&amp;#34;, stdin); freopen(&amp;#34;D:/MYCODE/vsCode-c/test.out&amp;#34;, &amp;#34;w&amp;#34;, stdout); #endif  while (scanf(&amp;#34;%d&amp;#34;, &amp;amp;n), n) { ans = 0; for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%lld&amp;#34;, arr + i); } for (int i = 0; i &amp;lt; n - 1; i++) { ans += abs(arr[i]), arr[i + 1] += arr[i]; } printf(&amp;#34;%lld\n&amp;#34;, ans); memset(arr, 0, sizeof arr); } return 0; } </description>
+    </item>
     
     <item>
       <title>UVA1152</title>
@@ -17,7 +35,7 @@
       <pubDate>Mon, 17 Aug 2020 19:54:27 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva1152/</guid>
-      <description>4 Values whose Sum is 0  题意：给你4个长度为$n(n \le 4000)$的集合，让你在4个集合里分别取a、b、c、d，使得$a + b + c + d = 0$，问你有多少种取法 按紫书说的“中途相遇法”，从象个不同的方向来解决问题，最终“汇集”在一起 用哈希记录$a + b$，然后再计算$-c - d$的哈希个数就好了，用slt提供的unordered_map足够过这题了，跑了6000ms多，a掉了 后来看了一位大佬自己写的hash，跑了一下，平均650ms，一个很快的哈希表 原理大概和线性探查法差不多，不过这里用的不是取余（取余很慢），这里用的位运算里的与运算，保证了数值在给定的哈希范围内 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 4e3 + 10, H = 0x7fffff; int n, arr[5][M], real[H + 5], val[H + 5]; struct Hash{ void clear() { memset(val, 0, sizeof val); } int&amp;amp; operator[] (const int&amp;amp; num) { int i = num &amp;amp; H; while (val[i] &amp;amp;&amp;amp; real[i] !</description>
+      <description>4 Values whose Sum is 0  题意：给你4个长度为$n(n \le 4000)$的集合，让你在4个集合里分别取a、b、c、d，使得$a + b + c + d = 0$，问你有多少种取法 按紫书说的“中途相遇法”，从象个不同的方向来解决问题，最终“汇集”在一起 用哈希记录$a + b$，然后再计算$-c - d$的哈希个数就好了，用slt提供的unordered_map足够过这题了，跑了6000ms多，a掉了 后来看了一位大佬自己写的hash，跑了一下，平均650ms，一个很快的哈希表 原理大概和线性探查法差不多，不过这里用的不是取余（取余很慢），这里用的位运算里的与运算，保证了数值在给定的哈希范围内 代码如下  #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int M = 4e3 + 10, H = 0x7fffff; int n, arr[5][M]; struct Hash{ int real[H + 5], val[H + 5] void clear() { memset(val, 0, sizeof val); } int&amp;amp; operator[] (const int&amp;amp; num) { int i = num &amp;amp; H; while (val[i] &amp;amp;&amp;amp; real[i] !</description>
     </item>
     
     <item>

@@ -10,10 +10,9 @@
   
   
   
-  <link rel="prev" href="https://haofish.github.io/2020/uva1605/" />
+  <link rel="prev" href="https://haofish.github.io/2020/uva11572/" />
   
-  <link rel="next" href="https://haofish.github.io/2020/uva11054/" />
-  <link rel="canonical" href="https://haofish.github.io/2020/uva1152/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva1149/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -69,11 +68,11 @@
   <title>
     
     
-    UVA1152 | 🐟🐟🐟&lt;--
+    UVA1149 | 🐟🐟🐟&lt;--
     
   </title>
   <meta name="title"
-    content="UVA1152 | 🐟🐟🐟&lt;--">
+    content="UVA1149 | 🐟🐟🐟&lt;--">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -92,8 +91,8 @@
          "@id": "https:\/\/haofish.github.io\/"
     },
     "articleSection" : "posts",
-    "name" : "UVA1152",
-    "headline" : "UVA1152",
+    "name" : "UVA1149",
+    "headline" : "UVA1149",
     "description" : "description.",
     "inLanguage" : "en-us",
     "author" : "",
@@ -102,11 +101,11 @@
     "accountablePerson" : "",
     "copyrightHolder" : "",
     "copyrightYear" : "2020",
-    "datePublished": "2020-08-17 19:54:27 \u002b0800 CST",
-    "dateModified" : "2020-08-17 19:54:27 \u002b0800 CST",
-    "url" : "https:\/\/haofish.github.io\/2020\/uva1152\/",
-    "wordCount" : "219",
-    "keywords" : [ "题解","思维","哈希", "🐟🐟🐟\u003c--"]
+    "datePublished": "2020-08-18 15:50:53 \u002b0800 CST",
+    "dateModified" : "2020-08-18 15:50:53 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva1149\/",
+    "wordCount" : "103",
+    "keywords" : [ "题解","贪心", "🐟🐟🐟\u003c--"]
 }
 </script>
 
@@ -168,14 +167,14 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">UVA1152</h1>
+        <h1 class="post-title" itemprop="name headline">UVA1149</h1>
         <div class="post-meta">
             Written by <a itemprop="name" href="https://haofish.github.io/"
                 rel="author"></a>
             with ♥
             <span class="post-time">
-                on <time datetime=2020-08-17
-                    itemprop="datePublished">August 17, 2020</time>
+                on <time datetime=2020-08-18
+                    itemprop="datePublished">August 18, 2020</time>
             </span>
             in
             <i class="iconfont icon-folder"></i>
@@ -201,13 +200,10 @@
         
         
 
-        <h2 id="4-values-whose-sum-is-0httpsvjudgenetproblemuva-1152"><a href="https://vjudge.net/problem/UVA-1152">4 Values whose Sum is 0</a></h2>
+        <h2 id="bin-packinghttpsvjudgenetproblemuva-1149"><a href="https://vjudge.net/problem/UVA-1149">Bin Packing</a></h2>
 <ul>
-<li>题意：给你4个长度为$n(n \le 4000)$的集合，让你在4个集合里分别取a、b、c、d，使得$a + b + c + d = 0$，问你有多少种取法</li>
-<li>按紫书说的“中途相遇法”，从象个不同的方向来解决问题，最终“汇集”在一起</li>
-<li>用哈希记录$a + b$，然后再计算$-c - d$的哈希个数就好了，用slt提供的unordered_map足够过这题了，跑了6000ms多，a掉了</li>
-<li>后来看了一位大佬自己写的hash，跑了一下，平均650ms，一个很快的哈希表</li>
-<li>原理大概和线性探查法差不多，不过这里用的不是取余（取余很慢），这里用的位运算里的与运算，保证了数值在给定的哈希范围内</li>
+<li>题意：给你n个物品，每个物品的重量为$w_i$，你有容量为w的背包，每个背包最多只能装两件物品，问你最少要多少背包来装</li>
+<li>贪心就好了，贪心策略：将物品按重量排序，如果最重和最轻的物品一起不超过w就放一起，然后就让次重和次轻的放一起；否则重的单独放在一个背包，然后让次重的背包和最轻的一起，以此循环</li>
 <li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
@@ -216,53 +212,28 @@
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
-<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">4e3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>, H <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7fffff</span>;
-<span style="color:#66d9ef">int</span> n, arr[<span style="color:#ae81ff">5</span>][M];
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#66d9ef">int</span> n, w, wi[M];
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Hash</span>{
-    <span style="color:#66d9ef">int</span> real[H <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>], val[H <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>]
-    <span style="color:#66d9ef">void</span> clear() { memset(val, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> val); }
-    <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> num) {
-        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> num <span style="color:#f92672">&amp;</span> H;
-        <span style="color:#66d9ef">while</span> (val[i] <span style="color:#f92672">&amp;&amp;</span> real[i] <span style="color:#f92672">!=</span> num) i <span style="color:#f92672">=</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> H;
-        real[i] <span style="color:#f92672">=</span> num;
-        <span style="color:#66d9ef">return</span> val[i];
-    }
-}h;
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>() {
-    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-    h.clear();
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; j<span style="color:#f92672">++</span>) {
-            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>arr[j][i]);
-        }
-    }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>) {
-            h[arr[<span style="color:#ae81ff">0</span>][i] <span style="color:#f92672">+</span> arr[<span style="color:#ae81ff">1</span>][j]]<span style="color:#f92672">++</span>;
-        }
-    }
-    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>) {
-            ans <span style="color:#f92672">+=</span> h[<span style="color:#f92672">-</span> arr[<span style="color:#ae81ff">2</span>][i] <span style="color:#f92672">-</span> arr[<span style="color:#ae81ff">3</span>][j]];
-        }
-    }
-    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
-}
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
 <span style="color:#75715e">#ifndef ONLINE_JUDGE
 </span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
     freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
 <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> T, f <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
-    <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>) {
-        <span style="color:#66d9ef">if</span> (f) f <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>f;
-        <span style="color:#66d9ef">else</span> puts(<span style="color:#e6db74">&#34;&#34;</span>);
-        solve();
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> t;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>w);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, wi <span style="color:#f92672">+</span> i);
+        sort(wi, wi <span style="color:#f92672">+</span> n);
+        <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, r <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> r) {
+            <span style="color:#66d9ef">if</span> (wi[l] <span style="color:#f92672">+</span> wi[r] <span style="color:#f92672">&lt;=</span> w) l<span style="color:#f92672">++</span>, r<span style="color:#f92672">--</span>;
+            <span style="color:#66d9ef">else</span> r<span style="color:#f92672">--</span>;
+            ans<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">if</span> (t) printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>, ans);
+        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
@@ -275,7 +246,7 @@
         
         <p class="copyright-item">
             <span>Link:</span>
-            <a href=https://haofish.github.io/2020/uva1152/>https://haofish.github.io/2020/uva1152/</span>
+            <a href=https://haofish.github.io/2020/uva1149/>https://haofish.github.io/2020/uva1149/</span>
         </p>
         
         
@@ -294,11 +265,8 @@
             <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
                     #题解</a></span>
             
-            <span class="tag"><a href="https://haofish.github.io/tags/%E6%80%9D%E7%BB%B4/">
-                    #思维</a></span>
-            
-            <span class="tag"><a href="https://haofish.github.io/tags/%E5%93%88%E5%B8%8C/">
-                    #哈希</a></span>
+            <span class="tag"><a href="https://haofish.github.io/tags/%E8%B4%AA%E5%BF%83/">
+                    #贪心</a></span>
             
         </section>
         
@@ -310,12 +278,9 @@
 
     <div class="post-nav">
         
-        <a href="https://haofish.github.io/2020/uva1605/" class="prev" rel="prev" title="UVA1605"><i
-                class="iconfont icon-left"></i>&nbsp;UVA1605</a>
+        <a href="https://haofish.github.io/2020/uva11572/" class="prev" rel="prev" title="UVA11572"><i
+                class="iconfont icon-left"></i>&nbsp;UVA11572</a>
         
-        
-        <a href="https://haofish.github.io/2020/uva11054/" class="next" rel="next"
-            title="UVA11054">UVA11054&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -324,7 +289,7 @@
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">300 Words|Read in about 2
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

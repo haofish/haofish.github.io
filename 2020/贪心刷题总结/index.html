@@ -105,7 +105,7 @@
     "datePublished": "2020-07-25 19:08:51 \u002b0800 CST",
     "dateModified" : "2020-07-25 19:08:51 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/%E8%B4%AA%E5%BF%83%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "986",
+    "wordCount" : "1091",
     "keywords" : [ "贪心", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -207,6 +207,7 @@
 <li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
 <li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
 <li><a href="#%E6%99%AE%E9%80%9A%E8%B4%AA%E5%BF%83">普通贪心</a></li>
+<li><a href="#bin-packing">Bin Packing</a></li>
 <li><a href="#%E5%8C%BA%E9%97%B4%E8%B4%AA%E5%BF%83">区间贪心</a></li>
 <li><a href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">未完待续……</a></li>
 </ul>
@@ -531,6 +532,47 @@ priority_queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef"
 }
 </code></pre></div></li>
 </ul>
+<h2 id="bin-packinghttpsvjudgenetproblemuva-1149"><a href="https://vjudge.net/problem/UVA-1149">Bin Packing</a></h2>
+<ul>
+<li>
+<p>题意：给你n个物品，每个物品的重量为$w_i$，你有容量为w的背包，每个背包最多只能装两件物品，问你最少要多少背包来装</p>
+<ul>
+<li>贪心就好了，贪心策略：将物品按重量排序，如果最重和最轻的物品一起不超过w就放一起，然后就让次重和次轻的放一起；否则重的单独放在一个背包，然后让次重的背包和最轻的一起，以此循环</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#66d9ef">int</span> n, w, wi[M];
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span> () {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> t;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>w);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, wi <span style="color:#f92672">+</span> i);
+        sort(wi, wi <span style="color:#f92672">+</span> n);
+        <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, r <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> r) {
+            <span style="color:#66d9ef">if</span> (wi[l] <span style="color:#f92672">+</span> wi[r] <span style="color:#f92672">&lt;=</span> w) l<span style="color:#f92672">++</span>, r<span style="color:#f92672">--</span>;
+            <span style="color:#66d9ef">else</span> r<span style="color:#f92672">--</span>;
+            ans<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">if</span> (t) printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>, ans);
+        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
 <h2 id="区间贪心">区间贪心</h2>
 <ul>
 <li>
@@ -630,7 +672,7 @@ priority_queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef"
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">1000 Words|Read in about 5
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">1100 Words|Read in about 6
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         
