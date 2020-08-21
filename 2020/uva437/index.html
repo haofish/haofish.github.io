@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva1025/" />
+  
+  <link rel="next" href="https://haofish.github.io/2020/uva116/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva437/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA437 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA437 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA437",
+    "headline" : "UVA437",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-21 09:46:38 \u002b0800 CST",
+    "dateModified" : "2020-08-21 09:46:38 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva437\/",
+    "wordCount" : "307",
+    "keywords" : [ "题解","动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA437</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-21
+                    itemprop="datePublished">August 21, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch9/"> 紫书刷题录-ch9 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="uva-437-the-tower-of-babylonhttpsvjudgenetproblemuva-437"><a href="https://vjudge.net/problem/UVA-437">UVA 437 The Tower of Babylon</a></h2>
+<ul>
+<li>题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高</li>
+<li>简单的分析
+<ul>
+<li>能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码</li>
+<li>一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体</li>
+<li>下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去</li>
+<li>最后就DP就是求从某个节点出发的最大距离就是答案</li>
+<li>注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图</li>
+<li>下面是代码</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, head[<span style="color:#ae81ff">100</span>], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, dp[<span style="color:#ae81ff">500</span>], vis[<span style="color:#ae81ff">500</span>];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">rect</span>{
+    <span style="color:#66d9ef">int</span> a, b, c;
+    rect(){}
+    rect(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> c) <span style="color:#f92672">:</span> a(a), b(b), c(c) {}
+}r[<span style="color:#ae81ff">100</span>];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span>{
+    <span style="color:#66d9ef">int</span> to, next;
+    edges(<span style="color:#66d9ef">int</span> to <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> next <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(to), next(next) {}
+}edge[<span style="color:#ae81ff">10010</span>];
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">ok</span>(<span style="color:#66d9ef">const</span> rect<span style="color:#f92672">&amp;</span> x, <span style="color:#66d9ef">const</span> rect<span style="color:#f92672">&amp;</span> y) {
+    <span style="color:#66d9ef">return</span> (x.a <span style="color:#f92672">&gt;</span> y.a <span style="color:#f92672">&amp;&amp;</span> x.b <span style="color:#f92672">&gt;</span> y.b) <span style="color:#f92672">||</span> (x.b <span style="color:#f92672">&gt;</span> y.a <span style="color:#f92672">&amp;&amp;</span> x.a <span style="color:#f92672">&gt;</span> y.b);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v) { edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, head[u]); head[u] <span style="color:#f92672">=</span> cnt; }
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">read</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>n) <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">int</span> x[<span style="color:#ae81ff">3</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n;) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>j : x) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>j);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">0</span>], x[<span style="color:#ae81ff">1</span>], x[<span style="color:#ae81ff">2</span>]);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">0</span>], x[<span style="color:#ae81ff">2</span>], x[<span style="color:#ae81ff">1</span>]);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">1</span>], x[<span style="color:#ae81ff">2</span>], x[<span style="color:#ae81ff">0</span>]);
+    }
+    memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+    memset(edge, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> edge);
+    memset(dp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp);
+    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+    cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; u <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; u<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; v <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; v<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">==</span> v) <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ok(r[u], r[v])) <span style="color:#66d9ef">continue</span>;
+            add_edge(u, v);<span style="color:#75715e">//邻接表建图
+</span><span style="color:#75715e"></span>        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> u) {
+    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">return</span> dp[u];
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>res <span style="color:#f92672">=</span> dp[u], Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    res <span style="color:#f92672">=</span> r[u].c, vis[u] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>v; v <span style="color:#f92672">=</span> edge[v].next) {<span style="color:#75715e">//它的下一个节点
+</span><span style="color:#75715e"></span>        Max <span style="color:#f92672">=</span> max(Max, DP(edge[v].to));
+    }
+    <span style="color:#66d9ef">return</span> res <span style="color:#f92672">+=</span> Max;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (read()) {
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; i<span style="color:#f92672">++</span>) ans <span style="color:#f92672">=</span> max(ans, DP(i));
+        printf(<span style="color:#e6db74">&#34;Case %d: maximum height = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase, ans);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva437/>https://haofish.github.io/2020/uva437/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva1025/" class="prev" rel="prev" title="UVA1025"><i
+                class="iconfont icon-left"></i>&nbsp;UVA1025</a>
+        
+        
+        <a href="https://haofish.github.io/2020/uva116/" class="next" rel="next"
+            title="UVA116">UVA116&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">400 Words|Read in about 2
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

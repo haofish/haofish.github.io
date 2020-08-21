@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva1149/" />
+  
+  <link rel="next" href="https://haofish.github.io/2020/uva437/" />
+  <link rel="canonical" href="https://haofish.github.io/2020/uva1025/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA1025 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA1025 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA1025",
+    "headline" : "UVA1025",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-20 19:32:31 \u002b0800 CST",
+    "dateModified" : "2020-08-20 19:32:31 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva1025\/",
+    "wordCount" : "311",
+    "keywords" : [ "题解","动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA1025</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-20
+                    itemprop="datePublished">August 20, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch9/"> 紫书刷题录-ch9 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="a-spy-in-the-metrohttpsvjudgenetproblemuva-1025"><a href="https://vjudge.net/problem/UVA-1025">A Spy in the Metro</a></h2>
+<ul>
+<li>本篇是由DP总结中搬出的，目的是记录刷题进度</li>
+<li>大致题意：一个线性的地铁，有$n(2 \le n \le 50)$个站，目标是在$T(0 \le T \le 200)$时刻从1号站到n号站，注是规定刚好T时刻，不是在T时刻之前也不是在T时刻之后，从1号点出发，可以在途中转乘，问你最少的中途等车时间
+<ul>
+<li>第i站到第i + 1站需要花的时间为$t_i$</li>
+<li>有$M1(M1 \le 50)$个车从1号站出发，出发时间分别为$d_1, d_2, d_3……, d_{M1}\ \ (d_i &lt; d_{i + 1}, d_i \le 250)$，同样有M2个车从n号站出发，时间格式同上</li>
+<li>其余细节看题</li>
+</ul>
+</li>
+<li>简单分析：
+<ul>
+<li>就看当先的状态，假设现在的时间是tim，正在第p个站有三种策略
+<ul>
+<li>等1分钟，剩下的下一分钟再说</li>
+<li>如果有向1号站行的车，乘坐上去</li>
+<li>如果有向n号站行的车，乘坐上去</li>
+</ul>
+</li>
+<li>那么这个是怎么建立DAG图的呢，对于每个点，定义它包括的属性有时间和站点，如果当前时间当前站点有开往下个一或者上一个站的车，则将到站的时间和对应的站点连一条有向的边，例如当前时间是15，站点是3，并且有开向第2站点的车，10单位的时间后到达，但没有向下一个站开的车，则在属性为（15，3）的节点连一条有向边到（25，2）的节点，</li>
+<li>当然千万别忘了一点就是下1单位时间的同一站点也有一条边，即（15，3）到（16，3）也有一条有向边</li>
+<li>然后就可以利用这个DAG图的节点属性来定义状态了，即设dp[p][tim]为在p站点tim时刻的状态，既然是求最小路，则状态就是到当前节点的最短路</li>
+<li>对应三种策略的状态转移方式
+<ul>
+<li>当前的状态等于下一单位时间的状态加1的等待时间</li>
+<li>当前状态等于到站后的时间和站点的状态</li>
+<li>同上</li>
+</ul>
+</li>
+<li>最后取一个最小值</li>
+<li>边界条件就是如果在T时刻和n站点刚好到达，则返回0，因为不用等了，如果超过了T时间，则说明是从某个站点到另一个站点后时间过了，则返回无穷大表示不用等了，如果刚好到T时刻且没到达n站点，则说明后面再怎么坐车时间也过了，也返回无穷大</li>
+<li>说了这么多，却没写状态转移方程是因为打算使用记忆化来做，所有不用转移方程，直接考虑当前递归的来自哪些结果就好了</li>
+<li>代码如下</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+
+<span style="color:#66d9ef">int</span> n, T, t[<span style="color:#ae81ff">100</span>], kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, dp[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>];
+<span style="color:#66d9ef">bool</span> has_train[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>][<span style="color:#ae81ff">2</span>], vis[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>];
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">read</span>() {
+    <span style="color:#66d9ef">int</span> m, x;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>n) <span style="color:#66d9ef">return</span> false;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, t <span style="color:#f92672">+</span> i);
+    memset(has_train, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> has_train);
+    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+        has_train[<span style="color:#ae81ff">1</span>][x][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+            has_train[j][x <span style="color:#f92672">+</span> t[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> true;
+            x <span style="color:#f92672">+=</span> t[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+        }
+    }
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+        has_train[n][x][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">--</span>) {
+            has_train[j][x <span style="color:#f92672">+</span> t[j]][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+            x <span style="color:#f92672">+=</span> t[j];
+        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> p, <span style="color:#66d9ef">int</span> tim) {
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>d <span style="color:#f92672">=</span> dp[p][tim];
+    <span style="color:#66d9ef">if</span> (tim <span style="color:#f92672">&gt;</span> T) <span style="color:#66d9ef">return</span> INF;
+    <span style="color:#66d9ef">if</span> (tim <span style="color:#f92672">==</span> T) <span style="color:#66d9ef">return</span> p <span style="color:#f92672">==</span> n <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> INF;
+    <span style="color:#66d9ef">if</span> (vis[p][tim]) <span style="color:#66d9ef">return</span> d;
+    vis[p][tim] <span style="color:#f92672">=</span> true, d <span style="color:#f92672">=</span> INF;
+    d <span style="color:#f92672">=</span> DP(p, tim <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">&amp;&amp;</span> has_train[p][tim][<span style="color:#ae81ff">0</span>]) d <span style="color:#f92672">=</span> min(d, DP(p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, tim <span style="color:#f92672">+</span> t[p]));
+    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> has_train[p][tim][<span style="color:#ae81ff">1</span>]) d <span style="color:#f92672">=</span> min(d, DP(p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, tim <span style="color:#f92672">+</span> t[p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]));
+    <span style="color:#66d9ef">return</span> d;
+}
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (read()) {
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> DP(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">&gt;=</span> INF) printf(<span style="color:#e6db74">&#34;Case Number %d: impossible</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
+        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;Case Number %d: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase, ans);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva1025/>https://haofish.github.io/2020/uva1025/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva1149/" class="prev" rel="prev" title="UVA1149"><i
+                class="iconfont icon-left"></i>&nbsp;UVA1149</a>
+        
+        
+        <a href="https://haofish.github.io/2020/uva437/" class="next" rel="next"
+            title="UVA437">UVA437&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">400 Words|Read in about 2
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

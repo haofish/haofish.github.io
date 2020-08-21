@@ -6,10 +6,48 @@
     <description>Recent content in Posts on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Aug 2020 15:50:53 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2020 21:29:02 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA12563</title>
+      <link>https://haofish.github.io/2020/uva12563/</link>
+      <pubDate>Fri, 21 Aug 2020 21:29:02 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva12563/</guid>
+      <description>Jin Ge Jin Qu hao  大致题意：在KTV里，如果还剩下1秒的时间，则可以点一首更长的歌，因为他会播放完最后一首歌才停止，现在给你剩下的时间$m$和$n(n \le 50)$首歌，每首歌的时长$t_1, t_2, t_3 ……t_n$，现让你算出在剩余的时间内能唱的歌的最大数量，然后利用空出来的时间最后再点一首长为678秒的歌，输出能唱的最大数量，对应的时间 简单的分析：  题目中说最后会点一首678秒的歌来延长时间，则策略就是计算在不超过$m - 1$时间里选最多的歌 读一读上面的一句话，是不是感觉很想01背包？是的就是01背包问题，每个物品的价值默认是1了（一首歌嘛） 题目中说$m \le 10^9$，其实并没有这么大，~~我一开始也很苦恼这怎么建数组，~~后来发现其实并没有这么大，他说n + 1首歌的时长严格大于剩余的时长，并且每一首歌不会超过3分钟，这么算的话$180 \times 50 + 678 = 9678$，固数组完全够开 值得注意的是这题计算在选歌的数量多的前提下最后尽量晚地结束KTV，这就需要讨论了，一开始被这个搞得十分地晕，冷静下来后发现一个if是不够的，于是就特判3次  首先如果当前抉择的歌曲数量还没之前算的多，直接跳过 如果当前抉择的歌曲数量严格比之前算的还多，则更新歌曲数量和时间总长度 如果当前抉择的歌曲数量和之前算的一样多，则还要判断当前抉择的时长是严格比上次算还多，则更新时间总长度   具体看代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, t, dp[10010], m, kase = 0, sum[10010]; void solve() { scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m); memset(dp, 0, sizeof dp); memset(sum, 0, sizeof sum); for (int i = 0; i &amp;lt; n; i++) { scanf(&amp;#34;%d&amp;#34;, &amp;amp;t); for (int j = m; j &amp;gt; t; j--) { if (dp[j] &amp;gt; dp[j - t] + 1) continue;//特判1  if (dp[j] &amp;lt; dp[j - t] + 1) { //特判2  dp[j] = dp[j - t] + 1; sum[j] = sum[j - t] + t; } else if (sum[j] &amp;lt; sum[j - t] + t){//特判3  sum[j] = sum[j - t] + t; } } } printf(&amp;#34;Case %d: %d %d\n&amp;#34;, ++kase, dp[m] + 1, sum[m] + 678); } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
+    </item>
+    
+    <item>
+      <title>UVA116</title>
+      <link>https://haofish.github.io/2020/uva116/</link>
+      <pubDate>Fri, 21 Aug 2020 14:36:57 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva116/</guid>
+      <description>【例题3】Unidirectional TSP   大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的
+  简单的分析：
+ 可以看出是一个数塔问题的变种 书中说这种问题叫做多阶段决策问题中的一类——多阶段图的最短路问题，所谓多阶段图按书中说法就是图中结点可以划分成若干个阶段 这里我的理解就是原数塔问题也可以说是一个DAG，而这题相当于多个数塔重合的版本，固每一列都有对应着不用的阶段 计算最短路就是简单的数塔解法了 真正让人头疼的是最小字典序这里，一开始我的做法是写一大堆if判断，最后对比了一下刘老师的代码，妙不可言，用了大小为3的数组存下一列的决策行数 代码如下  #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int INF = 0x3f3f3f3f; int m, n, g[15][110], ans[15][110], Min, dp[15][110], f; bool vis[15][110]; int DP(int r, int c) { if (c == n) return 0; if (vis[r][c]) return dp[r][c]; int &amp;amp;res = dp[r][c], M = INF, &amp;amp;i = ans[r][c + 1], row[] = {r - 1, r, r + 1}; vis[r][c] = true, res = g[r][c]; if (r == 0) row[0] = m - 1; if (r == m - 1) row[2] = 0; sort(row, row + 3); for (int j = 0; j &amp;lt; 3; j++) if (M &amp;gt; DP(row[j], c + 1)) M = DP(row[j], c + 1), i = row[j]; res += M; return res; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
+    </item>
+    
+    <item>
+      <title>UVA437</title>
+      <link>https://haofish.github.io/2020/uva437/</link>
+      <pubDate>Fri, 21 Aug 2020 09:46:38 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva437/</guid>
+      <description>UVA 437 The Tower of Babylon  题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高 简单的分析  能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码 一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体 下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去 最后就DP就是求从某个节点出发的最大距离就是答案 注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图 下面是代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, kase = 0, head[100], cnt = 0, dp[500], vis[500]; struct rect{ int a, b, c; rect(){} rect(int a, int b, int c) : a(a), b(b), c(c) {} }r[100]; struct edges{ int to, next; edges(int to = 0, int next = -1) : to(to), next(next) {} }edge[10010]; bool ok(const rect&amp;amp; x, const rect&amp;amp; y) { return (x.</description>
+    </item>
+    
+    <item>
+      <title>UVA1025</title>
+      <link>https://haofish.github.io/2020/uva1025/</link>
+      <pubDate>Thu, 20 Aug 2020 19:32:31 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1025/</guid>
+      <description>A Spy in the Metro  本篇是由DP总结中搬出的，目的是记录刷题进度 大致题意：一个线性的地铁，有$n(2 \le n \le 50)$个站，目标是在$T(0 \le T \le 200)$时刻从1号站到n号站，注是规定刚好T时刻，不是在T时刻之前也不是在T时刻之后，从1号点出发，可以在途中转乘，问你最少的中途等车时间  第i站到第i + 1站需要花的时间为$t_i$ 有$M1(M1 \le 50)$个车从1号站出发，出发时间分别为$d_1, d_2, d_3……, d_{M1}\ \ (d_i &amp;lt; d_{i + 1}, d_i \le 250)$，同样有M2个车从n号站出发，时间格式同上 其余细节看题   简单分析：  就看当先的状态，假设现在的时间是tim，正在第p个站有三种策略  等1分钟，剩下的下一分钟再说 如果有向1号站行的车，乘坐上去 如果有向n号站行的车，乘坐上去   那么这个是怎么建立DAG图的呢，对于每个点，定义它包括的属性有时间和站点，如果当前时间当前站点有开往下个一或者上一个站的车，则将到站的时间和对应的站点连一条有向的边，例如当前时间是15，站点是3，并且有开向第2站点的车，10单位的时间后到达，但没有向下一个站开的车，则在属性为（15，3）的节点连一条有向边到（25，2）的节点， 当然千万别忘了一点就是下1单位时间的同一站点也有一条边，即（15，3）到（16，3）也有一条有向边 然后就可以利用这个DAG图的节点属性来定义状态了，即设dp[p][tim]为在p站点tim时刻的状态，既然是求最小路，则状态就是到当前节点的最短路 对应三种策略的状态转移方式  当前的状态等于下一单位时间的状态加1的等待时间 当前状态等于到站后的时间和站点的状态 同上   最后取一个最小值 边界条件就是如果在T时刻和n站点刚好到达，则返回0，因为不用等了，如果超过了T时间，则说明是从某个站点到另一个站点后时间过了，则返回无穷大表示不用等了，如果刚好到T时刻且没到达n站点，则说明后面再怎么坐车时间也过了，也返回无穷大 说了这么多，却没写状态转移方程是因为打算使用记忆化来做，所有不用转移方程，直接考虑当前递归的来自哪些结果就好了 代码如下    #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; const int INF = 0x3f3f3f3f; int n, T, t[100], kase = 0, dp[110][210]; bool has_train[110][210][2], vis[110][210]; bool read() { int m, x; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); if(!</description>
+    </item>
     
     <item>
       <title>UVA1149</title>
@@ -521,7 +559,7 @@
       <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型 4. 分类  ① 线性DP ② 区间DP ③ 树状DP  简介 【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  状态压缩简介 常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5. 优化dp的手段  ① 矩阵优化 ② 数据结构优化 ③ 单调队列优化 ④ 决策单调性优化 ⑤ 二进制优化 ⑥ 斜率优化 ⑦ 四边形不等式优化    1. 写在前面的话  之前写了一篇不像总结的动态规划总结，感觉更像是一个成长历程，所以就打算重写一篇。  2. 对DP简单的总结   dp的题目特点</description>
+      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4. 分类  ① 线性DP ② 区间DP ③ 树状DP  【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5.</description>
     </item>
     
     <item>

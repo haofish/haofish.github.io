@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>动态规划 on 🐟🐟🐟&lt;--</title>
-    <link>https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
-    <description>Recent content in 动态规划 on 🐟🐟🐟&lt;--</description>
+    <title>紫书刷题录-ch9 on 🐟🐟🐟&lt;--</title>
+    <link>https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch9/</link>
+    <description>Recent content in 紫书刷题录-ch9 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 21 Aug 2020 21:29:02 +0800</lastBuildDate>
     
-	<atom:link href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch9/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -47,33 +47,6 @@
       
       <guid>https://haofish.github.io/2020/uva1025/</guid>
       <description>A Spy in the Metro  本篇是由DP总结中搬出的，目的是记录刷题进度 大致题意：一个线性的地铁，有$n(2 \le n \le 50)$个站，目标是在$T(0 \le T \le 200)$时刻从1号站到n号站，注是规定刚好T时刻，不是在T时刻之前也不是在T时刻之后，从1号点出发，可以在途中转乘，问你最少的中途等车时间  第i站到第i + 1站需要花的时间为$t_i$ 有$M1(M1 \le 50)$个车从1号站出发，出发时间分别为$d_1, d_2, d_3……, d_{M1}\ \ (d_i &amp;lt; d_{i + 1}, d_i \le 250)$，同样有M2个车从n号站出发，时间格式同上 其余细节看题   简单分析：  就看当先的状态，假设现在的时间是tim，正在第p个站有三种策略  等1分钟，剩下的下一分钟再说 如果有向1号站行的车，乘坐上去 如果有向n号站行的车，乘坐上去   那么这个是怎么建立DAG图的呢，对于每个点，定义它包括的属性有时间和站点，如果当前时间当前站点有开往下个一或者上一个站的车，则将到站的时间和对应的站点连一条有向的边，例如当前时间是15，站点是3，并且有开向第2站点的车，10单位的时间后到达，但没有向下一个站开的车，则在属性为（15，3）的节点连一条有向边到（25，2）的节点， 当然千万别忘了一点就是下1单位时间的同一站点也有一条边，即（15，3）到（16，3）也有一条有向边 然后就可以利用这个DAG图的节点属性来定义状态了，即设dp[p][tim]为在p站点tim时刻的状态，既然是求最小路，则状态就是到当前节点的最短路 对应三种策略的状态转移方式  当前的状态等于下一单位时间的状态加1的等待时间 当前状态等于到站后的时间和站点的状态 同上   最后取一个最小值 边界条件就是如果在T时刻和n站点刚好到达，则返回0，因为不用等了，如果超过了T时间，则说明是从某个站点到另一个站点后时间过了，则返回无穷大表示不用等了，如果刚好到T时刻且没到达n站点，则说明后面再怎么坐车时间也过了，也返回无穷大 说了这么多，却没写状态转移方程是因为打算使用记忆化来做，所有不用转移方程，直接考虑当前递归的来自哪些结果就好了 代码如下    #include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; const int INF = 0x3f3f3f3f; int n, T, t[100], kase = 0, dp[110][210]; bool has_train[110][210][2], vis[110][210]; bool read() { int m, x; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); if(!</description>
-    </item>
-    
-    <item>
-      <title>Dp总结</title>
-      <link>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
-      
-      <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4. 分类  ① 线性DP ② 区间DP ③ 树状DP  【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5.</description>
-    </item>
-    
-    <item>
-      <title>动态规划刷题总结</title>
-      <link>https://haofish.github.io/2020/dynamicprogramming/</link>
-      <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://haofish.github.io/2020/dynamicprogramming/</guid>
-      <description>1、写在前面 2、我对dp的看法和理解 3、典型例题  ①爬楼梯（leetcode #70）  题意 分析 小结      1、写在前面 这几天疯狂刷leetcode的dp题，刷到我都想吐了，看到一个题就先往dp想，感觉中毒不浅，话不多说，赶紧开始总结一下我的成长历程心得。
-2、我对dp的看法和理解   首先引入《算法笔记》里的一句话:
- 动态规划是一种非常精妙的算法思想，他没有固定的写法、极其灵活，常常需要具体问题具体分析。
- 没错正式这种具体问题具体分析的设定让我刷到吐了
-  平时在思考动态规划的往往是利用一个小小的公式：递推 = 递归 + 记忆化（下面会赘述我是怎么利用这个公式思考的）
-  虽然他是这么说，但是我还是觉得dp的是有套路可循的，例如给dp分类 （背包dp、树形dp、区间dp……），经典题的记忆 （爬楼梯、树塔问题、LIS……）
-  一般来说，我思考dp都是从结果往前想的（即从末尾开始想）
-  dp的基本使用条件： 1. 拥有重叠子问题、 2. 最优子结构、3.无后效性
-  dp思考三步走： 1. 状态定义 → 2.列状态转移方程 → 3.验证方程
-  我觉得的动规成长路线：小白 → 利用小公式辅助建立dp → 正常dp三步走思维思考 → 大佬 （我还没触及 将来一定达到( ఠൠఠ )ﾉ）</description>
     </item>
     
   </channel>

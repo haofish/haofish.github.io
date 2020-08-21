@@ -105,7 +105,7 @@
     "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
     "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "1316",
+    "wordCount" : "2731",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -206,21 +206,41 @@
         <ul>
 <li><a href="#1-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D">1. 写在前面的话</a></li>
 <li><a href="#2-%E5%AF%B9dp%E7%AE%80%E5%8D%95%E7%9A%84%E6%80%BB%E7%BB%93">2. 对DP简单的总结</a></li>
-<li><a href="#3-%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A8%A1%E5%9E%8B">3. <strong>几个重要的模型</strong></a></li>
+<li><a href="#3-%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A8%A1%E5%9E%8B">3. <strong>几个重要的模型</strong></a>
+<ul>
+<li><a href="#%E6%95%B0%E5%A1%94%E6%A8%A1%E5%9E%8B">数塔模型</a>
+<ul>
+<li><a href="#%E4%BE%8B%E9%A2%98hdu-2084-%E6%95%B0%E5%A1%94">【例题】HDU 2084 数塔</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%91%E7%A1%AC%E5%B8%81%E6%A8%A1%E5%9E%8B">凑硬币模型</a>
+<ul>
+<li><a href="#%E4%BE%8B%E9%A2%981leetcode-322-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2">【例题1】leetcode 322 零钱兑换</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%982leetcode-279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0">【例题2】leetcode 279 完全平方数</a></li>
+</ul>
+</li>
+<li><a href="#dag%E6%A8%A1%E5%9E%8B">DAG模型</a>
+<ul>
+<li><a href="#%E4%BE%8B%E9%A2%981uva-1025-a-spy-in-the-metro">【例题1】UVA 1025 A Spy in the Metro</a></li>
+<li><a href="#%E4%BE%8B%E5%AD%902uva-437-the-tower-of-babylon">【例子2】UVA 437 The Tower of Babylon</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%983uva-116-unidirectional-tsp">【例题3】UVA 116 Unidirectional TSP</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%984uva-12563-jin-ge-jin-qu-hao">【例题4】UVA 12563 Jin Ge Jin Qu hao</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#4-%E5%88%86%E7%B1%BB">4. 分类</a>
 <ul>
 <li><a href="#%E2%91%A0-%E7%BA%BF%E6%80%A7dp">① 线性DP</a></li>
 <li><a href="#%E2%91%A1-%E5%8C%BA%E9%97%B4dp">② 区间DP</a></li>
 <li><a href="#%E2%91%A2-%E6%A0%91%E7%8A%B6dp">③ 树状DP</a>
 <ul>
-<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
 <li><a href="#%E4%BE%8B%E9%A2%981hdu-1520-anniversary-party">【例题1】HDU 1520 Anniversary party</a></li>
 <li><a href="#%E4%BE%8B%E9%A2%982hdu-2196-computer">【例题2】HDU 2196 Computer</a></li>
 </ul>
 </li>
 <li><a href="#%E2%91%A3-%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9dp">④ 状态压缩DP</a>
 <ul>
-<li><a href="#%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AE%80%E4%BB%8B">状态压缩简介</a></li>
 <li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%BF%E7%94%A8">常见的二进制使用</a></li>
 <li><a href="#%E4%BE%8B%E9%A2%98-1hdu-%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B01">【例题 1】HDU 方格取数（1）</a></li>
 <li><a href="#%E4%BE%8B%E9%A2%982%E6%B4%9B%E8%B0%B7-p1879-corn-fields-g">【例题2】洛谷 P1879 Corn Fields G</a></li>
@@ -246,16 +266,14 @@
 </ul>
 <h2 id="2-对dp简单的总结">2. 对DP简单的总结</h2>
 <ol>
-<li>
-<p>dp的题目特点</p>
+<li>dp的题目特点
 <ul>
 <li>求最大或者最小值（如背包：价值最大、凑硬币：数量最少……）</li>
 <li>计数（如：爬楼梯：计算上到n台阶的方法数）</li>
 <li>求存在性或者胜负（如：能否胜利……）</li>
 </ul>
 </li>
-<li>
-<p>dp的使用<strong>条件</strong></p>
+<li>dp的使用<strong>条件</strong>
 <ul>
 <li>拥有子问题</li>
 <li>子问题最优解（即拥有最优子结构），对于一个主问题解最优，其子问题必定也是最优</li>
@@ -264,8 +282,7 @@
 <li>无后效性，即此时的之前状态无法直接影响未来的决策，换句话说就是之前的每个状态如何得来并不影响未来对此时（当前）状态的利用或者查找，因为我们最后对此时（当前）状态的利用只考虑结果不考虑过程。</li>
 </ul>
 </li>
-<li>
-<p>dp的<strong>思考方式</strong>及注意事项</p>
+<li>dp的<strong>思考方式</strong>及注意事项
 <ul>
 <li>若问题有dp的味道，应当优先从主问题出发来思考，即从末尾（结果）开始思考（例如爬楼梯问题）</li>
 <li>接下来，对于一个主问题，应当思考此问题的结果由什么得来（由什么决定）和有什么因素影响</li>
@@ -275,26 +292,505 @@
 <li>注意2：状态的定义很重要，要结合题目需求和状态影响因素来定义</li>
 </ul>
 </li>
-<li>
-<p>关于<strong>dp三步走</strong></p>
+<li>关于<strong>dp三步走</strong>
 <ul>
 <li>1.状态定义 → 2.列状态转移方程 → 3.验证方程</li>
 <li>对于第一步和第二步主要可以利用上述的思考方式或者是<strong>闫氏DP分析法</strong>来解决</li>
 <li>第三步虽然不难，但是很重要，因为第三步包括：验证状态推理是否合理或者是否是答案最优，并且思考状态是否满足题目条件需求，前者均没问题后再思考边界是什么。对于一般验证发现有问题通常的解决办法有：1、修改状态定义；2、给状态增加维度；3、优化转移方程</li>
 </ul>
 </li>
+<li>补充的话
+<ul>
+<li>读了紫书上的动规篇才开始补这篇博客的坑</li>
+<li>学到了很多东西，包括用<strong>记忆化搜索的优势</strong>、<strong>刷表法</strong>、<strong>DAG模型</strong>等等</li>
+<li>所以有些代码写的不是递推的方式是为了练习记忆化式的递归</li>
+<li>阅读了紫书动规篇后彻底抛弃了递推就一定比记忆化递归还快的观念，也使我再一次对自己当年总结的dp思考方式（<strong>递推 = 递归 + 记忆化</strong>）感到肯定</li>
+<li>先来说说<strong>记忆化的优势</strong>：
+<ul>
+<li>①便于思考，有时完全都不用所谓的状态转移方程，只需要考虑当选状态下如何选择下一步的策略来进行码代码，在比赛的时候这个优势是非常大的</li>
+<li>②有些题无法用递推的方式来写，甚至状态都可能是无限的，这时候记忆化的优势将会进一步地放大</li>
+<li>③用记忆化不一定就比递推慢，仔细思考一下，有时候有些状态是不用计算的，而记忆化在这方面会比全部计算出来的递推要好，固速度不必递推差</li>
+</ul>
+</li>
+<li><strong>记忆化的技巧</strong>
+<ul>
+<li>多开一个数组来做记忆化的操作比将状态数组定义成特殊值来判定是否又有算过好一些，不仅能够增强可读性，还更方便调试操作</li>
+<li>如果状态做记忆化用另开数组的方式还是麻烦，不妨试试用map来存被算过的状态</li>
+<li>用引用来调用状态数组可以简化代码</li>
+</ul>
+</li>
+<li><strong>刷表法</strong>
+<ul>
+<li>和刷表法相对的是填表法，所谓填表法我的理解就是传统的利用之前选好的状态来计算当前的状态，书中是这么说的“对于每个状态i，计算f(i)，这需要对于每个状态i都找到f(i)的依赖的所有状态”</li>
+<li>正如书中的一句话“在某些时候并不方便”，即找f(i)的所有依赖状态不好找，于是就诞生了刷表法</li>
+<li>所谓刷表法，我的理解就是用计算好的状态更新它所影响到的状态，书中原话“对于每个状态i，更新f(i)所影响到的状态，但需要注意的是，只有当每个状态所依赖的状态对它的影响相互独立时才能用刷表法”，后半句话我也不是很理解，以后遇到了能理解的对应的题再说</li>
+</ul>
+</li>
+<li><strong>DAG模型</strong>
+<ul>
+<li>动态规划能够概括出DAG模型是紫书动态规划篇给我最大的惊喜，巧妙地把我之前总结的那繁多的模型分类大大地再次概括了一遍</li>
+<li>DAG模型有点像刷搜索题时一般，将题目抽象成一个有向无环图，然后求解最大距离或者是最小距离</li>
+<li>个人感觉由于有时太过抽象，所有很难把它的图给抽象出来</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 <h2 id="3-几个重要的模型">3. <strong>几个重要的模型</strong></h2>
 <p><img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E5%8A%A8%E8%A7%84%E6%A8%A1%E5%9E%8B.png" alt="动规模型"></p>
-<hr>
-<p>例题静待补充</p>
-<hr>
+<ul>
+<li>上图中有很多模型都可以归类为DAG模型（习得紫书后才了解到的），但是有些是完全可以单拿出来作为经典模型的</li>
+<li>借用陈峰老师的一句话：子结构状态形成的如果是一棵树，不就是搜索了吗，如果是一个图，不就是动态规划了吗</li>
+<li>原话是这个意思，感触很深，确实，有些题遇到了把他抽象出来如果是一颗树，基本应该优先考虑dfs、bfs等搜索操作，如果是一个图，即有重复的子结构，就可以考虑动规了</li>
+</ul>
+<h3 id="数塔模型">数塔模型</h3>
+<ul>
+<li>这个模型是许多人动规入门的题，变种不多，但是却很经典</li>
+</ul>
+<h4 id="例题hdu-2084-数塔httpacmhdueducnshowproblemphppid2084">【例题】<a href="http://acm.hdu.edu.cn/showproblem.php?pid=2084">HDU 2084 数塔</a></h4>
+<ul>
+<li>
+<p>题意：有一个树形的塔，每个节点都有权值，让你求出从根节点到最后一层叶子节点的的最大权值和</p>
+</li>
+<li>
+<p>简单的分析</p>
+<ul>
+<li>这题是不能贪心的，即不能只选出当前最大的叶子权值</li>
+<li>假设已经算好了第2层的节点的最大权值和，则第1层的节点（根节点）的最大权值就为第二层的两个节点的最大权值和加上第一层的权值</li>
+<li>其余节点也可假设成第一层和第二层来思考</li>
+<li>所以设dp[i][j]为第i层的第j个节点的最大权值和，边界条件就是最后一层的最大权值和就是其本身</li>
+<li>状态转移方程如下
+$$
+dp[i][j] = max(dp[i - 1][j],\ \ dp[i - 1][j + 1]) + tree[i][j]
+$$</li>
+<li>发现空间还是可以优化的，因为当前层数的dp值利用的只有下一层的dp值，而数组的的第二维计算时利用的是后面的（j + 1）的值，所以第二维是下标小的先更新，下标大的后更新，所以完全可以把第一维抛弃掉，但这样的话dp下标循环起来必须是从小到大循环</li>
+<li>状态转移方程如下
+$$
+dp[j] = max(dp[j], dp[j + 1]) + tree[i][j]
+$$</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> c, n;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>c);
+    <span style="color:#66d9ef">while</span> (c<span style="color:#f92672">--</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+        <span style="color:#66d9ef">int</span> tree[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">110</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> i; j<span style="color:#f92672">++</span>)
+                scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>tree[i][j]);
+        <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>dp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[n];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+            dp[i] <span style="color:#f92672">=</span> tree[n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][i];
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>)
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> i; j<span style="color:#f92672">++</span>)
+                dp[j] <span style="color:#f92672">=</span> max(dp[j], dp[j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> tree[i][j];
+
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, dp[<span style="color:#ae81ff">0</span>]);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h3 id="凑硬币模型">凑硬币模型</h3>
+<ul>
+<li>凑硬币模型是一个经典的模型，题目大概就是给你一个目标，你有许多不同的结构，你要用这些结构来组成这个目标，让你求最大组成量、最小组成量或者是组成方法数（组成方法数可以说是爬楼梯模型）</li>
+</ul>
+<h4 id="例题1leetcode-322-零钱兑换httpsleetcode-cncomproblemscoin-change">【例题1】<a href="https://leetcode-cn.com/problems/coin-change/">leetcode 322 零钱兑换</a></h4>
+<ul>
+<li>
+<p>大致题意：给你不同面额的硬币，让你输出凑成价值n的最小使用数量，若无法凑成则返回-1</p>
+</li>
+<li>
+<p>这题就是一个凑硬币的板子题</p>
+</li>
+<li>
+<p>简单分析：</p>
+<ul>
+<li>假如你有1 2 5的硬币，假设你已经求出$x$的最小使用数量$y$，则就能算出$x + 1$、$x + 2$、$x + 5$的最小使用数量，即都为$y + 1$</li>
+<li>设dp<input checked="" disabled="" type="checkbox"> 表示价值为x的最小凑的数量，边界的话显然，$x = 0$时最小要凑的数量为$0$，所以边界就是$dp[0] = 0$</li>
+<li>所以不难得出状态转移方程
+$$
+dp<input checked="" disabled="" type="checkbox"> = min{dp[x - coins[i]] + 1},\ \ x \ge coins[i],\ \ i = 0, 1, 2 ……
+$$</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> coinChange(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> coins, <span style="color:#66d9ef">int</span> amount) {
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dp(amount <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0x3f3f3f3f</span>);
+        dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> amount; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> c : coins) {
+                <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;=</span> c) dp[i] <span style="color:#f92672">=</span> min(dp[i <span style="color:#f92672">-</span> c] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, dp[i]);
+            }
+        }
+        <span style="color:#66d9ef">if</span> (dp[amount] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0x3f3f3f3f</span>) <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> dp[amount];
+    }
+};
+</code></pre></div></li>
+</ul>
+<h4 id="例题2leetcode-279-完全平方数httpsleetcode-cncomproblemsperfect-squares">【例题2】<a href="https://leetcode-cn.com/problems/perfect-squares/">leetcode 279 完全平方数</a></h4>
+<ul>
+<li>
+<p>大致题意：平方数{1, 4, 9, 16 ……}，给你一个数n，让你用平方数组成该数，求最小组成数量</p>
+</li>
+<li>
+<p>简单的分析：</p>
+<ul>
+<li>把平方数看成硬币，然后就是硬币题了</li>
+<li>状态转移方程一样的，直接上代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> numSquares(<span style="color:#66d9ef">int</span> n) {
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dp(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+        dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+            dp[i] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">-</span> j <span style="color:#f92672">*</span> j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; j<span style="color:#f92672">++</span>) {
+                dp[i] <span style="color:#f92672">=</span> dp[i] <span style="color:#f92672">&gt;</span> (dp[i <span style="color:#f92672">-</span> j <span style="color:#f92672">*</span> j] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">?</span> dp[i <span style="color:#f92672">-</span> j <span style="color:#f92672">*</span> j] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> dp[i];
+            }
+        }
+        <span style="color:#66d9ef">return</span> dp[n];
+    }
+};
+</code></pre></div></li>
+</ul>
+<h3 id="dag模型">DAG模型</h3>
+<ul>
+<li>DAG模型是一个概括非常广的模型，它包括凑硬币模型、背包模型等等，但还是要写写，因为我绝对DAG更多的是一种思想，把DP问题抽象成一个DAG的图，便于思考</li>
+</ul>
+<h4 id="例题1uva-1025-a-spy-in-the-metrohttpsvjudgenetproblemuva-1025">【例题1】<a href="https://vjudge.net/problem/UVA-1025">UVA 1025 A Spy in the Metro</a></h4>
+<ul>
+<li>
+<p>大致题意：一个线性的地铁，有$n(2 \le n \le 50)$个站，目标是在$T(0 \le T \le 200)$时刻从1号站到n号站，注是规定刚好T时刻，不是在T时刻之前也不是在T时刻之后，从1号点出发，可以在途中转乘，问你最少的中途等车时间</p>
+<ul>
+<li>第i站到第i + 1站需要花的时间为$t_i$</li>
+<li>有$M1(M1 \le 50)$个车从1号站出发，出发时间分别为$d_1, d_2, d_3……, d_{M1}\ \ (d_i &lt; d_{i + 1}, d_i \le 250)$，同样有M2个车从n号站出发，时间格式同上</li>
+<li>其余细节看题</li>
+</ul>
+</li>
+<li>
+<p>简单分析：</p>
+<ul>
+<li>就看当先的状态，假设现在的时间是tim，正在第p个站有三种策略
+<ul>
+<li>等1分钟，剩下的下一分钟再说</li>
+<li>如果有向1号站行的车，乘坐上去</li>
+<li>如果有向n号站行的车，乘坐上去</li>
+</ul>
+</li>
+<li>那么这个是怎么建立DAG图的呢，对于每个点，定义它包括的属性有时间和站点，如果当前时间当前站点有开往下个一或者上一个站的车，则将到站的时间和对应的站点连一条有向的边，例如当前时间是15，站点是3，并且有开向第2站点的车，10单位的时间后到达，但没有向下一个站开的车，则在属性为（15，3）的节点连一条有向边到（25，2）的节点，</li>
+<li>当然千万别忘了一点就是下1单位时间的同一站点也有一条边，即（15，3）到（16，3）也有一条有向边</li>
+<li>然后就可以利用这个DAG图的节点属性来定义状态了，即设dp[p][tim]为在p站点tim时刻的状态，既然是求最小路，则状态就是到当前节点的最短路</li>
+<li>对应三种策略的状态转移方式
+<ul>
+<li>当前的状态等于下一单位时间的状态加1的等待时间</li>
+<li>当前状态等于到站后的时间和站点的状态</li>
+<li>同上</li>
+</ul>
+</li>
+<li>最后取一个最小值</li>
+<li>边界条件就是如果在T时刻和n站点刚好到达，则返回0，因为不用等了，如果超过了T时间，则说明是从某个站点到另一个站点后时间过了，则返回无穷大表示不用等了，如果刚好到T时刻且没到达n站点，则说明后面再怎么坐车时间也过了，也返回无穷大</li>
+<li>说了这么多，却没写状态转移方程是因为打算使用记忆化来做，所有不用转移方程，直接考虑当前递归的来自哪些结果就好了</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+
+<span style="color:#66d9ef">int</span> n, T, t[<span style="color:#ae81ff">100</span>], kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, dp[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>];
+<span style="color:#66d9ef">bool</span> has_train[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>][<span style="color:#ae81ff">2</span>], vis[<span style="color:#ae81ff">110</span>][<span style="color:#ae81ff">210</span>];
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">read</span>() {
+    <span style="color:#66d9ef">int</span> m, x;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>n) <span style="color:#66d9ef">return</span> false;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, t <span style="color:#f92672">+</span> i);
+    memset(has_train, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> has_train);
+    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+        has_train[<span style="color:#ae81ff">1</span>][x][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>) {
+            has_train[j][x <span style="color:#f92672">+</span> t[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> true;
+            x <span style="color:#f92672">+=</span> t[j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+        }
+    }
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+        has_train[n][x][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>; j<span style="color:#f92672">--</span>) {
+            has_train[j][x <span style="color:#f92672">+</span> t[j]][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;
+            x <span style="color:#f92672">+=</span> t[j];
+        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> p, <span style="color:#66d9ef">int</span> tim) {
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>d <span style="color:#f92672">=</span> dp[p][tim];
+    <span style="color:#66d9ef">if</span> (tim <span style="color:#f92672">&gt;</span> T) <span style="color:#66d9ef">return</span> INF;
+    <span style="color:#66d9ef">if</span> (tim <span style="color:#f92672">==</span> T) <span style="color:#66d9ef">return</span> p <span style="color:#f92672">==</span> n <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> INF;
+    <span style="color:#66d9ef">if</span> (vis[p][tim]) <span style="color:#66d9ef">return</span> d;
+    vis[p][tim] <span style="color:#f92672">=</span> true, d <span style="color:#f92672">=</span> INF;
+    d <span style="color:#f92672">=</span> DP(p, tim <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">&amp;&amp;</span> has_train[p][tim][<span style="color:#ae81ff">0</span>]) d <span style="color:#f92672">=</span> min(d, DP(p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, tim <span style="color:#f92672">+</span> t[p]));
+    <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> has_train[p][tim][<span style="color:#ae81ff">1</span>]) d <span style="color:#f92672">=</span> min(d, DP(p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, tim <span style="color:#f92672">+</span> t[p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]));
+    <span style="color:#66d9ef">return</span> d;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (read()) {
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> DP(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">if</span> (ans <span style="color:#f92672">&gt;=</span> INF) printf(<span style="color:#e6db74">&#34;Case Number %d: impossible</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase);
+        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;Case Number %d: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase, ans);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h4 id="例子2uva-437-the-tower-of-babylonhttpsvjudgenetproblemuva-437">【例子2】<a href="https://vjudge.net/problem/UVA-437">UVA 437 The Tower of Babylon</a></h4>
+<ul>
+<li>
+<p>题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高</p>
+</li>
+<li>
+<p>简单的分析</p>
+<ul>
+<li>能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码</li>
+<li>一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体</li>
+<li>下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去</li>
+<li>最后就DP就是求从某个节点出发的最大距离就是答案</li>
+<li>注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图</li>
+<li>下面是代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, head[<span style="color:#ae81ff">100</span>], cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, dp[<span style="color:#ae81ff">500</span>], vis[<span style="color:#ae81ff">500</span>];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">rect</span>{
+    <span style="color:#66d9ef">int</span> a, b, c;
+    rect(){}
+    rect(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b, <span style="color:#66d9ef">int</span> c) <span style="color:#f92672">:</span> a(a), b(b), c(c) {}
+}r[<span style="color:#ae81ff">100</span>];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edges</span>{
+    <span style="color:#66d9ef">int</span> to, next;
+    edges(<span style="color:#66d9ef">int</span> to <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">int</span> next <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> to(to), next(next) {}
+}edge[<span style="color:#ae81ff">10010</span>];
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">ok</span>(<span style="color:#66d9ef">const</span> rect<span style="color:#f92672">&amp;</span> x, <span style="color:#66d9ef">const</span> rect<span style="color:#f92672">&amp;</span> y) {
+    <span style="color:#66d9ef">return</span> (x.a <span style="color:#f92672">&gt;</span> y.a <span style="color:#f92672">&amp;&amp;</span> x.b <span style="color:#f92672">&gt;</span> y.b) <span style="color:#f92672">||</span> (x.b <span style="color:#f92672">&gt;</span> y.a <span style="color:#f92672">&amp;&amp;</span> x.a <span style="color:#f92672">&gt;</span> y.b);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_edge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v) { edge[<span style="color:#f92672">++</span>cnt] <span style="color:#f92672">=</span> edges(v, head[u]); head[u] <span style="color:#f92672">=</span> cnt; }
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">read</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>n) <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">int</span> x[<span style="color:#ae81ff">3</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n;) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>j : x) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>j);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">0</span>], x[<span style="color:#ae81ff">1</span>], x[<span style="color:#ae81ff">2</span>]);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">0</span>], x[<span style="color:#ae81ff">2</span>], x[<span style="color:#ae81ff">1</span>]);
+        r[i<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> rect(x[<span style="color:#ae81ff">1</span>], x[<span style="color:#ae81ff">2</span>], x[<span style="color:#ae81ff">0</span>]);
+    }
+    memset(head, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> head);
+    memset(edge, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> edge);
+    memset(dp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp);
+    memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+    cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; u <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; u<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; v <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; v<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">==</span> v) <span style="color:#66d9ef">continue</span>;
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ok(r[u], r[v])) <span style="color:#66d9ef">continue</span>;
+            add_edge(u, v);<span style="color:#75715e">//邻接表建图
+</span><span style="color:#75715e"></span>        }
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> u) {
+    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (vis[u]) <span style="color:#66d9ef">return</span> dp[u];
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>res <span style="color:#f92672">=</span> dp[u], Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    res <span style="color:#f92672">=</span> r[u].c, vis[u] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v <span style="color:#f92672">=</span> head[u]; <span style="color:#f92672">~</span>v; v <span style="color:#f92672">=</span> edge[v].next) {<span style="color:#75715e">//它的下一个节点
+</span><span style="color:#75715e"></span>        Max <span style="color:#f92672">=</span> max(Max, DP(edge[v].to));
+    }
+    <span style="color:#66d9ef">return</span> res <span style="color:#f92672">+=</span> Max;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (read()) {
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> n; i<span style="color:#f92672">++</span>) ans <span style="color:#f92672">=</span> max(ans, DP(i));
+        printf(<span style="color:#e6db74">&#34;Case %d: maximum height = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase, ans);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h4 id="例题3uva-116-unidirectional-tsphttpsvjudgenetproblemuva-116">【例题3】<a href="https://vjudge.net/problem/UVA-116">UVA 116 Unidirectional TSP</a></h4>
+<ul>
+<li>
+<p>大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的</p>
+</li>
+<li>
+<p>简单的分析：</p>
+<ul>
+<li>可以看出是一个数塔问题的变种</li>
+<li>书中说这种问题叫做<strong>多阶段决策问题</strong>中的一类——<strong>多阶段图</strong>的最短路问题，所谓多阶段图按书中说法就是图中结点可以划分成若干个阶段</li>
+<li>在递归过程中即将完成的决策被称为阶段，回忆解答树中星号之前的第一个数字，应该就是书中所说的阶段吧，或者说每个序就是一个阶段（因为在01背包中，一个物品有选和不选两种决策，每个物品序号可以看成一个阶段），我也不是很懂</li>
+<li>这题我的理解就是原数塔问题也可以说是一个DAG，而这题相当于多个数塔重合的版本，固每一列都有对应着一个的阶段，而每个阶段都有不同决策</li>
+<li>计算最短路就是简单的数塔解法了</li>
+<li>真正让人头疼的是最小字典序这里，一开始我的做法是写一大堆if判断，最后对比了一下刘老师的代码，妙不可言，用了大小为3的数组存下一列的决策行数</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+<span style="color:#66d9ef">int</span> m, n, g[<span style="color:#ae81ff">15</span>][<span style="color:#ae81ff">110</span>], ans[<span style="color:#ae81ff">15</span>][<span style="color:#ae81ff">110</span>], Min, dp[<span style="color:#ae81ff">15</span>][<span style="color:#ae81ff">110</span>], f;
+<span style="color:#66d9ef">bool</span> vis[<span style="color:#ae81ff">15</span>][<span style="color:#ae81ff">110</span>];
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> c) {
+    <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> n) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (vis[r][c]) <span style="color:#66d9ef">return</span> dp[r][c];
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>res <span style="color:#f92672">=</span> dp[r][c], M <span style="color:#f92672">=</span> INF, <span style="color:#f92672">&amp;</span>i <span style="color:#f92672">=</span> ans[r][c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>], row[] <span style="color:#f92672">=</span> {r <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, r, r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>};
+    vis[r][c] <span style="color:#f92672">=</span> true, res <span style="color:#f92672">=</span> g[r][c];
+    <span style="color:#66d9ef">if</span> (r <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) row[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (r <span style="color:#f92672">==</span> m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) row[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    sort(row, row <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">if</span> (M <span style="color:#f92672">&gt;</span> DP(row[j], c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) M <span style="color:#f92672">=</span> DP(row[j], c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), i <span style="color:#f92672">=</span> row[j];
+    res <span style="color:#f92672">+=</span> M;
+    <span style="color:#66d9ef">return</span> res;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">~</span>scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>n)) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>)
+                scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>g[i][j]);
+        Min <span style="color:#f92672">=</span> INF;
+        memset(vis, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> vis);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> DP(i, <span style="color:#ae81ff">0</span>);
+            <span style="color:#66d9ef">if</span> (Min <span style="color:#f92672">&gt;</span> tmp) Min <span style="color:#f92672">=</span> tmp, f <span style="color:#f92672">=</span> i;
+        }
+        printf(<span style="color:#e6db74">&#34;%d&#34;</span>, f <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">=</span> ans[f][i]; i <span style="color:#f92672">&lt;</span> n; j <span style="color:#f92672">=</span> ans[j][<span style="color:#f92672">++</span>i])
+            printf(<span style="color:#e6db74">&#34; %d&#34;</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Min);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h4 id="例题4uva-12563-jin-ge-jin-qu-haohttpsvjudgenetproblemuva-12563">【例题4】<a href="https://vjudge.net/problem/UVA-12563">UVA 12563 Jin Ge Jin Qu hao</a></h4>
+<ul>
+<li>
+<p>大致题意：在KTV里，如果还剩下1秒的时间，则可以点一首更长的歌，因为他会播放完最后一首歌才停止，现在给你剩下的时间$m$和$n(n \le 50)$首歌，每首歌的时长$t_1, t_2, t_3 ……t_n$，现让你算出在剩余的时间内能唱的歌的最大数量，然后利用空出来的时间最后再点一首长为678秒的歌，输出能唱的最大数量，对应的时间</p>
+</li>
+<li>
+<p>简单的分析：</p>
+<ul>
+<li>题目中说最后会点一首678秒的歌来延长时间，则策略就是计算在不超过$m - 1$时间里选最多的歌</li>
+<li>读一读上面的一句话，是不是感觉很想01背包？是的就是01背包问题，每个物品的价值默认是1了（一首歌嘛）</li>
+<li>题目中说$m \le 10^9$，其实并没有这么大，~~我一开始也很苦恼这怎么建数组，~~后来发现其实并没有这么大，他说n + 1首歌的时长严格大于剩余的时长，并且每一首歌不会超过3分钟，这么算的话$180 \times 50 + 678 = 9678$，固数组完全够开</li>
+<li>值得注意的是这题计算在选歌的数量多的前提下最后尽量晚地结束KTV，这就需要讨论了，<em>一开始被这个搞得十分地晕，冷静下来后发现一个if是不够的，于是就特判3次</em>
+<ul>
+<li>首先如果当前抉择的歌曲数量还没之前算的多，直接跳过</li>
+<li>如果当前抉择的歌曲数量严格比之前算的还多，则更新歌曲数量和时间总长度</li>
+<li>如果当前抉择的歌曲数量和之前算的一样多，则还要判断当前抉择的时长是严格比上次算还多，则更新时间总长度</li>
+</ul>
+</li>
+<li>具体看代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, t, dp[<span style="color:#ae81ff">10010</span>], m, kase <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, sum[<span style="color:#ae81ff">10010</span>];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+    memset(dp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp);
+    memset(sum, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> sum);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>t);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> m; j <span style="color:#f92672">&gt;</span> t; j<span style="color:#f92672">--</span>) {
+            <span style="color:#66d9ef">if</span> (dp[j] <span style="color:#f92672">&gt;</span> dp[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">continue</span>;<span style="color:#75715e">//特判1
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (dp[j] <span style="color:#f92672">&lt;</span> dp[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {        <span style="color:#75715e">//特判2
+</span><span style="color:#75715e"></span>                dp[j] <span style="color:#f92672">=</span> dp[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                sum[j] <span style="color:#f92672">=</span> sum[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> t;
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (sum[j] <span style="color:#f92672">&lt;</span> sum[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> t){<span style="color:#75715e">//特判3
+</span><span style="color:#75715e"></span>                sum[j] <span style="color:#f92672">=</span> sum[j <span style="color:#f92672">-</span> t] <span style="color:#f92672">+</span> t;
+            }
+        }
+    }
+    printf(<span style="color:#e6db74">&#34;Case %d: %d %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">++</span>kase, dp[m] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, sum[m] <span style="color:#f92672">+</span> <span style="color:#ae81ff">678</span>);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> T;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>T);
+    <span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>) {
+        solve();
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
 <h2 id="4-分类">4. 分类</h2>
 <p><img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPICdp%E5%88%86%E7%B1%BB2.png" alt="dp分类"></p>
 <h3 id="-线性dp">① 线性DP</h3>
 <h3 id="-区间dp">② 区间DP</h3>
 <h3 id="-树状dp">③ 树状DP</h3>
-<h4 id="简介">简介</h4>
 <ul>
 <li>所谓树状DP（树形DP）就是说一个动态规划的问题他的数据（或者子问题）之间是建立在树的基础上提问的，即父节点的最优是由其子节点的最优来推出来的（大部分是这样）。</li>
 </ul>
@@ -499,7 +995,6 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
 </li>
 </ul>
 <h3 id="-状态压缩dp">④ 状态压缩DP</h3>
-<h4 id="状态压缩简介">状态压缩简介</h4>
 <ul>
 <li>状态压缩更像是一种思想，而不是一种方法。当有些问题很可能不存在有效的(多项式级的)算法时，利用状态压缩是可以使得题目简单些。一般情况下状态压缩是把状态压缩成二进制的形式来表示（也有三进制的）一个集合，通过压缩可以把不必要的信息给去掉，从而减少冗余。</li>
 </ul>
@@ -733,7 +1228,7 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">1400 Words|Read in about 7
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">2800 Words|Read in about 13
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

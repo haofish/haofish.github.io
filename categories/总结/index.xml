@@ -48,7 +48,7 @@
       <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型 4. 分类  ① 线性DP ② 区间DP ③ 树状DP  简介 【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  状态压缩简介 常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5. 优化dp的手段  ① 矩阵优化 ② 数据结构优化 ③ 单调队列优化 ④ 决策单调性优化 ⑤ 二进制优化 ⑥ 斜率优化 ⑦ 四边形不等式优化    1. 写在前面的话  之前写了一篇不像总结的动态规划总结，感觉更像是一个成长历程，所以就打算重写一篇。  2. 对DP简单的总结   dp的题目特点</description>
+      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4. 分类  ① 线性DP ② 区间DP ③ 树状DP  【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5.</description>
     </item>
     
   </channel>
