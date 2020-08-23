@@ -105,7 +105,7 @@
     "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
     "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "2731",
+    "wordCount" : "2945",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -219,6 +219,17 @@
 <li><a href="#%E4%BE%8B%E9%A2%982leetcode-279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0">【例题2】leetcode 279 完全平方数</a></li>
 </ul>
 </li>
+<li><a href="#lis%E6%A8%A1%E5%9E%8B">LIS模型</a>
+<ul>
+<li><a href="#%E4%BE%8B%E9%A2%981leetcode-300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97">【例题1】leetcode 300 最长上升子序列</a></li>
+</ul>
+</li>
+<li><a href="#lcs%E6%A8%A1%E5%9E%8B">LCS模型</a>
+<ul>
+<li><a href="#%E4%BE%8B%E9%A2%981acwing-897-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97">【例题1】AcWing 897. 最长公共子序列</a></li>
+</ul>
+</li>
+<li><a href="#%E8%83%8C%E5%8C%85%E6%A8%A1%E5%9E%8B">背包模型</a></li>
 <li><a href="#dag%E6%A8%A1%E5%9E%8B">DAG模型</a>
 <ul>
 <li><a href="#%E4%BE%8B%E9%A2%981uva-1025-a-spy-in-the-metro">【例题1】UVA 1025 A Spy in the Metro</a></li>
@@ -465,6 +476,90 @@ $$</li>
     }
 };
 </code></pre></div></li>
+</ul>
+<h3 id="lis模型">LIS模型</h3>
+<ul>
+<li>LIS就是所谓的最长不下降子序列问题，变种不多，但很经典，所以直接看例题</li>
+</ul>
+<h4 id="例题1leetcode-300-最长上升子序列httpsleetcode-cncomproblemslongest-increasing-subsequence">【例题1】<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">leetcode 300 最长上升子序列</a></h4>
+<ul>
+<li>
+<p>题意：给定一个无序的整数数组，找到其中最长上升子序列的长度，注意严格上升</p>
+</li>
+<li>
+<p>简单的分析：</p>
+<ul>
+<li>分享一下一开始我学动规的时候LIS定义的状态是dp[i]表示下标为i的数组之前的最长上升子序列，但是这样来定义我发现很难进一步地对状态进行转移，后来还是妥协了书中的状态定义方式</li>
+<li>这件事现在看来也是有点感慨，因为现在我的明白：状态定义地不同，转移的方式可能也会完全不一样，所以有时候不同的状态定义会影响转移的难易程度，在思考一道动规题时，如果发现状态难以转移，不妨试试换个状态定义</li>
+<li>设dp[i]表示选择下标为i的数为结尾的最长子序列，这样做的好处就是方便后面的转移，方便利用当前下标数和之前算好的dp状态的下标数进行对比大小，可以想象成当前状态是和之前算好的状态进行拼接</li>
+<li>则转移方程为
+$$
+dp[i] = max{1,\ \ dp[j] + 1 \ \ | \ \ 0 \le j &lt; i, nums[j] &lt; nums[i] }
+$$</li>
+<li>不难发现，状态转移需要利用到下标为j的原数组的数，所以这个说明了状态定义就很重要了</li>
+<li>这种做法的时间复杂度是O($n^2$)，当然还有更快的速度可以达到O($nlogn$)，这里不再赘述了</li>
+<li>dp代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> lengthOfLIS(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
+        <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> nums.size(), Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dp(len, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (dp[i] <span style="color:#f92672">&lt;</span> dp[j] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> nums[j] <span style="color:#f92672">&lt;</span> nums[i]) dp[i] <span style="color:#f92672">=</span> dp[j] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            }
+            Max <span style="color:#f92672">=</span> max(Max, dp[i]);
+        }
+        <span style="color:#66d9ef">return</span> Max;
+    }
+};
+</code></pre></div></li>
+</ul>
+<h3 id="lcs模型">LCS模型</h3>
+<ul>
+<li>LCS就是最长公共子序列，也很经典</li>
+</ul>
+<h4 id="例题1acwing-897-最长公共子序列httpswwwacwingcomproblemcontentdescription899">【例题1】<a href="https://www.acwing.com/problem/content/description/899/">AcWing 897. 最长公共子序列</a></h4>
+<ul>
+<li>
+<p>题意：给你两个长度分别为n、m的字符串，让你求最长的公共子序列有多长</p>
+</li>
+<li>
+<p>简单的分析：</p>
+<ul>
+<li>设a序列的字符分别为$a_1, a_2,a_3……a_n$，b序列的字符分别为$b_1, b_2, b_3……b_m$</li>
+<li>假如序列a为ab，b为a，则他们的LCS就是1，注意到，如果b序列后面加个b变为ab，则LCS就是2，但如果加的是c变为ac，则LCS则还是1</li>
+<li>设$dp[i][j]$表示a序列长度为i，b序列长度为j时的LCS，假设已经求出了之前的状态，则当$a_i = b_j$时，则$dp[i][j] = dp[i - 1][j - 1] + 1$，即LCS长度加一，但如果不相等，则$dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])$，不难看出这个转移方程的意义，下面上一个图更好理解
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPICLCS%E9%80%92%E6%8E%A8%E5%9B%BE.png" alt="LCA递推图"></li>
+<li>其中红色是a序列的各个字符，橙黄色是b序列的各个字符，表格中的数字是相对应的LCS</li>
+<li>代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n, m, dp[<span style="color:#ae81ff">1010</span>][<span style="color:#ae81ff">1010</span>];
+<span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">1010</span>], b[<span style="color:#ae81ff">1010</span>];
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d%s%s&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m, <span style="color:#f92672">&amp;</span>a[<span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>b[<span style="color:#ae81ff">1</span>]);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> m; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">==</span> b[j]) dp[i][j] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">else</span> dp[i][j] <span style="color:#f92672">=</span> max(dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j], dp[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+        }
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, dp[n][m]);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div></li>
+</ul>
+<h3 id="背包模型">背包模型</h3>
+<ul>
+<li>背包问题是经典的一类动规问题</li>
+<li>篇幅过长已搬出（<a href="https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">传送门</a>）</li>
 </ul>
 <h3 id="dag模型">DAG模型</h3>
 <ul>
@@ -1228,7 +1323,7 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
         
         
     </div>
-    <h5 id="wc" style="font-size: 1rem;text-align: center;">2800 Words|Read in about 13
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">3000 Words|Read in about 14
         Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
     <div class="post-comment">
         

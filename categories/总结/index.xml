@@ -6,10 +6,22 @@
     <description>Recent content in 总结 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Jul 2020 19:08:51 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2020 10:46:13 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>背包问题</title>
+      <link>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 22 Aug 2020 10:46:13 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description>本文从dp总结中搬出
+ 背包问题是一类非常经典的动规问题，包括了完全背包、01背包、多重背包、分组背包、混合背包、二维费用背包、背包问题求方案数、求背包问题的方案、有依赖的背包问题（称为背包九讲）  01背包  最最经典的背包问题，背包九讲中说到：“它包含了背包问题中设计状态、方程的最基本思想。另外，别的类型的背包问题往往也可以转换成01 背包问题求解。”，固01背包的模型是非常重要的 直接看到最原汁原味的题  【例题1】AcWing 2. 01背包问题   题意不多说，就是原汁原味的01背包题，值得说的是以下内容均以V为容量，W为价值，c为背包总容量
+  分析1：
+ 分治法这里不介绍，我也不会，这里是动规“专辑” 对于每个物品有选和不选的两种决策，固我们可以从dfs的角度加上记忆化来思考这道题 可以考虑每一层都代表一个物品，有选和不选两种方案，意味着有两个递归下去的道路 其余细节具体看代码  //调用时直接调用dfs(0, c)就好了 int dfs(int nums, int sum) {//第nums个物品，还剩下sum的容量，  if (nums == n) return 0; if (vis[nums][sum]) return dp[nums][sum]; vis[nums][sum] = true; int &amp;amp;ans = dp[nums][sum]; ans = dfs(nums + 1, sum); //不选当前的物品，则容量依旧还剩sum  if (sum &amp;gt;= v[nums]) ans = max(ans, dfs(nums + 1, sum - v[nums]) + w[nums]); // 如果容量够，则选当前物品，则容量剩余sum - v[nums]  return ans; }  可以看得出来，dfs+记忆化的好处就是简单易懂，似乎完全不用过多说明代码的意义    分析2：</description>
+    </item>
     
     <item>
       <title>贪心刷题总结</title>
@@ -48,7 +60,7 @@
       <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4. 分类  ① 线性DP ② 区间DP ③ 树状DP  【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5.</description>
+      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   LIS模型  【例题1】leetcode 300 最长上升子序列   LCS模型  【例题1】AcWing 897. 最长公共子序列   背包模型 DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4.</description>
     </item>
     
   </channel>

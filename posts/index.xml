@@ -6,10 +6,22 @@
     <description>Recent content in Posts on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Aug 2020 21:29:02 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2020 10:46:13 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>背包问题</title>
+      <link>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 22 Aug 2020 10:46:13 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description>本文从dp总结中搬出
+ 背包问题是一类非常经典的动规问题，包括了完全背包、01背包、多重背包、分组背包、混合背包、二维费用背包、背包问题求方案数、求背包问题的方案、有依赖的背包问题（称为背包九讲）  01背包  最最经典的背包问题，背包九讲中说到：“它包含了背包问题中设计状态、方程的最基本思想。另外，别的类型的背包问题往往也可以转换成01 背包问题求解。”，固01背包的模型是非常重要的 直接看到最原汁原味的题  【例题1】AcWing 2. 01背包问题   题意不多说，就是原汁原味的01背包题，值得说的是以下内容均以V为容量，W为价值，c为背包总容量
+  分析1：
+ 分治法这里不介绍，我也不会，这里是动规“专辑” 对于每个物品有选和不选的两种决策，固我们可以从dfs的角度加上记忆化来思考这道题 可以考虑每一层都代表一个物品，有选和不选两种方案，意味着有两个递归下去的道路 其余细节具体看代码  //调用时直接调用dfs(0, c)就好了 int dfs(int nums, int sum) {//第nums个物品，还剩下sum的容量，  if (nums == n) return 0; if (vis[nums][sum]) return dp[nums][sum]; vis[nums][sum] = true; int &amp;amp;ans = dp[nums][sum]; ans = dfs(nums + 1, sum); //不选当前的物品，则容量依旧还剩sum  if (sum &amp;gt;= v[nums]) ans = max(ans, dfs(nums + 1, sum - v[nums]) + w[nums]); // 如果容量够，则选当前物品，则容量剩余sum - v[nums]  return ans; }  可以看得出来，dfs+记忆化的好处就是简单易懂，似乎完全不用过多说明代码的意义    分析2：</description>
+    </item>
     
     <item>
       <title>UVA12563</title>
@@ -26,7 +38,7 @@
       <pubDate>Fri, 21 Aug 2020 14:36:57 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva116/</guid>
-      <description>【例题3】Unidirectional TSP   大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的
+      <description>Unidirectional TSP   大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的
   简单的分析：
  可以看出是一个数塔问题的变种 书中说这种问题叫做多阶段决策问题中的一类——多阶段图的最短路问题，所谓多阶段图按书中说法就是图中结点可以划分成若干个阶段 这里我的理解就是原数塔问题也可以说是一个DAG，而这题相当于多个数塔重合的版本，固每一列都有对应着不用的阶段 计算最短路就是简单的数塔解法了 真正让人头疼的是最小字典序这里，一开始我的做法是写一大堆if判断，最后对比了一下刘老师的代码，妙不可言，用了大小为3的数组存下一列的决策行数 代码如下  #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int INF = 0x3f3f3f3f; int m, n, g[15][110], ans[15][110], Min, dp[15][110], f; bool vis[15][110]; int DP(int r, int c) { if (c == n) return 0; if (vis[r][c]) return dp[r][c]; int &amp;amp;res = dp[r][c], M = INF, &amp;amp;i = ans[r][c + 1], row[] = {r - 1, r, r + 1}; vis[r][c] = true, res = g[r][c]; if (r == 0) row[0] = m - 1; if (r == m - 1) row[2] = 0; sort(row, row + 3); for (int j = 0; j &amp;lt; 3; j++) if (M &amp;gt; DP(row[j], c + 1)) M = DP(row[j], c + 1), i = row[j]; res += M; return res; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
     </item>
@@ -37,7 +49,7 @@
       <pubDate>Fri, 21 Aug 2020 09:46:38 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva437/</guid>
-      <description>UVA 437 The Tower of Babylon  题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高 简单的分析  能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码 一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体 下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去 最后就DP就是求从某个节点出发的最大距离就是答案 注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图 下面是代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, kase = 0, head[100], cnt = 0, dp[500], vis[500]; struct rect{ int a, b, c; rect(){} rect(int a, int b, int c) : a(a), b(b), c(c) {} }r[100]; struct edges{ int to, next; edges(int to = 0, int next = -1) : to(to), next(next) {} }edge[10010]; bool ok(const rect&amp;amp; x, const rect&amp;amp; y) { return (x.</description>
+      <description>The Tower of Babylon  题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高 简单的分析  能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码 一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体 下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去 最后就DP就是求从某个节点出发的最大距离就是答案 注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图 下面是代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, kase = 0, head[100], cnt = 0, dp[500], vis[500]; struct rect{ int a, b, c; rect(){} rect(int a, int b, int c) : a(a), b(b), c(c) {} }r[100]; struct edges{ int to, next; edges(int to = 0, int next = -1) : to(to), next(next) {} }edge[10010]; bool ok(const rect&amp;amp; x, const rect&amp;amp; y) { return (x.</description>
     </item>
     
     <item>
@@ -559,7 +571,7 @@
       <pubDate>Wed, 01 Jul 2020 11:31:33 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/</guid>
-      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4. 分类  ① 线性DP ② 区间DP ③ 树状DP  【例题1】HDU 1520 Anniversary party 【例题2】HDU 2196 Computer   ④ 状态压缩DP  常见的二进制使用 【例题 1】HDU 方格取数（1） 【例题2】洛谷 P1879 Corn Fields G     5.</description>
+      <description>1. 写在前面的话 2. 对DP简单的总结 3. 几个重要的模型  数塔模型  【例题】HDU 2084 数塔   凑硬币模型  【例题1】leetcode 322 零钱兑换 【例题2】leetcode 279 完全平方数   LIS模型  【例题1】leetcode 300 最长上升子序列   LCS模型  【例题1】AcWing 897. 最长公共子序列   背包模型 DAG模型  【例题1】UVA 1025 A Spy in the Metro 【例子2】UVA 437 The Tower of Babylon 【例题3】UVA 116 Unidirectional TSP 【例题4】UVA 12563 Jin Ge Jin Qu hao     4.</description>
     </item>
     
     <item>

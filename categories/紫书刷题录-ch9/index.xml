@@ -26,7 +26,7 @@
       <pubDate>Fri, 21 Aug 2020 14:36:57 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva116/</guid>
-      <description>【例题3】Unidirectional TSP   大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的
+      <description>Unidirectional TSP   大致题意：有个$m \times n$矩阵，对于每个点你可以向直接向右、右上，右下走，第1行的上一行是第m行，第m行的下一行是第1行，问你从第一列的某一行出发，到达最后一列所经历的点的和最小是多少，并且打印出每一列的行号，如果有多解，输出字典序最小的
   简单的分析：
  可以看出是一个数塔问题的变种 书中说这种问题叫做多阶段决策问题中的一类——多阶段图的最短路问题，所谓多阶段图按书中说法就是图中结点可以划分成若干个阶段 这里我的理解就是原数塔问题也可以说是一个DAG，而这题相当于多个数塔重合的版本，固每一列都有对应着不用的阶段 计算最短路就是简单的数塔解法了 真正让人头疼的是最小字典序这里，一开始我的做法是写一大堆if判断，最后对比了一下刘老师的代码，妙不可言，用了大小为3的数组存下一列的决策行数 代码如下  #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; const int INF = 0x3f3f3f3f; int m, n, g[15][110], ans[15][110], Min, dp[15][110], f; bool vis[15][110]; int DP(int r, int c) { if (c == n) return 0; if (vis[r][c]) return dp[r][c]; int &amp;amp;res = dp[r][c], M = INF, &amp;amp;i = ans[r][c + 1], row[] = {r - 1, r, r + 1}; vis[r][c] = true, res = g[r][c]; if (r == 0) row[0] = m - 1; if (r == m - 1) row[2] = 0; sort(row, row + 3); for (int j = 0; j &amp;lt; 3; j++) if (M &amp;gt; DP(row[j], c + 1)) M = DP(row[j], c + 1), i = row[j]; res += M; return res; } int main() { #ifndef ONLINE_JUDGE  freopen(&amp;#34;D:/MYCODE/vsCode-c/test.</description>
     </item>
@@ -37,7 +37,7 @@
       <pubDate>Fri, 21 Aug 2020 09:46:38 +0800</pubDate>
       
       <guid>https://haofish.github.io/2020/uva437/</guid>
-      <description>UVA 437 The Tower of Babylon  题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高 简单的分析  能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码 一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体 下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去 最后就DP就是求从某个节点出发的最大距离就是答案 注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图 下面是代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, kase = 0, head[100], cnt = 0, dp[500], vis[500]; struct rect{ int a, b, c; rect(){} rect(int a, int b, int c) : a(a), b(b), c(c) {} }r[100]; struct edges{ int to, next; edges(int to = 0, int next = -1) : to(to), next(next) {} }edge[10010]; bool ok(const rect&amp;amp; x, const rect&amp;amp; y) { return (x.</description>
+      <description>The Tower of Babylon  题意：给你n种有无数个的立方体，现在让你用这些立方体堆一个塔，每个立方体的底面长宽都要严格小于下面立方体的底面长宽，问你最高能堆多高 简单的分析  能看得出来是一个矩形嵌套的变种问题，用DAG模型建立来做会非常好码代码 一种立方体有三种摆放方式，假设一个立方体的长宽高为a、b、c，则三种摆放方式分别是以a、b、c为高的摆放方式，固一种立方体可以看成三个立方体 下面就是建立DAG了，如果一个立方体的底面长宽严格大于另一个底面长宽的立方体则连一条有向边过去 最后就DP就是求从某个节点出发的最大距离就是答案 注意到，无论是思考还是码代码都不需要再去想状态方程来，直接当成一个图求最远距离来做，为了加速，我用了邻接表来建立图 下面是代码    #include &amp;lt;cstring&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; int n, kase = 0, head[100], cnt = 0, dp[500], vis[500]; struct rect{ int a, b, c; rect(){} rect(int a, int b, int c) : a(a), b(b), c(c) {} }r[100]; struct edges{ int to, next; edges(int to = 0, int next = -1) : to(to), next(next) {} }edge[10010]; bool ok(const rect&amp;amp; x, const rect&amp;amp; y) { return (x.</description>
     </item>
     
     <item>

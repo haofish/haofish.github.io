@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva12563/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    背包问题 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="背包问题 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "背包问题",
+    "headline" : "背包问题",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-22 10:46:13 \u002b0800 CST",
+    "dateModified" : "2020-08-22 10:46:13 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98\/",
+    "wordCount" : "440",
+    "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">背包问题</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-08-22
+                    itemprop="datePublished">August 22, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <p>本文从<a href="https://haofish.github.io/2020/dp%E6%80%BB%E7%BB%93/"><strong>dp总结</strong></a>中搬出</p>
+<ul>
+<li>背包问题是一类非常经典的动规问题，包括了完全背包、01背包、多重背包、分组背包、混合背包、二维费用背包、背包问题求方案数、求背包问题的方案、有依赖的背包问题（称为背包九讲）</li>
+</ul>
+<h2 id="01背包">01背包</h2>
+<ul>
+<li>最最经典的背包问题，背包九讲中说到：“它包含了背包问题中设计状态、方程的最基本思想。另外，别的类型的背包问题往往也可以转换成01 背包问题求解。”，固01背包的模型是非常重要的</li>
+<li>直接看到最原汁原味的题</li>
+</ul>
+<h3 id="例题1acwing-2-01背包问题httpswwwacwingcomproblemcontentdescription2">【例题1】<a href="https://www.acwing.com/problem/content/description/2/">AcWing 2. 01背包问题</a></h3>
+<ul>
+<li>
+<p>题意不多说，就是原汁原味的01背包题，值得说的是以下内容均以V为容量，W为价值，c为背包总容量</p>
+</li>
+<li>
+<p>分析1：</p>
+<ul>
+<li>分治法这里不介绍，<del>我也不会</del>，这里是动规“专辑”</li>
+<li>对于每个物品有选和不选的两种决策，固我们可以从dfs的角度加上记忆化来思考这道题</li>
+<li>可以考虑每一层都代表一个物品，有选和不选两种方案，意味着有两个递归下去的道路</li>
+<li>其余细节具体看代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">//调用时直接调用dfs(0, c)就好了
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> nums, <span style="color:#66d9ef">int</span> sum) {<span style="color:#75715e">//第nums个物品，还剩下sum的容量，
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (nums <span style="color:#f92672">==</span> n) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> (vis[nums][sum]) <span style="color:#66d9ef">return</span> dp[nums][sum];
+    vis[nums][sum] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>ans <span style="color:#f92672">=</span> dp[nums][sum];
+    ans <span style="color:#f92672">=</span> dfs(nums <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, sum); <span style="color:#75715e">//不选当前的物品，则容量依旧还剩sum
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (sum <span style="color:#f92672">&gt;=</span> v[nums]) ans <span style="color:#f92672">=</span> max(ans, dfs(nums <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, sum <span style="color:#f92672">-</span> v[nums]) <span style="color:#f92672">+</span> w[nums]); <span style="color:#75715e">// 如果容量够，则选当前物品，则容量剩余sum - v[nums]
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ans;
+}
+</code></pre></div><ul>
+<li>可以看得出来，dfs+记忆化的好处就是简单易懂，似乎完全不用过多说明代码的意义</li>
+</ul>
+</li>
+<li>
+<p>分析2：</p>
+<ul>
+<li>本题递归+记忆化的好处就是易于思考，不需要过多地打草稿</li>
+<li>但考虑到01背包经典性和别的背包问题都可以转换成01背包来解决，所以只会递归是不够的</li>
+<li>根据上述分析1的内容，可以很容易定义状态：设dp[i][j]为决策到第i个物品时，还剩j容量的储存的最大价值</li>
+<li>根据分析1的代码不难得出状态转移方程
+$$
+dp[i][j] = max{dp[i + 1][j], \ \ dp[i + 1][j - v[i]] + w[i]}\ \ (j &gt;= v[i])
+$$</li>
+<li>递推部分代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">memset(dp, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span> dp);
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>){
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> c; j<span style="color:#f92672">++</span>) {
+        dp[i][j] <span style="color:#f92672">=</span> (i <span style="color:#f92672">==</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> dp[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j]);
+        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;=</span> v[i]) dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], dp[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> v[i]] <span style="color:#f92672">+</span> w[i]);
+    }
+}
+</code></pre></div><ul>
+<li>注意事项：值得注意的是这个第二层循环必须从0开始，为什么，因为面对第$i(i &lt; n - 1)$件物品，当不选它的时候它就等于$dp[i + 1][j]$，即上一次决策背包容量还剩$j$的状态值（之所以会说明这个是因为之前被01背包最终的优化结果洗脑太深，回头看这些一开始的做法反而有点懵😂）</li>
+<li>上面的代码是根据递归来写的，可能在递推中难以理解上述的注意事项，但递归就好理解了，这样再次侧面说明了递归的好处</li>
+<li>其实从第0件物品开始也是一样的，就是要加多一个判断，即如果当前是第0个物品，如果选了这个物品，则dp值直接就等于物品的重量，当然，如果你的下标是从1开始的，可以直接不写这个判断</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> c; j<span style="color:#f92672">++</span>) {
+        dp[i][j] <span style="color:#f92672">=</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j]);
+        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;=</span> v[i]) {
+            <span style="color:#66d9ef">if</span>(i) dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> v[i]] <span style="color:#f92672">+</span> w[i]);
+            <span style="color:#66d9ef">else</span> dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], w[i]);
+        }
+    }
+}
+</code></pre></div><ul>
+<li>上面这个代码比逆着来递推的好处就是可以边读边计算，剩下了一些空间</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> c; j<span style="color:#f92672">++</span>) {
+        dp[i][j] <span style="color:#f92672">=</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j]);
+        <span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&gt;=</span> v) {
+            <span style="color:#66d9ef">if</span>(i) dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j <span style="color:#f92672">-</span> v] <span style="color:#f92672">+</span> w);
+            <span style="color:#66d9ef">else</span> dp[i][j] <span style="color:#f92672">=</span> max(dp[i][j], w);
+        }
+    }
+}
+</code></pre></div></li>
+<li>
+<p>空间优化：</p>
+<ul>
+<li>不难发现，当遍历到第$i(i &gt; 0)$个物品时（顺着来递推），它利用到的状态只有上一个物品的状态，即第i - 1个物品的状态，则这个第一维完全可以用滚动数组来优化，即优化成$2 * Maxn$的数组</li>
+<li>再来看第二维，它会利用到$j - v[i]$的状态，计算完成后$j - v[i]$的状态就没用了</li>
+<li>综上，看图
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E9%9B%B6%E4%B8%80%E8%83%8C%E5%8C%85%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96.png" alt="01背包空间优化"></li>
+<li>所以完全可以将二维优化成一维的数组，为了保持$j - v[i]$是上一个物品的状态，第二层递推时要逆着过来递推</li>
+<li>状态转移方程如下
+$$
+dp[j] = max(dp[j],\ \ dp[j - v] + w)
+$$</li>
+<li>上述的状态方程是对应边读边计算的</li>
+<li>最终代码如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> Maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1010</span>;
+<span style="color:#66d9ef">int</span> n, c, dp[Maxn] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>c);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">int</span> v, w;
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>v, <span style="color:#f92672">&amp;</span>w);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> c; j <span style="color:#f92672">&gt;=</span> v; j<span style="color:#f92672">--</span>) {
+            dp[j] <span style="color:#f92672">=</span> max(dp[j], dp[j <span style="color:#f92672">-</span> v] <span style="color:#f92672">+</span> w);
+        }
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>, dp[c]);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><ul>
+<li>说明：这里的二层循环是c到v，一来是因为j要大于等于v数组才有意义，二来是因为最开始是从c到0时，当$j &lt; v$时只有不选当前物品的选择，则状态就会继承自一个物品此时的容量的状态，而此时代码是c到v默认了$j &lt; v$时的状态时继承自上一个物品同容量的状态</li>
+</ul>
+</li>
+<li>
+<p>上面的01背包问的是容量不超过c的最大价值，但如果问的是容量恰好是c的呢？</p>
+</li>
+<li>
+<p>下面将不超过容量c为问题一，容量恰好为c为问题二</p>
+</li>
+<li>
+<p>回忆以下不超过c的最大价值的状态定义：dp[i][j]表示正在考虑第i件物品还剩下j的容量所能装下的最大价值</p>
+</li>
+<li>
+<p>说解法之前，先来看这么一组数据，物品个数为4，背包容量为9，物品重量分别为{2，3，4，5}，价值分别为{3，5，2，6}，则在不超过9容量的最大价值为11，但恰好是9容量的最大价值为10，为什么反而价值还少了呢，其实在问题一中，背包装的容量为8，并没有装满，这就意味着在问题一中dp[9] = dp[8]，有一格空间是没有用上的，使得装9和装8的价值一样，那为什么会有这种情况呢</p>
+<ul>
+<li>下面是dp[9]和dp[8]在问题一中的真正转移路程</li>
+<li>$dp[9] = dp[4(9 - 5)] + 6 = (dp[1(4 - 3)] + 5) + 6 = (0 + 5) + 6$</li>
+<li>$dp[8] = dp[3(8 - 5)] + 6 = (dp[0(3 - 3)] + 5) + 6 = (0 + 5) + 6$</li>
+</ul>
+</li>
+<li>
+<p>注意到dp[1]在问题一中是为0的，上面说过为0则表示什么都不装，但是在问题二中，除了容量本来就是0的背包外其余容量的背包在什么都不装的情况下价值不能定义为0，为什么？因为这样在问题二中转移时为默认认为多出的1格（以上面的例子为例）是不装东西的</p>
+</li>
+<li>
+<p>怎么解决呢，根据上述的一句话“除了容量本来就是0的背包外其余容量的背包在什么都不装的情况下价值不能定义为0”，这样这样操作：dp[0] = 0，其余的都初始化为$-∞$</p>
+</li>
+<li>
+<p>还不理解就这样想：恰好容量c一定是从容量为0的状态一步一步转移过来的</p>
+</li>
+</ul>
+<h2 id="完全背包">完全背包</h2>
+<ul>
+<li>紫书是先说完全背包问题的，紫书是从完全背包来引入背包问题的，可能是因为完全背包和硬币模型十分相似，都是DAG模型的题，和硬币模型最明显不同的是硬币模型起点和终点都是固定的，而完全背包是起点固定，终点任意的题</li>
+<li>直接看例题</li>
+</ul>
+<h3 id="例题1acwing-3-完全背包问题httpswwwacwingcomproblemcontent3">【例题1】<a href="https://www.acwing.com/problem/content/3/">AcWing 3. 完全背包问题</a></h3>
+<ul>
+<li>完全背包的裸题，题意就不再赘述了</li>
+<li>分析方式1：
+<ul>
+<li>刚刚说了，完全背包和硬币模型相似，只不过呢和硬币模型DAG有两个不同的地方，一是硬币模型的起点是要求的面值和，终点是0，而完全背包的DAG的起点是要求的背包总容量，而终点是任意的，只是必须是不为负数；二是硬币模型的边权是1，而完全背包问题的边权是对应物品的价值，固之前硬币问题中的“+1”就要编程“+w[i]”了</li>
+<li>未完待续……</li>
+</ul>
+</li>
+</ul>
+<h2 id="多重背包">多重背包</h2>
+<h2 id="分组背包">分组背包</h2>
+<h2 id="混合背包">混合背包</h2>
+
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva12563/" class="prev" rel="prev" title="UVA12563"><i
+                class="iconfont icon-left"></i>&nbsp;UVA12563</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">500 Words|Read in about 3
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
