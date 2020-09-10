@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva11584/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/uva1625/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    UVA1625 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="UVA1625 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "UVA1625",
+    "headline" : "UVA1625",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-09-07 20:44:19 \u002b0800 CST",
+    "dateModified" : "2020-09-07 20:44:19 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/uva1625\/",
+    "wordCount" : "770",
+    "keywords" : [ "题解","动态规划", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">UVA1625</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-09-07
+                    itemprop="datePublished">September 7, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E7%B4%AB%E4%B9%A6%E5%88%B7%E9%A2%98%E5%BD%95-ch9/"> 紫书刷题录-ch9 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="color-lengthhttpsvjudgenetproblemuva-1625"><a href="https://vjudge.net/problem/UVA-1625">Color Length</a></h2>
+<ul>
+<li>题意：给你两个长度分别为$n、m(1 \le n, m \le 5000)$的字符串，让你求出组成新串的最小$l(c)$（具体组成方式看原题）</li>
+<li>个人感觉这题很难，一度怀疑自己的能力和紫书题目的难易分布，最后费了九牛二虎之力终于想通为什么了，所以本文可能会花大篇幅来解释这题是怎么想的</li>
+<li>思路：一开始看着有点LCS的影子，想着想着就写出了DP的递归函数，但是却死活想不出下一步怎么递归，即如下代码的$[]$片段</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+    <span style="color:#66d9ef">if</span> (vis[a][b]) <span style="color:#66d9ef">return</span> dp[a][b];
+    vis[a][b] <span style="color:#f92672">=</span> true;
+    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>res <span style="color:#f92672">=</span> dp[a][b];
+    <span style="color:#66d9ef">return</span> res <span style="color:#f92672">=</span> min(DP(a <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, b) <span style="color:#f92672">+</span> [], DP(a, b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> []);
+}
+</code></pre></div><ul>
+<li>显然，可以猜测dp方程是</li>
+</ul>
+<p>$$
+dp[i][j] = min\begin{cases}
+dp[i - 1][j] + ?_1\ \<br>
+dp[i][j - 1] + ?_2\<br>
+\end{cases}
+$$</p>
+<ul>
+<li>
+<p>想了好久终于还是去看了别人的博客题解，没怎么看懂，于是看了许多人的博客题解，大概知道了一件事：这题的难点就在于求 $?_1 和 \ \ ?_2$，即需要预处理就出这个 $?_1 和 \ \ ?_2$</p>
+</li>
+<li>
+<p>先来说说这个 $?_1 和 \ \ ?_2$到底是什么东西</p>
+<ul>
+<li>首先，如果我们暴力直接来求这个 $?_1 和 \ \ ?_2$，，即每转移一次就求一次 $?_1 和 \ \ ?_2$，这样的话不仅麻烦，而且还不好想，最重要的是时间复杂度太大了</li>
+<li>那么如何来理解这个转移所需要的 $?_1 和 \ \ ?_2$呢？这需要先了解dp代表的是什么意思：
+<ul>
+<li><strong>$dp[i][j]$代表的是：从字符串1中选取了前i个字符和字符串2中选取了前j个字符拼接成的字符产生的总$l(c)$值的最小值</strong></li>
+<li>举个例子，拿题目中给的<strong>GBBY</strong>和<strong>YRRGB</strong>，如果在字符串1中选取了G，从字符串2中选取了Y的话，则$dp[1][1]$就是1，代表G和Y在<strong>这种情况下</strong>（注意这个“这种情况下”，意味着如果换了两个只有第一个字符相同的字符串的话$dp[i][j]$的值可能就会不一样，这个很重要，现在先不说明，下面在解释 $?_1 和 \ \ ?_2$时会用上）的最小总$l(c)$为1</li>
+<li>解释一下为什么是1，因为Y和G都还没有全部从字符串1和2中全部拿出来，即在字符串1和2中都还有未拿出来拼接的Y和G，则当前拼接成的字符串YG对未来拼接影响$l(c)$最小是$1(Y) + 0(G) = 1$（拼成GY的dp也是一样的值，即$1(G) + 0(Y) = 1$）</li>
+<li>如果字符串2是选取了前3个即YRR的话，则最小的总$l(c)$值就是4，即$dp[1][3] = 4$，具体拼接方式是YRRG，因为R字母已经全部抽取了出来所以其$l(c) = 1$，总值就是$4 = 1(R) + 3(Y) + 0(G)$</li>
+<li>可能很难懂，没关系，当理解了 $?_1 和 \ \ ?_2$后可以再回来看这个dp的含义</li>
+</ul>
+</li>
+<li>说了这么多还是每开始说明 $?_1 和 \ \ ?_2$是什么东西，别着急，还需要几个要理解的：
+<ul>
+<li>用紫书上的说法就是：“<strong>当把一个颜色移到最终序列前，需要把所有“已经出现但还没结束”的颜色的$l(c)$值加1。更进一步地，因为并不关心每个颜色的$l(c)$，所以只需要知道有多少种颜色已经开始但尚未结束。</strong>”</li>
+<li>一开始我就是一直在纠结怎么记录每种颜色在之前的拼接中放的位置，卡了很久</li>
+<li>举个例子来说明紫书上的意思：还是那个题目中给的<strong>GBBY</strong>和<strong>YRRGB</strong>，假如现在已经拼接成了GY，则$dp[1][1] = 1$，接下来再从字符串2中抽出个R，则拼成的结果的$dp[1][2] = 3$（假如拼接成的是GYR），则分别加的两个值就是G加了1，和Y加了1，因为加了一个字母R导致字符串的长度加了1并且G和Y都没全部抽取出来，固都需要加一</li>
+<li>若再从字符串2中抽取出R来的话，$dp[1][3] = 4$，可能有人会疑惑为什么是4而不是6，因为R和Y和G都要加1，总加的值就是3，所以答案不应该是$3 + 3 = 6$吗?，先冷静，还记得吗，dp的含义。我们拼接的应该是YRRG的样子才是最小值，这个时候R已经全部抽出来了，所以R值不用加1，完全可以计算他本身的$l(c)$值，所以总的$dp[1][3] = 3(Y) + 1(R) + 0(G) = 4$</li>
+<li>已经懂的可以跳过这一段的，原谅我再啰嗦一下，假如再从字符串2抽取一个G，则$dp[1][4] = 4(Y) + 1(R) + 1(G) = 6$，即G和R都已经全部抽取出来了，要加一的是Y，而G和R只需计算自身的$l(c)$就行了</li>
+<li>发现没有至始至终Y的$l(c)$是一直在加一的，而其他的由于中途已经全部抽取出来了，固没有加一而是计算自身的$l(c)$值</li>
+</ul>
+</li>
+<li>到这里就可以解密?是什么了：$add[i][j]$代表从字符串抽取了前i个字符和从字符串抽取了前j个字符中<strong>已经出现但还没有全部抽取出来的字符有多少个</strong></li>
+<li>因为只有<strong>已经出现但还没有全部抽取出来的字符</strong>在我们不断地拼接新的字符的时候才要加一</li>
+<li>关于$add[i][j]$的预处理转移方式：
+<ul>
+<li>首先是要记录每个字符在两个字符串中的开始和结束位置，这个目的是知道当前字符是不是<strong>已经出现但还没有全部抽取出来的字符</strong></li>
+<li>对于$add[i][j]$当$i &gt; 1$并且$j &gt; 1$时，其可以从两个方面转移过来，即$add[i][j - 1]$和$add[i - 1][j]$，可以这么想：从两个字符串中分别抽取前i、j个字符的前一个状态可以是<strong>从前两个字符串中分别抽取前i - 1、j</strong>或者<strong>前i、j - 1个字符</strong>的状态，对应分只要考虑字符串1的第i个字符是不是已经抽取完了或者字符串2的第j个字符是不是已经抽取完了，都是可以的，代码片段只会从一种中计算出来，而不是两种计算方式都用上<del>我要最求速度</del></li>
+<li>如果如果当前新拼接的字符是<strong>已经出现但还没有全部抽取出来的字符</strong>，则$add[i][j]$就自加一，如果是<strong>已经出现并且全部都抽取出来的字符</strong>，则$add[i][j]$就自减一</li>
+<li>具体结果就是如图：
+<img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%B4%AB%E4%B9%A6%E5%8A%A8%E6%80%81%E4%B8%80%E5%85%AD%E4%BA%8C%E4%BA%94.png" alt="uva1625"></li>
+</ul>
+</li>
+<li>dp前对add的预处理代码：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">strings</span>{
+    <span style="color:#66d9ef">int</span> s, t;
+    strings(<span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> INF, <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> s(s), t(t) {}
+};
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>b) {
+    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> strlen(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), m <span style="color:#f92672">=</span> strlen(b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    strings aa[<span style="color:#ae81ff">27</span>], bb[<span style="color:#ae81ff">27</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {<span style="color:#75715e">//记录每个字符在字符串1中的开始位置和结束位置
+</span><span style="color:#75715e"></span>        strings <span style="color:#f92672">&amp;</span>t <span style="color:#f92672">=</span> aa[a[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>];
+        t.s <span style="color:#f92672">=</span> min(t.s, i), t.t <span style="color:#f92672">=</span> i;
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {<span style="color:#75715e">//记录每个字符在字符串2中的开始位置和结束位置
+</span><span style="color:#75715e"></span>        strings <span style="color:#f92672">&amp;</span>t <span style="color:#f92672">=</span> bb[b[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>];
+        t.s <span style="color:#f92672">=</span> min(t.s, i), t.t <span style="color:#f92672">=</span> i;
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> m; j<span style="color:#f92672">++</span>) {
+            add[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;<span style="color:#75715e">//就计算一次add[i][j]
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (i) {
+                add[i][j] <span style="color:#f92672">=</span> add[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j];
+                <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> a[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+                <span style="color:#66d9ef">if</span> (aa[x].s <span style="color:#f92672">==</span> i <span style="color:#f92672">&amp;&amp;</span> bb[x].s <span style="color:#f92672">&gt;</span> j) add[i][j]<span style="color:#f92672">++</span>;<span style="color:#75715e">//如果是已经出现但还没有全部抽取出来的字符
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (aa[x].t <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&amp;&amp;</span> bb[x].t <span style="color:#f92672">&lt;=</span> j) add[i][j]<span style="color:#f92672">--</span>;<span style="color:#75715e">//如果是已经出现并且全部都抽取出来的字符
+</span><span style="color:#75715e"></span>                ok <span style="color:#f92672">=</span> false;
+            }
+            <span style="color:#66d9ef">if</span> (ok <span style="color:#f92672">&amp;&amp;</span> j) {
+                add[i][j] <span style="color:#f92672">=</span> add[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+                <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> b[j] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+                <span style="color:#66d9ef">if</span> (bb[x].s <span style="color:#f92672">==</span> j <span style="color:#f92672">&amp;&amp;</span> aa[x].s <span style="color:#f92672">&gt;</span> i) add[i][j]<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">if</span> (bb[x].t <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">&amp;&amp;</span> aa[x].t <span style="color:#f92672">&lt;=</span> i) add[i][j]<span style="color:#f92672">--</span>;
+            }
+            <span style="color:#75715e">// printf(&#34;%d &#34;, add[i][j]);
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#75715e">// puts(&#34;&#34;);
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#75715e">// printf(&#34;%d&#34;, aa[&#39;R&#39; - &#39;A&#39;].t);
+</span><span style="color:#75715e"></span>}
+</code></pre></div></li>
+<li>
+<p>接下来就是dp的转移方程了</p>
+</li>
+</ul>
+<p>$$
+dp[i][j] = min\begin{cases}
+dp[i - 1][j] + add[i - 1][j], \ \ i &gt; 0 \ \ ①\ \<br>
+dp[i][j - 1] + add[i][j - 1], \ \ j &gt; 0 \ \ ② \<br>
+\end{cases}
+$$</p>
+<ul>
+<li>注意①式和②式代表的含义是不同的，其中①式代表<strong>抽取前i、j个字符的之前状态时抽取前i - 1、j个字符的状态</strong>，即第i个字符一定是放在拼接后的最后一位，②式同理，给个转移图体会体会</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%B4%AB%E4%B9%A6%E4%B8%80%E5%85%AD%E4%BA%8C%E4%BA%94.png" alt="uva1625"></p>
+<ul>
+<li>还不懂的可以草稿纸模拟一下，从上面介绍dp内涵开始重看</li>
+<li>最终ac代码</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">5e3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>, INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;
+<span style="color:#66d9ef">int</span> add[M][M], dp[M][M];
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">strings</span>{
+    <span style="color:#66d9ef">int</span> s, t;
+    strings(<span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> INF, <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">:</span> s(s), t(t) {}
+};
+
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>b) {
+    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> strlen(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), m <span style="color:#f92672">=</span> strlen(b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    strings aa[<span style="color:#ae81ff">27</span>], bb[<span style="color:#ae81ff">27</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        strings <span style="color:#f92672">&amp;</span>t <span style="color:#f92672">=</span> aa[a[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>];
+        t.s <span style="color:#f92672">=</span> min(t.s, i), t.t <span style="color:#f92672">=</span> i;
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>) {
+        strings <span style="color:#f92672">&amp;</span>t <span style="color:#f92672">=</span> bb[b[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>];
+        t.s <span style="color:#f92672">=</span> min(t.s, i), t.t <span style="color:#f92672">=</span> i;
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> m; j<span style="color:#f92672">++</span>) {
+            add[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">bool</span> ok <span style="color:#f92672">=</span> true;
+            <span style="color:#66d9ef">if</span> (i) {
+                add[i][j] <span style="color:#f92672">=</span> add[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j];
+                <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> a[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+                <span style="color:#66d9ef">if</span> (aa[x].s <span style="color:#f92672">==</span> i <span style="color:#f92672">&amp;&amp;</span> bb[x].s <span style="color:#f92672">&gt;</span> j) add[i][j]<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">if</span> (aa[x].t <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&amp;&amp;</span> bb[x].t <span style="color:#f92672">&lt;=</span> j) add[i][j]<span style="color:#f92672">--</span>;
+                ok <span style="color:#f92672">=</span> false;
+            }
+            <span style="color:#66d9ef">if</span> (ok <span style="color:#f92672">&amp;&amp;</span> j) {
+                add[i][j] <span style="color:#f92672">=</span> add[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+                <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> b[j] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+                <span style="color:#66d9ef">if</span> (bb[x].s <span style="color:#f92672">==</span> j <span style="color:#f92672">&amp;&amp;</span> aa[x].s <span style="color:#f92672">&gt;</span> i) add[i][j]<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">if</span> (bb[x].t <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">&amp;&amp;</span> aa[x].t <span style="color:#f92672">&lt;=</span> i) add[i][j]<span style="color:#f92672">--</span>;
+            }
+            <span style="color:#75715e">// printf(&#34;%d &#34;, add[i][j]);
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#75715e">// puts(&#34;&#34;);
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#75715e">// printf(&#34;%d&#34;, aa[&#39;R&#39; - &#39;A&#39;].t);
+</span><span style="color:#75715e"></span>}
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>b) {
+    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> strlen(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), m <span style="color:#f92672">=</span> strlen(b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    dp[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;=</span> m; j<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (i) {
+                dp[i][j] <span style="color:#f92672">=</span> dp[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j] <span style="color:#f92672">+</span> add[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][j];
+            }
+            <span style="color:#66d9ef">if</span> (j) {
+                <span style="color:#66d9ef">if</span> (i) dp[i][j] <span style="color:#f92672">=</span> min(dp[i][j], dp[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> add[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+                <span style="color:#66d9ef">else</span> dp[i][j] <span style="color:#f92672">=</span> dp[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> add[i][j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> dp[n][m];
+}
+
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>(){
+    <span style="color:#66d9ef">char</span> a[M], b[M];
+    gets(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), gets(b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    init(a, b);
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, DP(a, b));
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#75715e">#ifndef ONLINE_JUDGE
+</span><span style="color:#75715e"></span>    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.in&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+    freopen(<span style="color:#e6db74">&#34;D:/MYCODE/vsCode-c/test.out&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>, stdout);
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> n;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+    getchar();
+    <span style="color:#66d9ef">while</span> (n<span style="color:#f92672">--</span>) solve();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/uva1625/>https://haofish.github.io/2020/uva1625/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E9%A2%98%E8%A7%A3/">
+                    #题解</a></span>
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva11584/" class="prev" rel="prev" title="UVA11584"><i
+                class="iconfont icon-left"></i>&nbsp;UVA11584</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">800 Words|Read in about 4
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

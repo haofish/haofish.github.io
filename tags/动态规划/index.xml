@@ -6,10 +6,22 @@
     <description>Recent content in 动态规划 on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Aug 2020 19:20:38 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 20:44:19 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVA1625</title>
+      <link>https://haofish.github.io/2020/uva1625/</link>
+      <pubDate>Mon, 07 Sep 2020 20:44:19 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/uva1625/</guid>
+      <description>Color Length  题意：给你两个长度分别为$n、m(1 \le n, m \le 5000)$的字符串，让你求出组成新串的最小$l(c)$（具体组成方式看原题） 个人感觉这题很难，一度怀疑自己的能力和紫书题目的难易分布，最后费了九牛二虎之力终于想通为什么了，所以本文可能会花大篇幅来解释这题是怎么想的 思路：一开始看着有点LCS的影子，想着想着就写出了DP的递归函数，但是却死活想不出下一步怎么递归，即如下代码的$[]$片段  int DP(int a, int b) { if (vis[a][b]) return dp[a][b]; vis[a][b] = true; int &amp;amp;res = dp[a][b]; return res = min(DP(a - 1, b) + [], DP(a, b - 1) + []); }  显然，可以猜测dp方程是  $$ dp[i][j] = min\begin{cases} dp[i - 1][j] + ?_1\ \
+dp[i][j - 1] + ?_2\
+\end{cases} $$
+  想了好久终于还是去看了别人的博客题解，没怎么看懂，于是看了许多人的博客题解，大概知道了一件事：这题的难点就在于求 $?_1 和 \ \ ?</description>
+    </item>
     
     <item>
       <title>UVA11584</title>
