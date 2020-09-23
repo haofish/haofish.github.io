@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://haofish.github.io/2020/uva1625/" />
+  
+  <link rel="canonical" href="https://haofish.github.io/2020/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" async
+    src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ],
+            displayMath: [
+                ['$$', '$$'],
+                ['\[\[', '\]\]']
+            ],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            TeX: {
+                equationNumbers: {
+                    autoNumber: "AMS"
+                },
+                extensions: ["AMSmath.js", "AMSsymbols.js"]
+            }
+        }
+    });
+
+    MathJax.Hub.Queue(function () {
+        
+        
+        
+        var all = MathJax.Hub.getAllJax(),
+            i;
+        for (i = 0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<style>
+    code.has-jax {
+        font: inherit;
+        font-size: 100%;
+        background: inherit;
+        border: inherit;
+        color: #515151;
+    }
+</style>
+  <title>
+    
+    
+    acm常用数学总结 | 🐟🐟🐟&lt;--
+    
+  </title>
+  <meta name="title"
+    content="acm常用数学总结 | 🐟🐟🐟&lt;--">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/haofish.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "acm常用数学总结",
+    "headline" : "acm常用数学总结",
+    "description" : "description.",
+    "inLanguage" : "en-us",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-09-21 17:31:50 \u002b0800 CST",
+    "dateModified" : "2020-09-21 17:31:50 \u002b0800 CST",
+    "url" : "https:\/\/haofish.github.io\/2020\/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93\/",
+    "wordCount" : "184",
+    "keywords" : [ "数学", "🐟🐟🐟\u003c--"]
+}
+</script>
+
+</head>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://haofish.github.io/">🐟🐟🐟&lt;--</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">acm常用数学总结</h1>
+        <div class="post-meta">
+            Written by <a itemprop="name" href="https://haofish.github.io/"
+                rel="author"></a>
+            with ♥
+            <span class="post-time">
+                on <time datetime=2020-09-21
+                    itemprop="datePublished">September 21, 2020</time>
+            </span>
+            in
+            <i class="iconfont icon-folder"></i>
+            <span class="post-category">
+                <a href="https://haofish.github.io/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+                
+            </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="前言">前言</h2>
+<ul>
+<li>本博客主要记录和总结一些常用的数学数论知识</li>
+<li>部分专业定义参考百度和其他大牛的博客</li>
+</ul>
+<h2 id="常见的基础名词">常见的基础名词</h2>
+<h3 id="质数素数">质数（素数）</h3>
+<ul>
+<li>对于一个大于1的自然数，当其的正因数（正约数）只有1和它本身时，则称该数为质数（素数）</li>
+<li>注：1既不是质数也不是合数</li>
+<li>有用的特性：
+<ul>
+<li>质数的因数是只有1和它本身</li>
+<li>初等数学基本定理：任一大于1的自然数，要么本身是质数，要么可以分解为几个质数之积，且这种分解是唯一的</li>
+<li>10以后的质数尾数都是1，3，7，9</li>
+<li>质数的个数的无限的</li>
+<li>对于$n(n &gt; 0)$，$n^2$和$(n + 1)^2$之间至少有一个质数</li>
+</ul>
+</li>
+</ul>
+<h3 id="完全数完备数">完全数（完备数）</h3>
+<ul>
+<li>对于一个自然数，它等于它所有真因数的和（除他本身的正因数）则称它为完全数</li>
+<li>例如：$6 = 1 + 2 + 3，28 = 1 + 2 + 4 + 7 + 14$</li>
+</ul>
+<h3 id="反素数">反素数</h3>
+<h2 id="定理">定理</h2>
+<h3 id="算术基本定理"><strong>算术基本定理</strong></h3>
+<ul>
+<li>任何一个大于 1 的自然数可以分解成一些素数的乘积；并且在不计次序的情况下，这种分解方式是唯一的。——百度百科</li>
+<li>内容：任何一个大于1的自然数N，如果N不为质数，则有</li>
+</ul>
+<p>$$
+N = {P_1}^{k_1} \times{P_2}^{k_2} \times {P_3}^{k_3} \cdots \times {P_n}^{k_n} \ \ , \ \ P_1 &lt; P_2 &lt; P_3 &lt; \cdots &lt; P_n
+$$</p>
+<ul>
+<li>
+<p>其中，$P_1,P_2 \cdots P_n$都是质数</p>
+</li>
+<li>
+<p>定理应用：</p>
+<ul>
+<li>①N的正因数（约数）个数为</li>
+</ul>
+<p>$$
+(k_1 + 1) \times (k_2 + 1) \times (k_3 + 1) \times \cdots \times (k_n + 1)
+$$</p>
+<ul>
+<li>理解：对于每一个一个质因数的出现次数可能为n次，则$n \in 0, 1, 2, 3, \cdots k_n$（排列组合的思想），即对于一个质因数$P_n$，可能会出现$k_n + 1$次</li>
+<li>②N的所有正因数的和为</li>
+</ul>
+<p>$$
+({P_1} ^ {0} + {P_1} ^ {1} + {P_1} ^ {2} \cdots + {P_1} ^ {k_1})\times ({P_2} ^ {0} + {P_2} ^ {1} + {P_2} ^ {2} \cdots + {P_2} ^ {k_2}) \times \cdots \times ({P_n} ^ {0} + {P_n} ^ {1} + {P_n} ^ {2} \cdots + {P_n} ^ {k_n})
+$$</p>
+<ul>
+<li>理解：举个非常简单的例子，对于一个数36，则其正因数分别为：1，2，3，4，6，9，12，18，36，则其所有正因数的和为91，即$1 + 2 + 3 + 4 + 6 + 9 + 12 + 18 + 36= 91$，用公式就是$(1 + 2 + 4) \times (1 + 3 + 9)$，对这个式子去括号就是上面直接求和的式子</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+        
+
+        
+        <p class="copyright-item">
+            <span>Link:</span>
+            <a href=https://haofish.github.io/2020/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/>https://haofish.github.io/2020/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/</span>
+        </p>
+        
+        
+        <p class="copyright-item lincese">
+            转载记得加上转载地址哦！
+        </p>
+        
+    </div>
+
+
+    <div class="post-tags">
+        
+        <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://haofish.github.io/tags/%E6%95%B0%E5%AD%A6/">
+                    #数学</a></span>
+            
+        </section>
+        
+        <section>
+            <a href="javascript:window.history.back();">back</a></span> ·
+            <span><a href="https://haofish.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://haofish.github.io/2020/uva1625/" class="prev" rel="prev" title="UVA1625"><i
+                class="iconfont icon-left"></i>&nbsp;UVA1625</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+        
+        
+    </div>
+    <h5 id="wc" style="font-size: 1rem;text-align: center;">200 Words|Read in about 1
+        Min|Total Read: <span id="busuanzi_value_page_pv"></span>?</h5>
+    <div class="post-comment">
+        
+        
+
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'UEWBV1gTCf9VzQHTH13chcGE-gzGzoHsz',
+      appKey: 'VDomK0X3UPsfl7r7TAPGLRR1',
+      notify: 'false', 
+      verify: 'false', 
+      avatar:'mm', 
+      placeholder: '说点什么吧...',
+      visitor: 'true'
+  });
+</script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+   <div class="copyright">
+      &copy;
+      
+      <span itemprop="copyrightYear">2020 - 2020</span>
+      
+      <span class="with-love">
+         <i class="iconfont icon-love"></i>
+      </span>
+      
+
+      
+      <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a
+            href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span>
+      
+      &nbsp;&nbsp;
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <span id="busuanzi_container_site_pv"></span>
+      view: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      &nbsp;
+      <span id="busuanzi_container_site_uv">
+         click: <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>
+   </div>
+   </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

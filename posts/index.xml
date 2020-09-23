@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 🐟🐟🐟&lt;--</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Sep 2020 20:44:19 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2020 17:31:50 +0800</lastBuildDate>
     
 	<atom:link href="https://haofish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>acm常用数学总结</title>
+      <link>https://haofish.github.io/2020/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Mon, 21 Sep 2020 17:31:50 +0800</pubDate>
+      
+      <guid>https://haofish.github.io/2020/acm%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/</guid>
+      <description>前言  本博客主要记录和总结一些常用的数学数论知识 部分专业定义参考百度和其他大牛的博客  常见的基础名词 质数（素数）  对于一个大于1的自然数，当其的正因数（正约数）只有1和它本身时，则称该数为质数（素数） 注：1既不是质数也不是合数 有用的特性：  质数的因数是只有1和它本身 初等数学基本定理：任一大于1的自然数，要么本身是质数，要么可以分解为几个质数之积，且这种分解是唯一的 10以后的质数尾数都是1，3，7，9 质数的个数的无限的 对于$n(n &amp;gt; 0)$，$n^2$和$(n + 1)^2$之间至少有一个质数    完全数（完备数）  对于一个自然数，它等于它所有真因数的和（除他本身的正因数）则称它为完全数 例如：$6 = 1 + 2 + 3，28 = 1 + 2 + 4 + 7 + 14$  反素数 定理 算术基本定理  任何一个大于 1 的自然数可以分解成一些素数的乘积；并且在不计次序的情况下，这种分解方式是唯一的。——百度百科 内容：任何一个大于1的自然数N，如果N不为质数，则有  $$ N = {P_1}^{k_1} \times{P_2}^{k_2} \times {P_3}^{k_3} \cdots \times {P_n}^{k_n} \ \ , \ \ P_1 &amp;lt; P_2 &amp;lt; P_3 &amp;lt; \cdots &amp;lt; P_n $$</description>
+    </item>
     
     <item>
       <title>UVA1625</title>
@@ -52,7 +61,7 @@ dp[i][j - 1] + ?_2\
       
       <guid>https://haofish.github.io/2020/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
       <description>本文从dp总结中搬出
- 背包问题是一类非常经典的动规问题，包括了==01背包==、==完全背包==、==多重背包==、==分组背包==、==混合背包==、==二维费用背包==、==背包问题求方案数==、==求背包问题的方案==、==有依赖的背包问题==（称为背包九讲）  01背包  最最经典的背包问题，背包九讲中说到：“它包含了背包问题中设计状态、方程的最基本思想。另外，别的类型的背包问题往往也可以转换成01 背包问题求解。”，固01背包的模型是非常重要的 直接看到最原汁原味的题  【例题1】AcWing 2. 01背包问题   题意不多说，就是原汁原味的01背包题，值得说的是以下内容均以V为容量，W为价值，c为背包总容量
+ 背包问题是一类非常经典的动规问题，包括了01背包、完全背包、多重背包、分组背包、混合背包、二维费用背包、背包问题求方案数、求背包问题的方案、有依赖的背包问题（称为背包九讲）  01背包  最最经典的背包问题，背包九讲中说到：“它包含了背包问题中设计状态、方程的最基本思想。另外，别的类型的背包问题往往也可以转换成01 背包问题求解。”，固01背包的模型是非常重要的 直接看到最原汁原味的题  【例题1】AcWing 2. 01背包问题   题意不多说，就是原汁原味的01背包题，值得说的是以下内容均以V为容量，W为价值，c为背包总容量
   分析1：
  分治法这里不介绍，我也不会，这里是动规“专辑” 对于每个物品有选和不选的两种决策，固我们可以从dfs的角度加上记忆化来思考这道题 可以考虑每一层都代表一个物品，有选和不选两种方案，意味着有两个递归下去的道路 其余细节具体看代码  //调用时直接调用dfs(0, c)就好了 int dfs(int nums, int sum) {//第nums个物品，还剩下sum的容量，  if (nums == n) return 0; if (vis[nums][sum]) return dp[nums][sum]; vis[nums][sum] = true; int &amp;amp;ans = dp[nums][sum]; ans = dfs(nums + 1, sum); //不选当前的物品，则容量依旧还剩sum  if (sum &amp;gt;= v[nums]) ans = max(ans, dfs(nums + 1, sum - v[nums]) + w[nums]); // 如果容量够，则选当前物品，则容量剩余sum - v[nums]  return ans; }  可以看得出来，dfs+记忆化的好处就是简单易懂，似乎完全不用过多说明代码的意义    分析2：</description>
     </item>

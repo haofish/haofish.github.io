@@ -105,7 +105,7 @@
     "datePublished": "2020-07-01 11:31:33 \u002b0800 CST",
     "dateModified" : "2020-07-01 11:31:33 \u002b0800 CST",
     "url" : "https:\/\/haofish.github.io\/2020\/dp%E6%80%BB%E7%BB%93\/",
-    "wordCount" : "2947",
+    "wordCount" : "2975",
     "keywords" : [ "动态规划", "🐟🐟🐟\u003c--"]
 }
 </script>
@@ -369,16 +369,20 @@
 <li>这题是不能贪心的，即不能只选出当前最大的叶子权值</li>
 <li>假设已经算好了第2层的节点的最大权值和，则第1层的节点（根节点）的最大权值就为第二层的两个节点的最大权值和加上第一层的权值</li>
 <li>其余节点也可假设成第一层和第二层来思考</li>
-<li>所以<strong>设dp[i][j]为第i层的第j个节点的最大权值和，边界条件就是最后一层的最大权值和就是其本身</strong></li>
-<li>状态转移方程如下
-$$
+<li>所以设$dp[ i][ j]$为第i层的第j个节点的最大权值和，边界条件就是最后一层的最大权值和就是其本身</li>
+<li>状态转移方程如下</li>
+</ul>
+<p>$$
 dp[i][j] = max(dp[i - 1][j],\ \ dp[i - 1][j + 1]) + tree[i][j]
-$$</li>
+$$</p>
+<ul>
 <li>发现空间还是可以优化的，因为<strong>当前层数的dp值利用的只有下一层的dp值</strong>，而数组的的第二维计算时利用的是后面的（j + 1）的值，所以第二维是下标小的先更新，下标大的后更新，所以完全可以把第一维抛弃掉，但这样的话dp下标循环起来必须是<strong>从小到大循环</strong></li>
-<li>状态转移方程如下
-$$
+<li>状态转移方程如下</li>
+</ul>
+<p>$$
 dp[j] = max(dp[j], dp[j + 1]) + tree[i][j]
-$$</li>
+$$</p>
+<ul>
 <li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
@@ -426,12 +430,14 @@ $$</li>
 <li>
 <p>简单分析：</p>
 <ul>
-<li>假如你有1 2 5的硬币，假设你已经求出$x$的最小使用数量$y$，<strong>则就能算出$x + 1$、$x + 2$、$x + 5$的最小使用数量，即都为$y + 1$</strong></li>
-<li>设dp<input checked="" disabled="" type="checkbox"> 表示价值为x的最小凑的数量，边界的话显然，$x = 0$时最小要凑的数量为$0$，所以边界就是$dp[0] = 0$</li>
-<li>所以不难得出状态转移方程
-$$
-dp<input checked="" disabled="" type="checkbox"> = min{dp[x - coins[i]] + 1},\ \ x \ge coins[i],\ \ i = 0, 1, 2 ……
-$$</li>
+<li>假如你有1 2 5的硬币，假设你已经求出$x$的最小使用数量$y$，<strong>则就能算出 $x + 1$ 、$x + 2$ 、$x + 5$ 的最小使用数量，即都为</strong> $y + 1$</li>
+<li>设 $dp[ x]$ 表示价值为x的最小凑的数量，边界的话显然，$x = 0$ 时最小要凑的数量为 $0$，所以边界就是 $dp[ 0] = 0$</li>
+<li>所以不难得出状态转移方程</li>
+</ul>
+<p>$$
+dp[ x] = min \lbrace dp[ x - coins[ i]] + 1 \rbrace ,\ \ x \ge coins[ i],\ \ i = 0, 1, 2 \cdots
+$$</p>
+<ul>
 <li>代码如下</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
@@ -490,11 +496,11 @@ $$</li>
 <p>简单的分析：</p>
 <ul>
 <li>分享一下一开始我学动规的时候LIS定义的状态是dp[i]表示下标为i的数组之前的最长上升子序列（即可以不选$nums[i]$），但是这样来定义我发现很难进一步地对状态进行转移，后来还是妥协了书中的状态定义方式</li>
-<li>这件事现在看来也是有点感慨，因为现在我的明白：<strong>状态定义的不同，转移的方式可能也会完全不一样，所以有时候不同的状态定义会影响转移的难易程度，在思考一道动规题时，如果发现状态难以转移，不妨试试换个状态定义</strong></li>
+<li>这件事现在看来也是有点感慨，因为现在的我明白：<strong>状态定义的不同，转移的方式可能也会完全不一样，所以有时候不同的状态定义会影响转移的难易程度，在思考一道动规题时，如果发现状态难以转移，不妨试试换个状态定义</strong></li>
 <li>设dp[i]表示选择下标为i的数为结尾的最长子序列，这样做的好处就是方便后面的转移，<strong>方便利用当前下标数和之前算好的dp状态的下标数进行对比大小</strong>，可以想象成当前状态是和之前算好的状态进行拼接</li>
 <li>则转移方程为
 $$
-dp[i] = max{1,\ \ dp[j] + 1 \ \ | \ \ 0 \le j &lt; i, nums[j] &lt; nums[i] }
+dp[i] = max\lbrace 1,\ \ dp[j] + 1 \ \ | \ \ 0 \le j &lt; i, nums[j] &lt; nums[i] \rbrace
 $$</li>
 <li>不难发现，状态转移<strong>需要利用到下标为j的原数组的数</strong>，所以这个说明了状态定义就很重要了</li>
 <li>最终的答案就是取其中的最大值</li>
@@ -905,13 +911,13 @@ $$</li>
 <li>对于一个节点有两种可能，<strong>选</strong>或者<strong>不选</strong>。那么我们就这样定义状态：dp[i][j],  $1 \le i \le n$、 $0 \le j \le 1$，表示i节点的权值总和最大，$j = 0$表示不选择当前节点时的权值总和最大，$j = 1$表示选择当前节点时的权值总和最大</li>
 <li>当一个节点选了之后，那么它的所有子节点都不能选（当然它的父节点也不能选，但是考虑到我们这题用dp来解，为了不扰乱思维，我们<strong>只看它和它的子节点</strong>），看图：
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%88%B6%E9%80%89%E5%AD%90%E4%B8%8D%E9%80%89.png" alt="父选子不选"></li>
-<li>==黄色==为选，<strong>灰色</strong>为不选，父亲节点选了后，它下面的2、3、4、5、6……都不能选了（清楚明了），喂喂喂，你可别再想1号节点的父亲的事了，我们正在dp呢，它父亲节点以后它爷爷节点会搞定的，别再多想了，不然会扰乱思维。那么很容易得到这部分的转移方程(son[i]表示i的子节点, w[i]表示当前节点的权值)：
+<li><strong>黄色</strong>为选，<strong>灰色</strong>为不选，父亲节点选了后，它下面的2、3、4、5、6……都不能选了（清楚明了），喂喂喂，你可别再想1号节点的父亲的事了，我们正在dp呢，它父亲节点以后它爷爷节点会搞定的，别再多想了，不然会扰乱思维。那么很容易得到这部分的转移方程(son[i]表示i的子节点, w[i]表示当前节点的权值)：
 $$
 dp[i][1] = w[i] + \sum dp[son[i]][0]
 $$</li>
 <li>如果这个节点不选呢？不说话，先看图：
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%88%B6%E4%B8%8D%E9%80%89%E5%AD%90%E9%80%89.png" alt="父不选子选"></li>
-<li>还是一样：==黄色==为选，<strong>灰色</strong>为不选。可能有人很奇怪：“哎呀，为什么儿子还有不选的情况，既然父亲都不选了，那么他的儿子全选不就总和最大了吗”。别急，且听我慢慢道来，如果这个是一条链，那么你这种想法可能就是对的，但这个是一棵树，之所以会有这个疑惑是因为我的图没上画完呢。
+<li>还是一样：<strong>黄色</strong>为选，<strong>灰色</strong>为不选。可能有人很奇怪：“哎呀，为什么儿子还有不选的情况，既然父亲都不选了，那么他的儿子全选不就总和最大了吗”。别急，且听我慢慢道来，如果这个是一条链，那么你这种想法可能就是对的，但这个是一棵树，之所以会有这个疑惑是因为我的图没上画完呢。
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E7%88%B6%E4%B8%8D%E9%80%89%E5%AD%90%E9%80%89%E8%A1%A5%E5%85%85.png" alt="父选子不选补充"></li>
 <li>说明：方形内的数字是节点的权值。显然如果要总和最大，那么5号节点就不能选，因为它的5号几点的子节点（8号节点）的权值更大（清楚明了😁）。所以又可以得到相应的转移方程：
 $$
@@ -1006,24 +1012,24 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E6%A0%91%E7%8A%B6%E4%BE%8B%E9%A2%982%E5%9B%BE01.png" alt="树状例题2图01"></li>
 <li>说明：方形里的数字代表距离（边权）。不难看出从2号节点的子节点（7号节点、6号节点、3号节点）到2号节点的最大距离就是子节点到来的最大值（老规矩，别想他的父节点），有点拗口，看方程（son[i]表示 i 节点的子节点, len(son[i])则表示它的子节点到他它自己的距离）：
 $$
-dp[i][0] = max{ dp[son[i]][0] + len(son[i])}
+dp[i][0] = max\lbrace dp[son[i]][0] + len(son[i])\rbrace
 $$</li>
 <li>简单吧，下面就来看看比较难的：不是从他的子节点到来的最大距离。先上图（画的好累）：
 <img src="https://cdn.jsdelivr.net/gh/haofish/ImgHosting/haofishPIC%E6%A0%91%E7%8A%B6%E4%BE%8B%E9%A2%982%E5%9B%BEii.png" alt="树状例题2图ii"></li>
 <li>清楚吧，<del>不用解释了吧</del>，好吧好吧，我们把目光放到3号节点上，如果计算<strong>不是从它子节点过来的距离</strong>的话，只有两种可能，其中最简单的一条路就是从它的爷爷节点来再到他的父亲节点来的距离（黄色箭头路线），为什么只有一条？因为它肯定只有一个爷爷和父亲，不可能有两个，不可能！！！这个世界还是很美好滴；第二种可能就是从它的兄弟节点来，这个比较多路（蓝色和绿色箭头路线），因为它可以有很多兄弟，也可以没有兄弟（独生子😁）。这样理解的话方程就能出来了（fa[i]表示 i 节点父节点，所以son[fa[i]]就代表 i 节点 的兄弟节点，len的含义和上面一样）：
 $$
-dp[i][1] = max{dp[fa[i]][1]+ len(i), dp[son[fa[i]]][0] + len(son[fa[i]]}+ len(i))
+dp[i][1] = max\lbrace dp[fa[i]][1]+ len(i), dp[son[fa[i]]][0] + len(son[fa[i]]\rbrace+ len(i))
 $$</li>
 <li>化简一下
 $$
-dp[i][1] = max{dp[fa[i]][1], dp[son[fa[i]]][0] + len(son[fa[i]])} + len(i)
+dp[i][1] = max\lbrace dp[fa[i]][1], dp[son[fa[i]]][0] + len(son[fa[i]])\rbrace + len(i)
 $$</li>
 <li>解释：max内部的前者是上述的第一种可能，后者是第二种可能，是不是简单明了😁，但是对于这个状态还利用到来我们第一个讲的（$j = 0$）状态。所以我们在计算时要先把所有 $j = 0$ 的状态先计算，即做两遍dfs（当然你也可以把他们的dfs放到一起，都一样的，为了方便<del>我不会😂</del>我选择做两遍dfs），注意：这个状态方程的状态，即 $j = 1$ 时的状态一定要自顶向下计算，因为方程中还用到了它父亲的第二（$j = 1$）状态。所以最终的状态转移方程总结为：
 $$
 \begin{cases}
-dp[i][0] = max{ dp[son[i]][0] + len(son[i])}， \ \ （第一种状态）\\<br>
+dp[i][0] = max\lbrace dp[son[i]][0] + len(son[i])\rbrace， \ \ （第一种状态）\\<br>
 \\<br>
-dp[i][1] = max{dp[fa[i]][1], dp[son[fa[i]]][0] + len(son[fa[i]])} + len(i) \ \ （第二种状态）
+dp[i][1] = max\lbrace dp[fa[i]][1], dp[son[fa[i]]][0] + len(son[fa[i]])\rbrace + len(i) \ \ （第二种状态）
 \end{cases}
 $$</li>
 <li>那么最后的答案是什么呢？显然就是每个节点的 $j = 0$ 和 $j = 1$ 的两种状态的最大值，即对于 i 节点 max（dp[i][0], dp[i][1]）。不废话，上代码（其余细节看注释）！！！</li>
@@ -1120,10 +1126,12 @@ vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</sp
 <li>对于一行有 n 个格子的总共的选择方式个数为 $2^n$</li>
 <li>既然都说了状压，那直接开压：把列压缩（对于这题行和列相同，压列是个人喜欢，更多情况下是压缩数据范围小的那个，你当然希望$2^n$越小越好啦）</li>
 <li>下一步在输入之前把不合法的<strong>状态预处理</strong>了，只留下合法的，就是本题所说的不能选取拥有公共边的格子，即对于每一行状态不能有相邻的 1</li>
-<li>然后是转移方程（很简单，并且不难想）
-$$
-dp[i][now] = max{dp[i - 1][pre] + w[now]]}
-$$</li>
+<li>然后是转移方程（很简单，并且不难想）</li>
+</ul>
+<p>$$
+dp[i][now] = max\lbrace dp[i - 1][pre] + w[now]]\rbrace
+$$</p>
+<ul>
 <li>解释：i 表示第 i 行，now 表示当前行的二进制状态，pre 表示上一行的所有不与 now 具有相同位 1 的状态，可以用相与（<strong>&amp;</strong>）是否等于 0 来判断，若等于 0 则没有相同我位的 1，否则有；w[now]表示当前状态的选取方格的总值</li>
 <li>那么最后的答案就是最后一行中的最大值</li>
 <li>代码如下</li>
